@@ -1,6 +1,6 @@
 #pragma once
 
-#include<KamataEngine.h>
+#include <KamataEngine.h>
 #include <vector>
 
 using namespace KamataEngine;
@@ -44,7 +44,5 @@ private: // メンバ変数
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
-
-
 
 };

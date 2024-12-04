@@ -1,7 +1,10 @@
 #include <KamataEngine.h>
 
 using namespace KamataEngine;
+
 #include "GameScene.h"
+
+
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -12,7 +15,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Audio* audio = nullptr;
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
-	// ゲームシーンの作成
+
 	GameScene* gameScene = nullptr;
 
 	// ゲームウィンドウの作成
@@ -54,7 +57,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	primitiveDrawer->Initialize();
 #pragma endregion
 
-	gameScene = new GameScene;
+	gameScene = new GameScene();
 	gameScene->Initialize();
 
 	// メインループ
@@ -68,7 +71,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		imguiManager->Begin();
 		// 入力関連の毎フレーム処理
 		input->Update();
-		// ゲームシーンの作成
+		// ゲームシーンの毎フレーム処理
 		gameScene->Update();
 		// 軸表示の更新
 		axisIndicator->Update();
@@ -77,7 +80,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// 描画開始
 		dxCommon->PreDraw();
-		// ゲームシーンの作成
 		gameScene->Draw();
 		// 軸表示の描画
 		axisIndicator->Draw();
@@ -88,6 +90,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 描画終了
 		dxCommon->PostDraw();
 	}
+
+	// 各種解放
+	delete gameScene;
+
 
 	// 3Dモデル解放
 	Model::StaticFinalize();
@@ -100,3 +106,4 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	return 0;
 }
+

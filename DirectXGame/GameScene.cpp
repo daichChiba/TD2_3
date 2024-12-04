@@ -4,7 +4,9 @@
 using namespace KamataEngine;
 
 // インストラクタ
-GameScene::GameScene() {}
+GameScene::GameScene() {
+
+}
 // デストラクタ
 GameScene::~GameScene() {
 
@@ -13,7 +15,9 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
-
+	dxCommon_ = DirectXCommon::GetInstance();
+	input_ = Input::GetInstance();
+	audio_ = Audio::GetInstance();
 }
 
 void GameScene::Update() {
@@ -21,7 +25,7 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw() {
-	// コマンドリストの取得
+	//コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
 #pragma region 背景スプライト描画
@@ -45,6 +49,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
