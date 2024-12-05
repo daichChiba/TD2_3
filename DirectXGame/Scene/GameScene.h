@@ -2,8 +2,9 @@
 
 #include <KamataEngine.h>
 #include <vector>
-
 using namespace KamataEngine;
+
+#include "../Player.h"
 
 /// <summary>
 /// ゲームシーン
@@ -48,7 +49,7 @@ private: // メンバ変数
 	/// <summary>
 	/// player
 	/// </summary>
-	//Player* player_ = nullptr;
+	Player* player_ = nullptr;
 
 	/// <summary>
 	/// プレイヤーモデル

@@ -8,7 +8,9 @@ GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 
+	delete playerModel_;
 
+	delete player_;
 }
 
 void GameScene::Initialize() {
@@ -17,14 +19,18 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
+	//playerのモデル
 	playerModel_ = new Model();
 	playerModel_->CreateFromOBJ("player", true);
-
-	//player_ = new Player()
+	//playerの初期位置
+	Vector3 playerPos = {0.0f, 0.0f, 0.0f};
+	//playerの初期化
+	player_ = new Player();
+	player_->Initialize(playerModel_, playerPos);
 }
 
 void GameScene::Update() {
-
+	player_->Update();
 }
 
 void GameScene::Draw() {
@@ -52,6 +58,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+
+	////player
+	//player_->Draw(camera_);
 
 
 	// 3Dオブジェクト描画後処理
