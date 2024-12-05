@@ -47,8 +47,10 @@ private: // メンバ変数
 	/// カメラ
 	/// </summary>
 	Camera* camera_ = nullptr;
-	static inline const Vector3 panoramaCameraPos = {0.0f, 20.0f, 0.0f};
-	static inline const Vector3 panoramaCameraRot = {1.57f, 0.0f, 0.0f};
+	/*static inline const Vector3 panoramaCameraPos = {0.0f, 20.0f, 0.0f};
+	static inline const Vector3 panoramaCameraRot = {1.57f, 0.0f, 0.0f};*/
+	static inline const Vector3 panoramaCameraPos = { 0.0f, 0.0f, -20.0f};
+	static inline const Vector3 panoramaCameraRot = { 0.0f, 0.0f, 0.0f};
 
 	/// <summary>
 	/// player

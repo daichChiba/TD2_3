@@ -24,7 +24,7 @@ void GameScene::Initialize() {
 
 	playerModel_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
-
+	
 	enemyModel_ = new Model();
 	enemyModel_->CreateFromOBJ("cube");
 
@@ -37,6 +37,26 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	enemy_->Update();
+
+#ifdef _DEBUG
+	float CameraPos[] = {camera_->translation_.x, camera_->translation_.y, camera_->translation_.z};
+	float CameraRot[] = {camera_->rotation_.x, camera_->rotation_.y, camera_->rotation_.z};
+
+	ImGui::Begin("camera");
+	ImGui::DragFloat3("CameraPos", CameraPos, 0.01f);
+	ImGui::DragFloat3("CameraRot", CameraRot, 0.01f);
+	ImGui::End();
+
+	camera_->translation_.x = CameraPos[0];
+	camera_->translation_.y = CameraPos[1];
+	camera_->translation_.z = CameraPos[2];
+	
+	camera_->rotation_.x = CameraRot[0];
+	camera_->rotation_.y = CameraRot[1];
+	camera_->rotation_.z = CameraRot[2];
+#endif // DEBUG
+
+	camera_->UpdateMatrix();
 }
 
 void GameScene::Draw() {

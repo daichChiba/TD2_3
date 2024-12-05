@@ -1,5 +1,7 @@
 #include "Enemy.h"
 
+using namespace MathUtility;
+
 void Enemy::Initialize(Model* model, Vector3 pos)
 {
 	assert(model);
@@ -11,6 +13,7 @@ void Enemy::Initialize(Model* model, Vector3 pos)
 
 void Enemy::Update()
 {
+	worldTransform_.translation_ += Vector3{0.0f, 0.0f, 0.0f};
 }
 
 void Enemy::Draw(Camera* camera)
