@@ -80,9 +80,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		// 描画開始
 		dxCommon->PreDraw();
-		gameScene->Draw();
+
 		// 軸表示の描画
 		axisIndicator->Draw();
+
+				gameScene->Draw();
 		// プリミティブ描画のリセット
 		primitiveDrawer->Reset();
 		// ImGui描画
