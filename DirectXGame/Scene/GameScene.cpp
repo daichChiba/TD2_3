@@ -96,6 +96,7 @@ void GameScene::Draw() {
 	//player
 	player_->Draw(camera_);
 
+
 	enemy_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
