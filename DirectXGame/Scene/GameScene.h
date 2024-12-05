@@ -4,6 +4,9 @@
 #include <vector>
 using namespace KamataEngine;
 
+#include "../Enemy.h"
+
+using namespace KamataEngine;
 #include "../Player.h"
 
 /// <summary>
@@ -43,8 +46,11 @@ private: // メンバ変数
 	Audio* audio_ = nullptr;
 
 	/// <summary>
-	/// ゲームシーン用
+	/// カメラ
 	/// </summary>
+	Camera* camera_ = nullptr;
+	static inline const Vector3 panoramaCameraPos = {0.0f, 20.0f, 0.0f};
+	static inline const Vector3 panoramaCameraRot = {1.57f, 0.0f, 0.0f};
 
 	/// <summary>
 	/// player
@@ -55,5 +61,15 @@ private: // メンバ変数
 	/// プレイヤーモデル
 	/// </summary>
 	Model* playerModel_ = nullptr;
+	
+	/// <summary>
+	/// 敵
+	/// </summary>
+	Enemy* enemy_ = nullptr;
 
+	/// <summary>
+	/// 敵モデル
+	/// </summary>
+	Model* enemyModel_ = nullptr;
+	
 };

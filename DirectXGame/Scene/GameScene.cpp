@@ -19,8 +19,23 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
+	camera_ = new Camera();
+	camera_->Initialize();
+	camera_->translation_ = panoramaCameraPos;
+	camera_->rotation_ = panoramaCameraRot;
+
 	//playerのモデル
 	playerModel_ = new Model();
+	//playerModel_->CreateFromOBJ("player", true);
+
+	enemyModel_ = new Model();
+	enemyModel_->CreateFromOBJ("cube");
+
+	//player_ = new Player()
+
+	enemy_ = new Enemy();
+	enemy_->Initialize(enemyModel_, Vector3{0.0f});
+	
 	playerModel_->CreateFromOBJ("player", true);
 	//playerの初期位置
 	Vector3 playerPos = {0.0f, 0.0f, 0.0f};
@@ -30,6 +45,7 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
+	enemy_->Update();
 	player_->Update();
 }
 
@@ -62,6 +78,7 @@ void GameScene::Draw() {
 	////player
 	//player_->Draw(camera_);
 
+	enemy_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
