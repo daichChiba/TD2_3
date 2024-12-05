@@ -45,4 +45,14 @@ private: // メンバ変数
 	/// ゲームシーン用
 	/// </summary>
 
+	/// <summary>
+	/// player
+	/// </summary>
+	//Player* player_ = nullptr;
+
+	/// <summary>
+	/// プレイヤーモデル
+	/// </summary>
+	Model* playerModel_ = nullptr;
+
 };

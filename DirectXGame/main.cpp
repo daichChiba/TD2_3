@@ -2,7 +2,7 @@
 
 using namespace KamataEngine;
 
-#include "GameScene.h"
+#include "../DirectXGame/Scene/GameScene.h"
 
 
 

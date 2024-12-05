@@ -4,9 +4,7 @@
 using namespace KamataEngine;
 
 // インストラクタ
-GameScene::GameScene() {
-
-}
+GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 
@@ -18,6 +16,11 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	playerModel_ = new Model();
+	playerModel_->CreateFromOBJ("player", true);
+
+	//player_ = new Player()
 }
 
 void GameScene::Update() {
