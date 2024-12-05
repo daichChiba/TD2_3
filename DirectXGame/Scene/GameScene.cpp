@@ -36,12 +36,10 @@ void GameScene::Initialize() {
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
 	
-	playerModel_->CreateFromOBJ("player", true);
-	//playerの初期位置
-	Vector3 playerPos = {0.0f, 0.0f, 0.0f};
+	playerModel_->CreateFromOBJ("Player", true);
 	//playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, playerPos);
+	player_->Initialize(playerModel_, Vector3{0.0f});
 }
 
 void GameScene::Update() {
@@ -75,8 +73,8 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
-	////player
-	//player_->Draw(camera_);
+	//player
+	player_->Draw(camera_);
 
 	enemy_->Draw(camera_);
 
