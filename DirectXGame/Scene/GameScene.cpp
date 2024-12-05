@@ -6,10 +6,7 @@ using namespace KamataEngine;
 // インストラクタ
 GameScene::GameScene() {}
 // デストラクタ
-GameScene::~GameScene() {
-
-
-}
+GameScene::~GameScene() {}
 
 void GameScene::Initialize() {
 
@@ -23,24 +20,24 @@ void GameScene::Initialize() {
 	camera_->rotation_ = panoramaCameraRot;
 
 	playerModel_ = new Model();
-	//playerModel_->CreateFromOBJ("player", true);
+	// playerModel_->CreateFromOBJ("player", true);
 
 	enemyModel_ = new Model();
-	enemyModel_->CreateFromOBJ("cube");
+	enemyModel_->CreateFromOBJ("cube", true);
 
-	//player_ = new Player()
+	// player_ = new Player()
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
-	
 }
 
 void GameScene::Update() {
 	enemy_->Update();
+	camera_->UpdateMatrix();
 }
 
 void GameScene::Draw() {
-	//コマンドリストの取得
+	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
 #pragma region 背景スプライト描画
@@ -83,5 +80,3 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
-
-
