@@ -6,7 +6,7 @@ using namespace KamataEngine;
 // インストラクタ
 GameScene::GameScene() {}
 // デストラクタ
-GameScene::~GameScene() {
+GameScene::~GameScene() {}
 
 	delete playerModel_;
 
@@ -22,16 +22,15 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 	camera_->translation_ = panoramaCameraPos;
-	camera_->rotation_ = panoramaCameraRot;
+	//camera_->rotation_ = panoramaCameraRot;
 
 	//playerのモデル
 	playerModel_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
+	
+	enemyModel_ = Model::CreateFromOBJ("cube", true);
 
-	enemyModel_ = new Model();
-	enemyModel_->CreateFromOBJ("cube");
-
-	//player_ = new Player()
+	// player_ = new Player()
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
@@ -44,11 +43,30 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	enemy_->Update();
-	player_->Update();
+//
+//#ifdef _DEBUG
+//	float CameraPos[] = {camera_->translation_.x, camera_->translation_.y, camera_->translation_.z};
+//	float CameraRot[] = {camera_->rotation_.x, camera_->rotation_.y, camera_->rotation_.z};
+//
+//	ImGui::Begin("camera");
+//	ImGui::DragFloat3("CameraPos", CameraPos, 0.01f);
+//	ImGui::DragFloat3("CameraRot", CameraRot, 0.01f);
+//	ImGui::End();
+//
+//	camera_->translation_.x = CameraPos[0];
+//	camera_->translation_.y = CameraPos[1];
+//	camera_->translation_.z = CameraPos[2];
+//	
+//	camera_->rotation_.x = CameraRot[0];
+//	camera_->rotation_.y = CameraRot[1];
+//	camera_->rotation_.z = CameraRot[2];
+//#endif // DEBUG
+
+	camera_->UpdateMatrix();
 }
 
 void GameScene::Draw() {
-	//コマンドリストの取得
+	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
 #pragma region 背景スプライト描画
@@ -95,5 +113,3 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
-
-
