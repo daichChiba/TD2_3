@@ -6,12 +6,14 @@ using namespace KamataEngine;
 // インストラクタ
 GameScene::GameScene() {}
 // デストラクタ
-GameScene::~GameScene() {}
-
+GameScene::~GameScene() {
 	delete playerModel_;
 
 	delete player_;
 }
+
+
+
 
 void GameScene::Initialize() {
 
@@ -35,7 +37,7 @@ void GameScene::Initialize() {
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
 	
-	playerModel_->CreateFromOBJ("Player", true);
+	playerModel_=Model::CreateFromOBJ("Player", true);
 	//playerの初期化
 	player_ = new Player();
 	player_->Initialize(playerModel_, Vector3{0.0f});
