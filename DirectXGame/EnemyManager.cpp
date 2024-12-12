@@ -20,3 +20,4 @@ void EnemyManager::Draw(Camera* camera)
 {
 	model_->Draw(worldTransform_, *camera);
 }
+

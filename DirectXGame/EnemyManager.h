@@ -4,14 +4,18 @@
 
 using namespace KamataEngine;
 
+class GameScene;
+
 class EnemyManager
 {
 public:
 	void Initialize(Model* model, Model* bulletModel, Vector3 pos);
 	virtual void Update();
 	void Draw(Camera* camera);
-
+	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 protected:
+
+	GameScene* gameScene_;
 
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;

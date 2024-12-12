@@ -16,8 +16,7 @@ void GameScene::Initialize() {
 
 	camera_ = new Camera();
 	camera_->Initialize();
-	camera_->translation_ = panoramaCameraPos;
-	//camera_->rotation_ = panoramaCameraRot;
+	camera_->translation_ = normalCameraPos_;
 
 	playerModel_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
@@ -28,30 +27,15 @@ void GameScene::Initialize() {
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
+	enemy_->SetGameScene(this); 
 }
 
 void GameScene::Update() {
-	enemy_->Update();
-//
-//#ifdef _DEBUG
-//	float CameraPos[] = {camera_->translation_.x, camera_->translation_.y, camera_->translation_.z};
-//	float CameraRot[] = {camera_->rotation_.x, camera_->rotation_.y, camera_->rotation_.z};
-//
-//	ImGui::Begin("camera");
-//	ImGui::DragFloat3("CameraPos", CameraPos, 0.01f);
-//	ImGui::DragFloat3("CameraRot", CameraRot, 0.01f);
-//	ImGui::End();
-//
-//	camera_->translation_.x = CameraPos[0];
-//	camera_->translation_.y = CameraPos[1];
-//	camera_->translation_.z = CameraPos[2];
-//	
-//	camera_->rotation_.x = CameraRot[0];
-//	camera_->rotation_.y = CameraRot[1];
-//	camera_->rotation_.z = CameraRot[2];
-//#endif // DEBUG
+	
+#pragma region 敵のアップデート
+	enemyUpdate();
+#pragma endregion 
 
-	camera_->UpdateMatrix();
 }
 
 void GameScene::Draw() {
@@ -79,7 +63,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	enemy_->Draw(camera_);
+	enemyDrow();
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -97,4 +81,34 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::enemyUpdate()
+{
+
+	enemy_->Update();
+	enemy_->SetGameScene(this);
+	for (std::shared_ptr<EnemyManager> enemy : enemies_)
+	{
+		enemy->Update();
+		enemy->SetGameScene(this);
+	}
+
+	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
+	{
+		enemyBullet->Update();
+	}
+}
+
+void GameScene::enemyDrow()
+{
+	for (std::shared_ptr<EnemyManager> enemy : enemies_)
+	{
+		enemy->Draw(camera_);
+	}
+
+	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
+	{
+		enemyBullet->Draw(camera_);
+	}
 }

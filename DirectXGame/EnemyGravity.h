@@ -10,6 +10,7 @@ public:
 	void Update() override;
 
 private:
+	void DrowImgui();
 	float miniBulletTimer_ = 0.0f;
 	static inline const float kMiniBulletTime_ = 1.5f;
 	static inline const int kMiniBulletMaxShot = 5;

@@ -4,7 +4,8 @@
 #include <vector>
 
 #include "../Enemy.h"
-
+#include "../EnemyManager.h"
+#include "../EnemyBullet.h"
 using namespace KamataEngine;
 
 /// <summary>
@@ -38,7 +39,28 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 敵のモードの読み取り(enemy内で使う)
+	/// </summary>
+	void AddEnemy(std::shared_ptr<EnemyManager> enemy) { enemies_.push_back(enemy); }
+	
+	/// <summary>
+	/// 敵の弾の読み取り(enemy内で使う)
+	/// </summary>
+	void AddEnemyBullet(std::shared_ptr<EnemyBullet> enemyBullet) { enemiesBullet_.push_back(enemyBullet); }
+
 private: // メンバ変数
+
+	/// <summary>
+	/// 敵のアップデート関数
+	/// </summary>
+	void enemyUpdate();
+
+	/// <summary>
+	/// 敵の描画関数
+	/// </summary>
+	void enemyDrow();
+
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
@@ -47,10 +69,7 @@ private: // メンバ変数
 	/// カメラ
 	/// </summary>
 	Camera* camera_ = nullptr;
-	/*static inline const Vector3 panoramaCameraPos = {0.0f, 20.0f, 0.0f};
-	static inline const Vector3 panoramaCameraRot = {1.57f, 0.0f, 0.0f};*/
-	static inline const Vector3 panoramaCameraPos = { 0.0f, 0.0f, -20.0f};
-	static inline const Vector3 panoramaCameraRot = { 0.0f, 0.0f, 0.0f};
+	static inline const Vector3 normalCameraPos_ = { 0.0f, 0.0f, -20.0f};
 
 	/// <summary>
 	/// player
@@ -66,6 +85,16 @@ private: // メンバ変数
 	/// 敵
 	/// </summary>
 	Enemy* enemy_ = nullptr;
+
+	/// <summary>
+	///敵マネージャー(GameSceneではUpdateとDrowのみ行う)
+	/// </summary>
+	std::list<std::shared_ptr<EnemyManager>> enemies_;
+
+	/// <summary>
+	///敵の弾(GameSceneではUpdateとDrowのみ行う)
+	/// </summary>
+	std::list<std::shared_ptr<EnemyBullet>> enemiesBullet_;
 
 	/// <summary>
 	/// 敵モデル

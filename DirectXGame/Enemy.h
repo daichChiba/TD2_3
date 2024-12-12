@@ -4,14 +4,30 @@
 
 using namespace KamataEngine;
 
+class GameScene;
+
+enum class Stage{
+	Grabity,
+	Test
+};
+
 class Enemy
 {
 public:
 	void Initialize(Model* model, Vector3 pos);
 	void Update();
-	void Draw(Camera* camera);
+
+	void SetGameScene(GameScene* gameScene){ gameScene_ = gameScene; }
+
+	void SetEnemyStage(const int i){  stage = static_cast<Stage>(i); }
 private:
+	void InitializeGrabity();
+
 	Model* model_ = nullptr;
 	WorldTransform worldTransform_;
+
+	GameScene* gameScene_;
+
+	Stage stage;
 };
 

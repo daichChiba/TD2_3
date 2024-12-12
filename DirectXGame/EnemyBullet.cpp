@@ -9,6 +9,11 @@ void EnemyBullet::Initialize(Model* model, Vector3 pos)
 	worldTransform_.translation_ = pos;
 }
 
+void EnemyBullet::Update()
+{
+	worldTransform_.UpdateMatrix();
+}
+
 void EnemyBullet::Draw(Camera* camera)
 {
 	model_->Draw(worldTransform_, *camera);

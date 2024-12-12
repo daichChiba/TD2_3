@@ -12,6 +12,14 @@ public:
 
 	bool GetIsDelete() const { return isDelete_; }
 protected:	
+	void SetVec(float* a, Vector3 b){
+		b.x = a[0];
+		b.y = a[1];
+		b.z = a[2];
+	}
+
+	void DrowImgui();
+
 	Model* model_ = nullptr;
 	WorldTransform worldTransform_;
 
