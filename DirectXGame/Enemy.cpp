@@ -1,5 +1,10 @@
 #include "Enemy.h"
 
+#include "../DirectXGame/Scene/GameScene.h"
+
+#include "../DirectXGame/EnemyManager.h"
+#include "../DirectXGame/EnemyGravity.h"
+
 using namespace MathUtility;
 
 void Enemy::Initialize(Model* model, Vector3 pos)
@@ -10,22 +15,22 @@ void Enemy::Initialize(Model* model, Vector3 pos)
 	worldTransform_.translation_ = pos;
 	//worldTransform_.scale_ = Vector3{20.0f, 20.0f, 20.0f};
 
-	
+	stage = Stage::Test;
 }
 
 void Enemy::Update()
 {
-	//worldTransform_.translation_ += Vector3{0.0f, 0.0f, 0.0f};
-	worldTransform_.UpdateMatrix();
-
-	ImGui::Begin("enemy");
-	ImGui::Text("%f, %f, %f",worldTransform_.scale_.x, worldTransform_.scale_.y, worldTransform_.scale_.z);
-	ImGui::Text("%f, %f, %f",worldTransform_.rotation_.x, worldTransform_.rotation_.y, worldTransform_.rotation_.z);
-	ImGui::Text("%f, %f, %f",worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z);
-	ImGui::End();
+	if (stage == Stage::Test)
+	{
+		InitializeGrabity();
+		stage = Stage::Grabity;
+	}
+	
 }
 
-void Enemy::Draw(Camera* camera)
+void Enemy::InitializeGrabity()
 {
-	model_->Draw(worldTransform_, *camera);
+	std::shared_ptr<EnemyManager> modeGravity(new EnemyGravity);
+	modeGravity->Initialize(model_, model_, worldTransform_.translation_);
+	gameScene_->AddEnemy(modeGravity);
 }
