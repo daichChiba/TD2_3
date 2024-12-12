@@ -10,6 +10,8 @@ void Player::Initialize(Model* model, const Vector3 position) {
 }
 
 void Player::Update() {
+	Input::GetInstance()->GetJoystickState(0, xinput_);
+	Input::GetInstance()->GetJoystickStatePrevious(0, preXinput_);
 
 	ImGui::Begin("player");
 	ImGui::SliderFloat3("pos", &worldTransform_.translation_.x, -10.0f, 10.0f);
@@ -35,6 +37,34 @@ void Player::Move() {
 	if (Input::GetInstance()->PushKey(DIK_W)) {
 		velocity.y = 0.1f;
 	} else if (Input::GetInstance()->PushKey(DIK_S)) {
+		velocity.y = -0.1f;
+	}
+	#pragma endregion 
+
+	#pragma region 移動タイプ上下左右
+	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		velocity.x = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		velocity.x = -0.1f;
+	}
+	if (Input::GetInstance()->PushKey(DIK_UP)) {
+		velocity.y = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_DOWN)) {
+		velocity.y = -0.1f;
+	}
+	#pragma endregion 
+
+	#pragma region 移動タイプコントローラー
+	//コントローラーのLステックのX座標の話
+	if (xinput_.Gamepad.sThumbLX>100) {
+		velocity.x = 0.1f;
+	} else if (xinput_.Gamepad.sThumbLX<-100) {
+		velocity.x = -0.1f;
+	}
+	// コントローラーのLステックのY座標の話
+	if (xinput_.Gamepad.sThumbLY > 100) {
+		velocity.y = 0.1f;
+	} else if (xinput_.Gamepad.sThumbLY < -100) {
 		velocity.y = -0.1f;
 	}
 	#pragma endregion 
