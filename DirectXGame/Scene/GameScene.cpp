@@ -45,7 +45,8 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	enemy_->Update();
-//
+	player_->Update();
+	    //
 //#ifdef _DEBUG
 //	float CameraPos[] = {camera_->translation_.x, camera_->translation_.y, camera_->translation_.z};
 //	float CameraRot[] = {camera_->rotation_.x, camera_->rotation_.y, camera_->rotation_.z};
