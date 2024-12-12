@@ -38,4 +38,7 @@ private://メンバ関数
 	/// </summary>
 	void Move();
 
+
+	void Fire();
+
 };

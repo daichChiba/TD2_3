@@ -63,7 +63,7 @@ void Player::Move() {
 	float lx = xinput_.Gamepad.sThumbLX / 32767.0f; // 正規化（-1.0 ～ 1.0）
 	float ly = xinput_.Gamepad.sThumbLY / 32767.0f;
 
-	// デッドゾーンの設定
+	// デッドゾーンの設定(スティックがニュートラルに近い場合に意図せず移動しないようにする)
 	const float deadZone = 0.1f;
 	if (fabs(lx) < deadZone)
 		lx = 0.0f;
@@ -86,4 +86,8 @@ void Player::Move() {
 
 
 	worldTransform_.translation_ += velocity;
+}
+
+void Player::Fire() {
+
 }
