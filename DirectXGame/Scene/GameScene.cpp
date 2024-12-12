@@ -31,7 +31,6 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	
 #pragma region 敵のアップデート
 	enemyUpdate();
 #pragma endregion 
@@ -93,11 +92,18 @@ void GameScene::enemyUpdate()
 		enemy->Update();
 		enemy->SetGameScene(this);
 	}
-
+	 testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
 	{
 		enemyBullet->Update();
+		++testBullet;
 	}
+
+	ImGui::Begin("gamescene");
+	ImGui::Text("%d", testBullet);
+	ImGui::End();
+
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 }
 
 void GameScene::enemyDrow()

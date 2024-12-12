@@ -10,7 +10,7 @@ public:
 	virtual void Update();
 	void Draw(Camera* camera);
 
-	bool GetIsDelete() const { return isDelete_; }
+	bool IsDelete() const { return isDelete_; }
 protected:	
 	void SetVec(float* a, Vector3 b){
 		b.x = a[0];
