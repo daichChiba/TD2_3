@@ -6,27 +6,26 @@ class Enemy;
 class PlayerBullet {
 public:
 	/// <summary>
-	/// 
+	/// 初期化処理
 	/// </summary>
-	/// <param name="BulletModel"></param>
-	/// <param name="camera"></param>
-	/// <param name="pos">弾の位置</param>
-	void Initialize(Model* BulletModel, Camera* camera, Vector3 pos);
+	/// <param name="model">モデル</param>
+	/// <param name="pos">座標</param>
+	void Initialize(Model* model, Vector3 pos);
 	/// <summary>
-	/// 
+	/// 更新処理
 	/// </summary>
-	void Update();
+	virtual void Update();
 	/// <summary>
-	/// 
+	/// 描画処理
 	/// </summary>
-	void Draw();
+	void Draw(Camera* camera);
 
 
 private:
+	//モデル
 	Model* model_ = nullptr;
 
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
 
-	Camera* camera_ = nullptr;
 };
