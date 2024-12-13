@@ -113,6 +113,7 @@
     <ClCompile Include="GrabiltBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
@@ -192,6 +193,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="EnemyGravity.h" />

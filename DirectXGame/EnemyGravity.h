@@ -21,7 +21,7 @@ private:
 	static inline const float spacing = 7.0f;
 
 	// 弾の初期Y座標 (適切な値に設定)
-	static inline const float initialY = -35.1f;
+	static inline const float initialY = -22.1f;
 
 	static inline const float kMiniBulletTime_ = 6.0f;
 	static inline const int kMiniBulletMaxShot = 5;

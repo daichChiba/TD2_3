@@ -24,8 +24,7 @@ void EnemyGravity::Update()
 		{
 			std::shared_ptr<EnemyBullet> grabityBullet_(new GrabiltBullet);
 			grabityBullet_->Initialize(bulletModel_, Vector3{ x, -initialY, 0.0f });
-			SetGameScene(gameScene_);
-			gameScene_->AddEnemyBullet(grabityBullet_);
+			gameScene_->AddEnemyBullet(grabityBullet_);//プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 		}
 
 		miniBulletTimer_ = kMiniBulletTime_;

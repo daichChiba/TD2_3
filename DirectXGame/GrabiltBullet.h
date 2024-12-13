@@ -12,6 +12,6 @@ public:
 private:
 	void DrowImgui();
 	Vector3 velocity_;
-	float fallSpeed_ = -0.07f;
+	float gravity = -0.07f;
 };
 

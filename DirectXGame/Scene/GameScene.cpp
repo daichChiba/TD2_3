@@ -6,7 +6,14 @@ using namespace KamataEngine;
 // インストラクタ
 GameScene::GameScene() {}
 // デストラクタ
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete playerModel_;
+
+	delete player_;
+}
+
+
+
 
 void GameScene::Initialize() {
 
@@ -18,6 +25,7 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
 
+	//playerのモデル
 	playerModel_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
 	
@@ -28,9 +36,17 @@ void GameScene::Initialize() {
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
 	enemy_->SetGameScene(this); 
+	
+	playerModel_=Model::CreateFromOBJ("Player", true);
+	//playerの初期化
+	player_ = new Player();
+	player_->Initialize(playerModel_, Vector3{0.0f});
 }
 
 void GameScene::Update() {
+	
+	player_->Update();
+
 #pragma region 敵のアップデート
 	enemyUpdate();
 #pragma endregion 
@@ -62,7 +78,12 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+		
+	//敵
 	enemyDrow();
+
+	//player
+	player_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -90,7 +111,7 @@ void GameScene::enemyUpdate()
 	for (std::shared_ptr<EnemyManager> enemy : enemies_)
 	{
 		enemy->Update();
-		enemy->SetGameScene(this);
+		//enemy->SetGameScene(this);
 	}
 	 testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)

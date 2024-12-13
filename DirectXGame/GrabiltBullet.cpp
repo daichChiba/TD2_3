@@ -4,7 +4,7 @@ using namespace MathUtility;
 
 void GrabiltBullet::Update()
 {
-	velocity_ .y = fallSpeed_;
+	velocity_ .y += gravity;
 
 	worldTransform_.translation_ += velocity_;
 
