@@ -10,10 +10,13 @@ void Player::Initialize(Model* model, const Vector3 position) {
 }
 
 void Player::Update() {
-
+#ifdef _DEBUG
 	ImGui::Begin("player");
 	ImGui::SliderFloat3("pos", &worldTransform_.translation_.x, -10.0f, 10.0f);
 	ImGui::End();
+
+#endif // _DEBUG
+
 
 	Move();
 
