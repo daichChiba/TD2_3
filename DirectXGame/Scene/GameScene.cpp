@@ -111,7 +111,7 @@ void GameScene::enemyUpdate()
 	for (std::shared_ptr<EnemyManager> enemy : enemies_)
 	{
 		enemy->Update();
-		//enemy->SetGameScene(this);
+		enemy->SetGameScene(this);
 	}
 	 testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
