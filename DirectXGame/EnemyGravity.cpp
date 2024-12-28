@@ -8,7 +8,7 @@ void EnemyGravity::Update()
 {
 	if (!isStart_)
 	{
-		miniBulletTimer_ = kMiniBulletTime_;
+		miniBulletTimer_ = kMiniBulletStartTime_;
 		isStart_ = true;
 	}
 
@@ -30,7 +30,7 @@ void EnemyGravity::Update()
 		miniBulletTimer_ = kMiniBulletTime_;
 	}
 }
-
+	
 void EnemyGravity::DrowImgui()
 {
 	float pos[] = {worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z };

@@ -1,9 +1,14 @@
-#include "GrabiltBullet.h"
+#include "../DirectXGame/GrabiltBullet.h"
 
 using namespace MathUtility;
 
 void GrabiltBullet::Update()
 {
+	if(isStart_ )
+	{
+		velocity_.y = startSpeed;
+	}
+
 	velocity_ .y += gravity;
 
 	worldTransform_.translation_ += velocity_;

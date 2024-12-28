@@ -1,5 +1,5 @@
 #pragma once
-#include "EnemyBullet.h"
+#include "../DirectXGame/EnemyBullet.h"
 #include "KamataEngine.h"
 
 using namespace KamataEngine;
@@ -11,7 +11,9 @@ public:
 
 private:
 	void DrowImgui();
-	Vector3 velocity_;
-	float gravity = -0.07f;
+
+	
+	float startSpeed = -0.0001f;
+	float gravity = -0.007f;
 };
 
