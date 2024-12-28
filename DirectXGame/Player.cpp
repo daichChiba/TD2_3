@@ -10,10 +10,15 @@ void Player::Initialize(Model* model, const Vector3 position) {
 }
 
 void Player::Update() {
-
+	Input::GetInstance()->GetJoystickState(0, xinput_);
+	Input::GetInstance()->GetJoystickStatePrevious(0, preXinput_);
+#ifdef DEBUG
 	ImGui::Begin("player");
 	ImGui::SliderFloat3("pos", &worldTransform_.translation_.x, -10.0f, 10.0f);
 	ImGui::End();
+
+#endif // DEBUG
+
 
 	Move();
 
@@ -39,7 +44,50 @@ void Player::Move() {
 	}
 	#pragma endregion 
 
+	#pragma region 移動タイプ上下左右
+	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		velocity.x = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		velocity.x = -0.1f;
+	}
+	if (Input::GetInstance()->PushKey(DIK_UP)) {
+		velocity.y = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_DOWN)) {
+		velocity.y = -0.1f;
+	}
+	#pragma endregion 
+
+#pragma region 移動タイプコントローラー
+
+	// 左スティックのX, Y値を取得
+	float lx = xinput_.Gamepad.sThumbLX / 32767.0f; // 正規化（-1.0 ～ 1.0）
+	float ly = xinput_.Gamepad.sThumbLY / 32767.0f;
+
+	// デッドゾーンの設定(スティックがニュートラルに近い場合に意図せず移動しないようにする)
+	const float deadZone = 0.1f;
+	if (fabs(lx) < deadZone)
+		lx = 0.0f;
+	if (fabs(ly) < deadZone)
+		ly = 0.0f;
+
+	// スティックの強度と角度を計算
+	float magnitude = sqrtf(lx * lx + ly * ly); // 入力強度（0 ～ 1）
+	float angle = atan2f(ly, lx);// スティックの角度（ラジアン）
+
+	// 最大速度
+	const float maxSpeed = 0.1f;
+
+	// 移動速度を計算
+	velocity.x = cos(angle) * magnitude * maxSpeed;
+	velocity.y = sin(angle) * magnitude * maxSpeed;
+
+#pragma endregion
+
 
 
 	worldTransform_.translation_ += velocity;
+}
+
+void Player::Fire() {
+
 }

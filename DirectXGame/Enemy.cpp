@@ -30,3 +30,13 @@ void Enemy::InitializeGrabity() {
 	modeGravity->Initialize(model_, model_, worldTransform_.translation_);
 	gameScene_->AddEnemy(modeGravity);
 }
+
+Vector3 Enemy::GetWorldPosition() {
+	Vector3 worldPos;
+
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+
+	return worldPos;
+}
