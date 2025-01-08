@@ -10,7 +10,8 @@ public:
 	virtual void Update();
 	void Draw(Camera* camera);
 
-	bool GetIsDelete() const { return isDelete_; }
+	bool IsDelete() const { return isDelete_; }
+	void SetScale(const float scale) { worldTransform_.scale_={scale}; }
 protected:	
 	void SetVec(float* a, Vector3 b){
 		b.x = a[0];
@@ -22,6 +23,8 @@ protected:
 
 	Model* model_ = nullptr;
 	WorldTransform worldTransform_;
+
+	Vector3 velocity_;
 
 	bool isDelete_ = false;
 

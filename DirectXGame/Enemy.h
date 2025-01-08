@@ -20,6 +20,11 @@ public:
 	void SetGameScene(GameScene* gameScene){ gameScene_ = gameScene; }
 
 	void SetEnemyStage(const int i){  stage = static_cast<Stage>(i); }
+	void Draw(Camera* camera);
+
+
+	Vector3 GetWorldPosition();
+
 private:
 	void InitializeGrabity();
 

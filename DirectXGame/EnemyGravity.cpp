@@ -8,7 +8,7 @@ void EnemyGravity::Update()
 {
 	if (!isStart_)
 	{
-		miniBulletTimer_ = kMiniBulletTime_;
+		miniBulletTimer_ = kMiniBulletStartTime_;
 		isStart_ = true;
 	}
 
@@ -20,15 +20,17 @@ void EnemyGravity::Update()
 	
 	if (miniBulletTimer_ < 0.0f)
 	{
+		for (float x = rightEdgeX; x >= leftEdgeX; x -= spacing)
+		{
 			std::shared_ptr<EnemyBullet> grabityBullet_(new GrabiltBullet);
-			grabityBullet_->Initialize(bulletModel_, Vector3{ worldTransform_.translation_.x, 19.3f, 0.0f});
-			SetGameScene(gameScene_);
-			gameScene_->AddEnemyBullet(grabityBullet_);
+			grabityBullet_->Initialize(bulletModel_, Vector3{ x, -initialY, 0.0f });
+			gameScene_->AddEnemyBullet(grabityBullet_);//プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
+		}
 
-			miniBulletTimer_ = kMiniBulletTime_;
+		miniBulletTimer_ = kMiniBulletTime_;
 	}
 }
-
+	
 void EnemyGravity::DrowImgui()
 {
 	float pos[] = {worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z };

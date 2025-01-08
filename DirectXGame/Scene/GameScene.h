@@ -88,6 +88,8 @@ private: // メンバ変数
 	/// </summary>
 	Enemy* enemy_ = nullptr;
 
+	int testBullet = 0;
+
 	/// <summary>
 	///敵マネージャー(GameSceneではUpdateとDrowのみ行う)
 	/// </summary>
