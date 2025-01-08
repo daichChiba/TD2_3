@@ -32,6 +32,8 @@ private:
 	XINPUT_STATE xinput_;
 	XINPUT_STATE preXinput_;
 
+	Vector3 velocity = {0.0f, 0.0f, 0.0f};
+
 private://メンバ関数
 	/// <summary>
 	/// playerの動き

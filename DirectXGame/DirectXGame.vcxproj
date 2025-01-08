@@ -107,6 +107,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="EnemyGravity.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="GrabiltBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -193,6 +197,10 @@
   <ItemGroup>
     <ClInclude Include="Player.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBullet.h" />
+    <ClInclude Include="EnemyGravity.h" />
+    <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="GrabiltBullet.h" />
     <ClInclude Include="MathUtliltyForText.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayerNormalBullet.h" />
