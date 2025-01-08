@@ -63,23 +63,26 @@ void Player::Move() {
 	float lx = xinput_.Gamepad.sThumbLX / 32767.0f; // 正規化（-1.0 ～ 1.0）
 	float ly = xinput_.Gamepad.sThumbLY / 32767.0f;
 
-	// デッドゾーンの設定(スティックがニュートラルに近い場合に意図せず移動しないようにする)
-	const float deadZone = 0.1f;
-	if (fabs(lx) < deadZone)
-		lx = 0.0f;
-	if (fabs(ly) < deadZone)
-		ly = 0.0f;
+	if (lx<0.0f||ly<0.0f) {
+		// デッドゾーンの設定(スティックがニュートラルに近い場合に意図せず移動しないようにする)
+		const float deadZone = 0.1f;
+		if (fabs(lx) < deadZone)
+			lx = 0.0f;
+		if (fabs(ly) < deadZone)
+			ly = 0.0f;
 
-	// スティックの強度と角度を計算
-	float magnitude = sqrtf(lx * lx + ly * ly); // 入力強度（0 ～ 1）
-	float angle = atan2f(ly, lx);// スティックの角度（ラジアン）
+		// スティックの強度と角度を計算
+		float magnitude = sqrtf(lx * lx + ly * ly); // 入力強度（0 ～ 1）
+		float angle = atan2f(ly, lx);               // スティックの角度（ラジアン）
 
-	// 最大速度
-	const float maxSpeed = 0.1f;
+		// 最大速度
+		const float maxSpeed = 0.1f;
 
-	// 移動速度を計算
-	velocity.x = cos(angle) * magnitude * maxSpeed;
-	velocity.y = sin(angle) * magnitude * maxSpeed;
+		// 移動速度を計算
+		velocity.x = cos(angle) * magnitude * maxSpeed;
+		velocity.y = sin(angle) * magnitude * maxSpeed;
+
+	}
 
 #pragma endregion
 
