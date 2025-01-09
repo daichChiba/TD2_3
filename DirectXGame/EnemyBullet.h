@@ -12,6 +12,7 @@ public:
 
 	bool IsDelete() const { return isDelete_; }
 	void SetScale(const float scale);
+	
 protected:	
 	void SetVec(float* a, Vector3 b){
 		b.x = a[0];

@@ -28,4 +28,5 @@ protected:
 
 	static inline const float flameTime = 1.0f/ 60.0f;
 	bool isStart_ = false;
+	bool isDelete_ = false;
 };

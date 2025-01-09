@@ -8,7 +8,7 @@ using namespace KamataEngine;
 
 class Player;
 
-enum class mode
+enum class EnemyMode
 {
 	First,
 	Second,
@@ -18,6 +18,7 @@ class EnemyGravity : public EnemyManager {
 public:
 	void Update() override;
 
+	
 private:
 	void DrowImgui();
 
@@ -29,13 +30,17 @@ private:
 	static inline const int kMaxHP = 100;
 	static inline const int kChangeModeHP = 50;
 
+	bool isStartMode = false;
+
+	EnemyMode enemyMode;
+
 	// 画面の右端と左端のX座標
 	static inline const float rightEdgeX = 35.1f;
 	static inline const float leftEdgeX = -35.1f;
 
-	std::map<mode, std::function<void()>> loadMode{
-	    {mode::First, [this]() { modeFirst(); }},
-	    {mode::Second, [this]() { modeSecond(); }},
+	std::map<EnemyMode, std::function<void()>> modeUpdate{
+	    {EnemyMode::First, [this]() { modeFirst(); }},
+	    {EnemyMode::Second, [this]() { modeSecond(); }},
 	};
 
 	void modeFirst();
