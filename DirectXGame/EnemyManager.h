@@ -5,6 +5,7 @@
 using namespace KamataEngine;
 
 class GameScene;
+class Player;
 
 class EnemyManager
 {
@@ -13,6 +14,8 @@ public:
 	virtual void Update();
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
+
+	virtual void GetPlayer(Player* player){  player_ = player; }
 protected:
 
 	GameScene* gameScene_;
@@ -20,6 +23,8 @@ protected:
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;
 	WorldTransform worldTransform_;
+
+	Player* player_;
 
 	static inline const float flameTime = 1.0f/ 60.0f;
 	bool isStart_ = false;

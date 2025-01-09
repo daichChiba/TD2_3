@@ -18,3 +18,10 @@ void EnemyBullet::Draw(Camera* camera)
 {
 	model_->Draw(worldTransform_, *camera);
 }
+
+void EnemyBullet::SetScale(const float scale)
+{ 
+	worldTransform_.scale_.x = {scale}; 
+	worldTransform_.scale_.y = {scale}; 
+	worldTransform_.scale_.z = {scale}; 
+}

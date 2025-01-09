@@ -32,15 +32,15 @@ void GameScene::Initialize() {
 	enemyModel_ = Model::CreateFromOBJ("cube", true);
 
 	// player_ = new Player()
-
-	enemy_ = new Enemy();
-	enemy_->Initialize(enemyModel_, Vector3{0.0f});
-	enemy_->SetGameScene(this); 
 	
 	playerModel_=Model::CreateFromOBJ("Player", true);
 	//playerの初期化
 	player_ = new Player();
 	player_->Initialize(playerModel_, Vector3{0.0f});
+
+	enemy_ = new Enemy();
+	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);
+	enemy_->SetGameScene(this); 
 }
 
 void GameScene::Update() {

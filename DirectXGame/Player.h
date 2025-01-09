@@ -22,6 +22,7 @@ public:
 	/// <param name="camera">カメラ</param>
 	void Draw(Camera* camera);
 
+	Vector3 GetPlayerPos();
 private:
 
 	Model* model_ = nullptr;

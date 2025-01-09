@@ -4,10 +4,11 @@
 
 #include "../DirectXGame/EnemyGravity.h"
 #include "../DirectXGame/EnemyManager.h"
+#include "../DirectXGame/Player.h"
 
 using namespace MathUtility;
 
-void Enemy::Initialize(Model* model, Vector3 pos) {
+void Enemy::Initialize(Model* model, Vector3 pos, Player* player) {
 	assert(model);
 	model_ = model;
 	worldTransform_.Initialize();
@@ -15,6 +16,8 @@ void Enemy::Initialize(Model* model, Vector3 pos) {
 	// worldTransform_.scale_ = Vector3{20.0f, 20.0f, 20.0f};
 
 	stage = Stage::Test;
+
+	player_ = player;
 }
 
 void Enemy::Update() {
@@ -28,6 +31,7 @@ void Enemy::Update() {
 void Enemy::InitializeGrabity() {
 	std::shared_ptr<EnemyManager> modeGravity(new EnemyGravity);
 	modeGravity->Initialize(model_, model_, worldTransform_.translation_);
+	modeGravity->GetPlayer(player_);
 	gameScene_->AddEnemy(modeGravity);
 }
 
