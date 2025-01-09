@@ -23,6 +23,9 @@ public:
 
 protected:
 	void SetVec(float* a, Vector3 b) {
+	void SetScale(const float scale);
+protected:	
+	void SetVec(float* a, Vector3 b){
 		b.x = a[0];
 		b.y = a[1];
 		b.z = a[2];
@@ -42,6 +45,6 @@ protected:
 
 	Player* player_;
 
-	// 半径
+	// ���a
 	float radius_ = 6.0f;
 };

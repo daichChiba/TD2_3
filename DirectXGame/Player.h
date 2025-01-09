@@ -47,6 +47,7 @@ public:
 	// 半径を取得
 	float GetRadius() { return radius_; }
 
+	Vector3 GetPlayerPos();
 private:
 	Character character_;
 

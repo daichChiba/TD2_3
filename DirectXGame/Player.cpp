@@ -71,6 +71,13 @@ void Player::TertiaryAttack() {
 
 }
 
+Vector3 Player::GetPlayerPos()
+{
+	Vector3 pos = worldTransform_.translation_;
+
+	return pos;
+}
+
 void Player::Move() {
 	velocity = {0.0f};
 	#pragma region 移動タイプWASD
