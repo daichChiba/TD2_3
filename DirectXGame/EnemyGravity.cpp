@@ -21,7 +21,7 @@ void EnemyGravity::Update()
 		enemyMode = EnemyMode::Second;
 	}if (HP < 1)
 	{
-		isDelete = true;
+		isDelete_ = true;
 	}
 
 	DrowImgui();
@@ -35,6 +35,7 @@ void EnemyGravity::Update()
 	
 void EnemyGravity::DrowImgui()
 {
+	
 	ImGui::Begin("enemy");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
 	ImGui::DragFloat("timre", &miniBulletTimer_,0.1f);

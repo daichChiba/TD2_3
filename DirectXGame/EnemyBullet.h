@@ -24,6 +24,7 @@ public:
 protected:
 	void SetVec(float* a, Vector3 b) {
 	void SetScale(const float scale);
+	
 protected:	
 	void SetVec(float* a, Vector3 b){
 		b.x = a[0];
