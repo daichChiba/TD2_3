@@ -33,6 +33,8 @@ void GameScene::Initialize() {
 
 	// player_ = new Player()
 
+	Character character = Character::wizard;
+
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
 	enemy_->SetGameScene(this); 
@@ -40,7 +42,8 @@ void GameScene::Initialize() {
 	playerModel_=Model::CreateFromOBJ("Player", true);
 	//playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f});
+	player_->Initialize(playerModel_, Vector3{0.0f},character,playerModel_);
+
 }
 
 void GameScene::Update() {
@@ -137,5 +140,9 @@ void GameScene::enemyDrow()
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
 	{
 		enemyBullet->Draw(camera_);
+	}
+
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
+		playerBullet->Draw(camera_);
 	}
 }
