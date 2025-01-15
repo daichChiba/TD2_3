@@ -23,10 +23,30 @@ public:
 	void Draw(Camera* camera);
 
 	Vector3 GetPlayerPos();
+
+	void SetPlayerBody
+	(Model* head, Model* body, 
+	Model* LeftArm, Model* RightArm, 
+	Model* LeftLeg, Model* RightLeg);
 private:
 
 	Model* model_ = nullptr;
 
+#pragma region
+	Model* playerHeadModel_ = nullptr;
+	Model* playerBodyModel_ = nullptr;
+	Model* playerLeftArmModel_ = nullptr;
+	Model* playerRightArmModel_ = nullptr;
+	Model* playerLeftLegModel_ = nullptr;
+	Model* playerRightLegModel_ = nullptr;
+
+	/// <summary>
+	/// playerの体のそれぞれの位置情報
+	/// </summary>
+	WorldTransform playerBody[5];
+
+	void InitialezeBody();
+#pragma endregion
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
 

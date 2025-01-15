@@ -51,6 +51,8 @@ public: // メンバ関数
 	/// </summary>
 	void AddEnemyBullet(std::shared_ptr<EnemyBullet> enemyBullet) { enemiesBullet_.push_back(enemyBullet); }
 
+
+	void PlayerModelCreate();
 private: // メンバ変数
 
 	/// <summary>
@@ -82,13 +84,18 @@ private: // メンバ変数
 	/// プレイヤーモデル
 	/// </summary>
 	Model* playerModel_ = nullptr;
+	Model* playerHeadModel_ = nullptr;
+	Model* playerBodyModel_ = nullptr;
+	Model* playerLeftArmModel_ = nullptr;
+	Model* playerRightArmModel_ = nullptr;
+	Model* playerLeftLegModel_ = nullptr;
+	Model* playerRightLegModel_ = nullptr;
+	//Model* playerMagicCircle_ = nullptr;
 	
 	/// <summary>
 	/// 敵
 	/// </summary>
 	Enemy* enemy_ = nullptr;
-
-	int testBullet = 0;
 
 	/// <summary>
 	///敵マネージャー(GameSceneではUpdateとDrowのみ行う)

@@ -1,4 +1,6 @@
 #include "Player.h"
+
+
 #include<cassert>
 using namespace MathUtility;
 void Player::Initialize(Model* model, const Vector3 position) {
@@ -35,6 +37,28 @@ Vector3 Player::GetPlayerPos()
 	Vector3 pos = worldTransform_.translation_;
 
 	return pos;
+}
+
+void Player::SetPlayerBody(Model* head, Model* body, Model* LeftArm, Model* RightArm, Model* LeftLeg, Model* RightLeg)
+{
+	playerHeadModel_ = head;
+	playerHeadModel_ = body;
+	playerHeadModel_ = LeftArm;
+	playerHeadModel_ = RightArm;
+	playerHeadModel_ = LeftLeg;
+	playerHeadModel_ = RightLeg;
+	
+	InitialezeBody();
+}
+
+void Player::InitialezeBody()
+{
+	for (uint32_t i = 0; i < sizeof(playerBody); ++i) {
+		playerBody[i].Initialize();
+
+
+		playerBody[i].parent_ = worldTransform_.parent_;
+	}
 }
 
 void Player::Move() {

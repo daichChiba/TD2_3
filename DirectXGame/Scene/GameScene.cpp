@@ -25,8 +25,6 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
 
-	//playerのモデル
-	playerModel_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
 	
 	enemyModel_ = Model::CreateFromOBJ("cube", true);
@@ -37,6 +35,10 @@ void GameScene::Initialize() {
 	//playerの初期化
 	player_ = new Player();
 	player_->Initialize(playerModel_, Vector3{0.0f});
+
+	PlayerModelCreate();
+
+	player_->SetPlayerBody(playerHeadModel_, playerBodyModel_, playerLeftArmModel_, playerRightArmModel_, playerLeftLegModel_, playerRightLegModel_);
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);
@@ -103,6 +105,16 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
+void GameScene::PlayerModelCreate()
+{
+	//playerHeadModel_ = Model::CreateFromOBJ("PlayerModel/player_Head");
+	playerBodyModel_ = Model::CreateFromOBJ("player_Body",true);
+	playerLeftArmModel_ = Model::CreateFromOBJ("PlayerModel/player_LeftArm/TtianglePlayerLeftArm.obj",true);
+	playerRightArmModel_ = Model::CreateFromOBJ("/PlayerModel/player_RightArm/TtianglePlayerRightArm.obj",true);
+	playerLeftLegModel_ = Model::CreateFromOBJ("PlayerModel/player_LeftLeg/TtianglePlayerLeftLeg.obj",true);
+	playerRightLegModel_ = Model::CreateFromOBJ("PlayerModel/player_RightLeg/TtianglePlayerRightLeg.obj",true);
+}
+
 void GameScene::enemyUpdate()
 {
 
@@ -113,11 +125,10 @@ void GameScene::enemyUpdate()
 		enemy->Update();
 		enemy->SetGameScene(this);
 	}
-	 testBullet = 0;
+	
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
 	{
 		enemyBullet->Update();
-		++testBullet;
 	}
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
