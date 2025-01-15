@@ -1,10 +1,33 @@
 #include <KamataEngine.h>
+#include "TitleScene.h"
+#include "ClearScene.h"
+#include "scene/gamescene.h"
+#include "BadEndScene.h"
 
 using namespace KamataEngine;
 
 #include "../DirectXGame/Scene/GameScene.h"
 
+// シーン（型）
+enum class Scene {
+	kUnknown = 0,
+	kTitle,
+	kGame,
+	kClear,
+	kDead,
+};
 
+void ChangeScene();
+void UpdateScene();
+void DrawScene();
+
+// 現在シーン（型）
+Scene scene = Scene::kUnknown;
+
+TitleScene* titleScene = nullptr;
+GameScene* gameScene = nullptr;
+ClearScene* clearScene = nullptr;
+BadEndScene* badEndScene = nullptr;
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -16,7 +39,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
 
-	GameScene* gameScene = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -57,8 +79,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	primitiveDrawer->Initialize();
 #pragma endregion
 
-	gameScene = new GameScene();
-	gameScene->Initialize();
+	// ゲームシーンの初期化
+	titleScene = new TitleScene();
+	titleScene->Initialize();
+	scene = Scene::kTitle;
 
 	// メインループ
 	while (true) {
@@ -72,7 +96,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 入力関連の毎フレーム処理
 		input->Update();
 		// ゲームシーンの毎フレーム処理
-		gameScene->Update();
+		ChangeScene();
+		UpdateScene();
+
 		// 軸表示の更新
 		axisIndicator->Update();
 		// ImGui受付終了
@@ -84,7 +110,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 軸表示の描画
 		axisIndicator->Draw();
 
-				gameScene->Draw();
+		DrawScene();
 		// プリミティブ描画のリセット
 		primitiveDrawer->Reset();
 		// ImGui描画
@@ -95,7 +121,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// 各種解放
 	delete gameScene;
-
+	delete titleScene;
+	delete clearScene;
+	delete badEndScene;
 
 	// 3Dモデル解放
 	Model::StaticFinalize();
@@ -109,3 +137,94 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	return 0;
 }
 
+
+ // シーン切り替え
+void ChangeScene() {
+
+	switch (scene) {
+	case Scene::kTitle:
+		if (titleScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kGame;
+			// 旧シーンの開放
+			delete titleScene;
+			titleScene = nullptr;
+			// 新シーンの生成と初期化
+			gameScene = new GameScene;
+			gameScene->Initialize();
+		}
+		break;
+	case Scene::kGame:
+		if (gameScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kClear;
+			// 旧シーンの開放
+			delete gameScene;
+			gameScene = nullptr;
+			// 新シーンの生成と初期化
+			clearScene = new ClearScene;
+			clearScene->Initialize();
+		}
+		break;
+	case Scene::kClear:
+		if (clearScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kDead;
+			// 旧シーンの開放
+			delete clearScene;
+			clearScene = nullptr;
+			// 新シーンの生成と初期化
+			badEndScene = new BadEndScene;
+			badEndScene->Initialize();
+		}
+		break;
+	case Scene::kDead:
+		if (badEndScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kTitle;
+			// 旧シーンの開放
+			delete badEndScene;
+			badEndScene = nullptr;
+			// 新シーンの生成と初期化
+			titleScene = new TitleScene;
+			titleScene->Initialize();
+		}
+		break;
+	}
+}
+
+// 現在シーン更新
+void UpdateScene() {
+	switch (scene) {
+	case Scene::kTitle:
+		titleScene->Update();
+		break;
+	case Scene::kGame:
+		gameScene->Update();
+		break;
+	case Scene::kClear:
+		clearScene->Update();
+		break;
+	case Scene::kDead:
+		badEndScene->Update();
+		break;
+	}
+}
+
+// 現在シーンの描画
+void DrawScene() {
+	switch (scene) {
+	case Scene::kTitle:
+		titleScene->Draw();
+		break;
+	case Scene::kGame:
+		gameScene->Draw();
+		break;
+	case Scene::kClear:
+		clearScene->Draw();
+		break;
+	case Scene::kDead:
+		badEndScene->Draw();
+		break;
+	}
+}

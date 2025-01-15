@@ -47,6 +47,11 @@ void GameScene::Update() {
 	
 	player_->Update();
 
+	
+	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) { // 後で消す
+		finished_ = true;
+	}
+
 #pragma region 敵のアップデート
 	enemyUpdate();
 #pragma endregion 

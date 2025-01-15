@@ -51,7 +51,13 @@ public: // メンバ関数
 	/// </summary>
 	void AddEnemyBullet(std::shared_ptr<EnemyBullet> enemyBullet) { enemiesBullet_.push_back(enemyBullet); }
 
+	// デスフラグのgetter
+	bool IsFinished() const { return finished_; } // 後で消す
+
 private: // メンバ変数
+
+	// 終了フラグ
+	bool finished_ = false; //後で消す
 
 	/// <summary>
 	/// 敵のアップデート関数
