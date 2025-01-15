@@ -11,6 +11,8 @@ void PlayerNormalBullet::Update() {
 		startPos = worldTransform_.translation_;
 	}
 
+	DrowImgui();
+
 	if (moveTimer < kMoveTimer) {
 		moveTimer++;
 	} else {
@@ -24,4 +26,10 @@ void PlayerNormalBullet::Update() {
 	}
 
 	worldTransform_.UpdateMatrix();
+}
+
+void PlayerNormalBullet::DrowImgui() {
+	ImGui::Begin("playerBullet");
+	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
+	ImGui::End();
 }

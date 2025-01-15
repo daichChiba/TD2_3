@@ -2,7 +2,7 @@
 #include <KamataEngine.h>
 #include <functional>
 #include <map>
-#include"../DirectXGame/MagicPlayer.h"
+
 
 using namespace KamataEngine;
 
@@ -35,14 +35,14 @@ public:
 
 	Vector3 GetWorldPosition();
 
-	
 
-protected:
 	virtual void PrimaryAttack();
 	virtual void SecondaryAttack();
 	virtual void TertiaryAttack();
 	Model* bulletModel_ = nullptr;
-	GameScene* gameScene_ ;
+
+	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
+
 
 private:
 	Character character_;
@@ -66,7 +66,8 @@ private:
 	//int tertiaryAttackCoolTime;
 	//static inline const int kTertiaryAttackCoolTime = 45;
 
-	MagicPlayer* magicPlayer_;
+	GameScene* gameScene_;
+
 
 private: // メンバ関数
 	/// <summary>
@@ -76,7 +77,4 @@ private: // メンバ関数
 
 	void Attack();
 
-	std::map<Character, std::function<void()>> PrimaryMode{
-	    {Character::wizard, [this]() { magicPlayer_->PrimaryAttack(); }},
-	};
 };

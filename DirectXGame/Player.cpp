@@ -1,6 +1,8 @@
 #include "Player.h"
 //#include "magic"
 #include<cassert>
+#include"../DirectXGame/Scene/GameScene.h"
+#include"PlayerNormalBullet.h"
 using namespace MathUtility;
 void Player::Initialize(Model* model, const Vector3 position, Character character, Model* bulletModel) {
 	assert(model);
@@ -26,6 +28,7 @@ void Player::Update() {
 	ImGui::Begin("player");
 	ImGui::SliderFloat3("pos", &worldTransform_.translation_.x, -10.0f, 10.0f);
 	ImGui::SliderFloat3("vel", &velocity.x, -10.0f, 10.0f);
+	ImGui::Text("primaryAttackCoolTime=%d", primaryAttackCoolTime);
 	ImGui::End();
 
 #endif // DEBUG
@@ -39,7 +42,8 @@ void Player::Update() {
 }
 
 void Player::Draw(Camera* camera) {
-	model_->Draw(worldTransform_, *camera); }
+	model_->Draw(worldTransform_, *camera);
+}
 
 Vector3 Player::GetWorldPosition() {
 	Vector3 worldPos;
@@ -122,11 +126,15 @@ void Player::Move() {
 }
 
 void Player::Attack() {
-	if (primaryAttackCoolTime<=0) {
+	if (primaryAttackCoolTime<0) {
 		if (Input::GetInstance()->ReleseKey(DIK_U)) {
-			PrimaryMode[character_]();
+			std::shared_ptr<EnemyBullet> normal(new PlayerNormalBullet);
+			normal->Initialize(bulletModel_, GetWorldPosition());
+			normal->SetScale(10.0f);
+			gameScene_->AddPlayerBullet(normal);
+			primaryAttackCoolTime = kPrimaryAttackCoolTime;
+			normal->Update();
 		}
-		primaryAttackCoolTime = kPrimaryAttackCoolTime;
 	} else {
 		primaryAttackCoolTime--;
 	}

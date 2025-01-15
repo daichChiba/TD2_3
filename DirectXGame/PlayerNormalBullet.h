@@ -20,4 +20,7 @@ private:
 
 	static inline const float kIncreasingSpeed = 0.000001f; // スピードの上がる速さ
 	static inline const float kMaxSpeed = 0.25f;             // 最高速度
+
+	private:
+	void DrowImgui();
 };
