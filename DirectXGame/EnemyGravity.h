@@ -66,6 +66,7 @@ private:
 
 #pragma region 大きい弾
 	float bigBulletTimer_ = 0;
+	bool bullet
 
 	static inline const float kBigBulletScale = 3.0f;
 

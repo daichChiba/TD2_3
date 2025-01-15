@@ -16,16 +16,22 @@ void EnemyGravity::Update()
 		isStart_ = true;
 	}
 
+	//miniBulletTimer_ -= flameTime;
+	bigBulletTimer_ -= flameTime;
+
 	if (HP < kChangeModeHP)
 	{
 		enemyMode = EnemyMode::Second;
-	}if (HP < 1)
+	}else if (HP < 1)
 	{
 		isDelete_ = true;
 	}
 
+#ifdef _DEBUG
 	DrowImgui();
+#endif // _DEBUG
 
+	
 	modeUpdate[enemyMode]();
 
 	worldTransform_.UpdateMatrix();
@@ -67,8 +73,7 @@ void EnemyGravity::modeFirst()
 		isStartMode = true;
 	}
 
-	miniBulletTimer_ -= flameTime;
-	bigBulletTimer_ -= flameTime;
+	
 
 	if (miniBulletTimer_ < 0.0f)
 	{
@@ -89,10 +94,10 @@ void EnemyGravity::modeFirst()
 	{
 		Vector3 playerPos = GetPlayerPos();
 
-		std::shared_ptr<EnemyBullet> grabityBullet_(new GrabiltBullet);
-		grabityBullet_->Initialize(bulletModel_, Vector3{ playerPos.x, -initialY, 0.0f });
-		grabityBullet_->SetScale(kBigBulletScale);
-		gameScene_->AddEnemyBullet(grabityBullet_);//プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
+		//std::shared_ptr<EnemyBullet> grabityBullet_(new GrabiltBullet);
+		//grabityBullet_->Initialize(bulletModel_, Vector3{ playerPos.x, -initialY, 0.0f });
+		//grabityBullet_->SetScale(kBigBulletScale);
+		//gameScene_->AddEnemyBullet(grabityBullet_);//プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 
 		bigBulletTimer_ = kBigBulletTime_;
 	}
