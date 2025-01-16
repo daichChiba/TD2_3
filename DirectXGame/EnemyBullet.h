@@ -24,6 +24,7 @@ public:
 protected:
 	void SetVec(float* a, Vector3 b) {
 	void SetScale(const float scale);
+	virtual void GetPlayerPos(Vector3 pos);
 	
 protected:	
 	void SetVec(float* a, Vector3 b){

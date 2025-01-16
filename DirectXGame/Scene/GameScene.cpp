@@ -44,7 +44,9 @@ void GameScene::Initialize() {
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);
-	enemy_->SetGameScene(this); 
+	enemy_->SetGameScene(this);
+
+	
 }
 
 void GameScene::Update() {
@@ -113,6 +115,7 @@ void GameScene::enemyUpdate() {
 	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
 		enemy->Update();
 		enemy->SetGameScene(this);
+		player_->GetEnemyPos(enemy->GetWorldPos());
 	}
 	testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
