@@ -6,8 +6,6 @@
 
 using namespace KamataEngine;
 
-class EnemyManager;
-
 class GameScene;
 
 enum class Character {
@@ -49,10 +47,6 @@ public:
 	// 半径を取得
 	float GetRadius() { return radius_; }
 
-	Vector3 GetPlayerPos();
-	void GetEnemyPos(Vector3 pos){
-		enemyPos = pos;
-	}
 private:
 	Character character_;
 
@@ -81,9 +75,6 @@ private:
 	float radius_ = 6.0f;
 
 private: // メンバ関数
-	Vector3 enemyPos;
-
-private://メンバ関数
 	/// <summary>
 	/// playerの動き
 	/// </summary>

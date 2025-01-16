@@ -5,7 +5,6 @@
 using namespace KamataEngine;
 
 class GameScene;
-class Player;
 
 enum class Stage{
 	Grabity,
@@ -15,7 +14,7 @@ enum class Stage{
 class Enemy
 {
 public:
-	void Initialize(Model* model, Vector3 pos, Player* player);
+	void Initialize(Model* model, Vector3 pos);
 	void Update();
 
 	void SetGameScene(GameScene* gameScene){ gameScene_ = gameScene; }
@@ -28,7 +27,7 @@ public:
 
 	void OnCollision();
 
-	// ���a��擾
+	// 半径を取得
 	float GetRadius() { return radius_; }
 
 private:
@@ -40,8 +39,6 @@ private:
 	GameScene* gameScene_;
 
 	Stage stage;
-
-	Player* player_;
 
 	// 半径
 	float radius_ = 6.0f;

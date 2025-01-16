@@ -4,17 +4,12 @@ using namespace MathUtility;
 
 void GrabiltBullet::Update()
 {
-	if(!isStart_ )
+	if(isStart_ )
 	{
-		velocity_.y = gravity;
-	
-		if (worldTransform_.scale_.x < 1.0f)
-		{
-			velocity_.y = BigBulletGrabity;
-		}
-
-		isStart_ = true;
+		velocity_.y = startSpeed;
 	}
+
+	velocity_ .y += gravity;
 
 	worldTransform_.translation_ += velocity_;
 
@@ -31,10 +26,13 @@ void GrabiltBullet::Update()
 void GrabiltBullet::DrowImgui()
 {
 	
+	float pos[] = {worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z };
+
 	ImGui::Begin("EnemyBullet");
-	ImGui::Text("bullet");
-	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.0001f);
-	ImGui::DragFloat3("sce", &worldTransform_.scale_.x, 0.001f);
-	ImGui::DragFloat3("vel", &velocity_.x, 0.001f);
+	ImGui::DragFloat3("pos", pos, 0.001f);
 	ImGui::End();
+
+	worldTransform_.translation_.x = pos[0];
+	worldTransform_.translation_.y = pos[1];
+	worldTransform_.translation_.z = pos[2];
 }

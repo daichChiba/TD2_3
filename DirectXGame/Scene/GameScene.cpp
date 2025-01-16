@@ -40,13 +40,8 @@ void GameScene::Initialize() {
 	playerModel_ = Model::CreateFromOBJ("Player", true);
 	// playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f});
-
-	enemy_ = new Enemy();
-	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);
-	enemy_->SetGameScene(this);
-
-	
+	player_->Initialize(playerModel_, Vector3{0.0f}, character, enemyModel_);
+	player_->SetGameScene(this);
 }
 
 void GameScene::Update() {
@@ -115,13 +110,20 @@ void GameScene::enemyUpdate() {
 	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
 		enemy->Update();
 		enemy->SetGameScene(this);
-		player_->GetEnemyPos(enemy->GetWorldPos());
 	}
 	testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Update();
 		++testBullet;
 	}
+
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
+		playerBullet->Update();
+	}
+
+	ImGui::Begin("gamescene");
+	ImGui::Text("%d", testBullet);
+	ImGui::End();
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 }

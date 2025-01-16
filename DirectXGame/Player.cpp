@@ -1,8 +1,6 @@
 #include "Player.h"
 //#include "magic"
 #include<cassert>
-#include "EnemyManager.h"
-
 #include"../DirectXGame/Scene/GameScene.h"
 #include"PlayerNormalBullet.h"
 using namespace MathUtility;
@@ -71,13 +69,6 @@ void Player::SecondaryAttack() {
 
 void Player::TertiaryAttack() {
 
-}
-
-Vector3 Player::GetPlayerPos()
-{
-	Vector3 pos = worldTransform_.translation_;
-
-	return pos;
 }
 
 void Player::Move() {
