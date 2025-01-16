@@ -32,9 +32,10 @@ void GameScene::Initialize() {
 	// player_ = new Player()
 
 	playerModel_ = Model::CreateFromOBJ("Player", true);
+	character_ = Character::wizard;
 	// playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f});
+	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_);
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);

@@ -46,7 +46,7 @@ void EnemyGravity::DrowImgui() {
 Vector3 EnemyGravity::GetPlayerPos() {
 	Vector3 PlayerPos;
 
-	PlayerPos = player_->GetPlayerPos();
+	PlayerPos = player_->GetWorldPosition();
 
 	return PlayerPos;
 }

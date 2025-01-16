@@ -49,6 +49,8 @@ public:
 	// 半径を取得
 	float GetRadius() { return radius_; }
 
+	Vector3 GetEnemyPos(Vector3 pos) {return enemyPos = pos; }
+
 private:
 	Character character_;
 
