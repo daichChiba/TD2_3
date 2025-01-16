@@ -28,7 +28,7 @@ public:
 
 	void OnCollision();
 
-	// ???a??æ“¾
+	// ???a??ï
 	float GetRadius() { return radius_; }
 
 private:
@@ -43,7 +43,7 @@ private:
 
 	Player* player_;
 
-	// åŠå¾„
+	// ”¼Œa
 	float radius_ = 6.0f;
 };
 
