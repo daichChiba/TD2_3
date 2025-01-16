@@ -7,7 +7,7 @@ using namespace KamataEngine;
 #include "../Enemy.h"
 #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
-using namespace KamataEngine;
+
 #include "../Player.h"
 
 //enum class Character {
