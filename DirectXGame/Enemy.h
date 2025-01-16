@@ -25,6 +25,11 @@ public:
 
 	Vector3 GetWorldPosition();
 
+	void OnCollision();
+
+	// 半径を取得
+	float GetRadius() { return radius_; }
+
 private:
 	void InitializeGrabity();
 
@@ -34,5 +39,8 @@ private:
 	GameScene* gameScene_;
 
 	Stage stage;
+
+	// 半径
+	float radius_ = 6.0f;
 };
 
