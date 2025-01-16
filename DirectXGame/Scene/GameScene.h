@@ -82,12 +82,24 @@ private: // メンバ変数
 	/// <summary>
 	/// player
 	/// </summary>
-	Player* player_ = nullptr;
+	Player* playerModelBody_ = nullptr;       //体
+	Player* playerModelHead_ = nullptr;       //頭
+	Player* playerModelRightArm_ = nullptr;   //右腕
+	Player* playerModelLeftArm_ = nullptr;    //左腕
+	Player* playerModelRightLeg_ = nullptr;   //右脚
+	Player* playerModelLeftLeg_ = nullptr;    //左脚
+	Player* playerModelMagic_ = nullptr;      //魔法陣
 
 	/// <summary>
 	/// プレイヤーモデル
 	/// </summary>
-	Model* playerModel_ = nullptr;
+	Model* playerBody_ = nullptr;
+	Model* playerHead_ = nullptr;
+	Model* playerRightArm_ = nullptr;
+	Model* playerLeftArm_ = nullptr;
+	Model* playerRightLeg_ = nullptr;
+	Model* playerLeftLeg_ = nullptr;
+	Model* playerMagic_ = nullptr;
 	
 	/// <summary>
 	/// 敵

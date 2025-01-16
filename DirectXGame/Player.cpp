@@ -6,7 +6,7 @@ void Player::Initialize(Model* model, const Vector3 position) {
 	model_ = model;
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
-	worldTransform_.rotation_ = {0.0f, 0.5f, 0.0f};
+	worldTransform_.rotation_ = {0.0f, 1.5f, 0.0f};
 }
 
 void Player::Update() {

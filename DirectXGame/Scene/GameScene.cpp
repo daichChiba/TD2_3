@@ -7,9 +7,22 @@ using namespace KamataEngine;
 GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
-	delete playerModel_;
 
-	delete player_;
+	delete playerBody_;
+	delete playerHead_;
+	delete playerRightArm_;
+	delete playerLeftArm_;
+	delete playerRightLeg_;
+	delete playerLeftLeg_;
+	delete playerMagic_;
+
+	delete playerModelBody_;
+	delete playerModelHead_;
+	delete playerModelRightArm_;
+	delete playerModelLeftArm_;
+	delete playerModelRightLeg_;
+	delete playerModelLeftLeg_;
+	delete playerModelMagic_;
 }
 
 
@@ -26,28 +39,61 @@ void GameScene::Initialize() {
 	camera_->translation_ = normalCameraPos_;
 
 	//playerのモデル
-	playerModel_ = new Model();
+	//playerModel_ = new Model(); 
+	//playerHead_ = new Model();
 	//playerModel_->CreateFromOBJ("player", true);
 	
-	enemyModel_ = Model::CreateFromOBJ("cube", true);
-
-	// player_ = new Player()
+	enemyModel_ = Model::CreateFromOBJ("enemy", true);
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
 	enemy_->SetGameScene(this); 
 	
-	playerModel_=Model::CreateFromOBJ("Player", true);
-	//playerの初期化
-	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f});
+#pragma region modelのやつ
+	playerBody_ = Model::CreateFromOBJ("playerBody", true);
+	playerHead_ = Model::CreateFromOBJ("playerHead", true);
+	playerRightArm_ = Model::CreateFromOBJ("playerRightArm", true);
+	playerLeftArm_ = Model::CreateFromOBJ("playerLeftArm", true);
+	playerRightLeg_ = Model::CreateFromOBJ("playerRightLeg", true);
+	playerLeftLeg_ = Model::CreateFromOBJ("playerLeftLeg", true);
+	playerMagic_ = Model::CreateFromOBJ("mahou", true);
+#pragma endregion
+
+
+#pragma region playerの初期化
+	playerModelBody_ = new Player();
+	playerModelHead_ = new Player();
+	playerModelRightArm_ = new Player();
+	playerModelLeftArm_ = new Player();
+	playerModelRightLeg_ = new Player();
+	playerModelLeftLeg_ = new Player();
+	playerModelMagic_ = new Player();
+#pragma endregion
+
+
+#pragma region playerのInitialize
+	playerModelBody_->Initialize(playerBody_, Vector3{0.0f});
+	playerModelHead_->Initialize(playerHead_, Vector3{0.0f});
+	playerModelRightArm_->Initialize(playerRightArm_, Vector3{0.0f});
+	playerModelLeftArm_->Initialize(playerLeftArm_, Vector3{0.0f});
+	playerModelRightLeg_->Initialize(playerRightLeg_, Vector3{0.0f});
+	playerModelLeftLeg_->Initialize(playerLeftLeg_, Vector3{0.0f});
+	playerModelMagic_->Initialize(playerMagic_, Vector3{0.0f});
+#pragma endregion
 }
 
 void GameScene::Update() {
 	
-	player_->Update();
+#pragma region プレイヤーのアップデート
+	playerModelBody_->Update();
+	playerModelHead_->Update();
+	playerModelRightArm_->Update();
+	playerModelLeftArm_->Update();
+	playerModelRightLeg_->Update();
+	playerModelLeftLeg_->Update();
+	playerModelMagic_->Update();
+#pragma endregion
 
-	
 	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) { // 後で消す
 		finished_ = true;
 	}
@@ -87,8 +133,15 @@ void GameScene::Draw() {
 	//敵
 	enemyDrow();
 
-	//player
-	player_->Draw(camera_);
+#pragma region プレイヤー
+	playerModelBody_->Draw(camera_);
+	playerModelHead_->Draw(camera_);
+	playerModelRightArm_->Draw(camera_);
+	playerModelLeftArm_->Draw(camera_);
+	playerModelRightLeg_->Draw(camera_);
+	playerModelLeftLeg_->Draw(camera_);
+	playerModelMagic_->Draw(camera_);
+#pragma endregion
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
