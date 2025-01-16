@@ -12,6 +12,7 @@ public:
 
 	bool IsDelete() const { return isDelete_; }
 	void SetScale(const float scale);
+	virtual void GetPlayerPos(Vector3 pos);
 	
 protected:	
 	void SetVec(float* a, Vector3 b){

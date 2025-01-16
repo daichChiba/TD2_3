@@ -16,6 +16,7 @@ public:
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
 	virtual void GetPlayer(Player* player){  player_ = player; }
+	Vector3 GetWorldPos(){ return Vector3{ worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1],worldTransform_.matWorld_.m[3][2]};}
 protected:
 
 	GameScene* gameScene_;

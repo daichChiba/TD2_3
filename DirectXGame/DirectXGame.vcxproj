@@ -111,6 +111,7 @@
     <ClCompile Include="EnemyGravity.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GrabiltBullet.cpp" />
+    <ClCompile Include="GrabityBulletSecond.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -194,6 +195,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GrabityBulletSecond.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />

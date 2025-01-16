@@ -1,5 +1,7 @@
 #include "Player.h"
 #include<cassert>
+#include "EnemyManager.h"
+
 using namespace MathUtility;
 void Player::Initialize(Model* model, const Vector3 position) {
 	assert(model);
@@ -7,6 +9,8 @@ void Player::Initialize(Model* model, const Vector3 position) {
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = position;
 	worldTransform_.rotation_ = {0.0f, 0.5f, 0.0f};
+
+	
 }
 
 void Player::Update() {

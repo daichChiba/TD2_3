@@ -2,6 +2,8 @@
 #include <KamataEngine.h>
 using namespace KamataEngine;
 
+class EnemyManager;
+
 class Player {
 public:
 	/// <summary>
@@ -23,6 +25,9 @@ public:
 	void Draw(Camera* camera);
 
 	Vector3 GetPlayerPos();
+	void GetEnemyPos(Vector3 pos){
+		enemyPos = pos;
+	}
 private:
 
 	Model* model_ = nullptr;
@@ -34,6 +39,8 @@ private:
 	XINPUT_STATE preXinput_;
 
 	Vector3 velocity = {0.0f, 0.0f, 0.0f};
+
+	Vector3 enemyPos;
 
 private://メンバ関数
 	/// <summary>
