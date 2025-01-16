@@ -43,6 +43,6 @@ protected:
 
 	Player* player_;
 
-	// 半径
+	// ���a
 	float radius_ = 6.0f;
 };

@@ -13,6 +13,8 @@ enum class Character {
 	fencer,
 	dancer,
 };
+class EnemyManager;
+
 class Player {
 public:
 	/// <summary>
@@ -75,6 +77,9 @@ private:
 	float radius_ = 6.0f;
 
 private: // メンバ関数
+	Vector3 enemyPos;
+
+private://メンバ関数
 	/// <summary>
 	/// playerの動き
 	/// </summary>

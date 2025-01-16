@@ -1,6 +1,8 @@
 #include "Player.h"
 //#include "magic"
 #include<cassert>
+#include "EnemyManager.h"
+
 #include"../DirectXGame/Scene/GameScene.h"
 #include"PlayerNormalBullet.h"
 using namespace MathUtility;

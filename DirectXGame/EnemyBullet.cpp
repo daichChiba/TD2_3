@@ -31,3 +31,15 @@ Vector3 EnemyBullet::GetWorldPosition() {
 void EnemyBullet::OnCollision() {
 	isDelete_ = true;
 }
+
+void EnemyBullet::SetScale(const float scale)
+{ 
+	worldTransform_.scale_.x = {scale}; 
+	worldTransform_.scale_.y = {scale}; 
+	worldTransform_.scale_.z = {scale}; 
+}
+
+void EnemyBullet::GetPlayerPos(Vector3 pos)
+{
+	pos = pos;
+}
