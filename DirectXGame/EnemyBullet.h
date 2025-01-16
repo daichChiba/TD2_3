@@ -15,6 +15,11 @@ public:
 	void SetScale(const float scale) { worldTransform_.scale_ = {scale}; }
 
 	virtual void GetTagetPos(Vector3 pos) { pos = pos; }
+	Vector3 GetWorldPosition();
+
+	void OnCollision();
+	// 半径を取得
+	float GetRadius() { return radius_; }
 
 protected:
 	void SetVec(float* a, Vector3 b) {
@@ -36,4 +41,7 @@ protected:
 	bool isStart_ = false;
 
 	Player* player_;
+
+	// 半径
+	float radius_ = 6.0f;
 };

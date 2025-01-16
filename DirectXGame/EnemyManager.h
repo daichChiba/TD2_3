@@ -13,6 +13,8 @@ public:
 	virtual void Update();
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
+	Vector3 GetWorldPosition();
+
 protected:
 
 	GameScene* gameScene_;

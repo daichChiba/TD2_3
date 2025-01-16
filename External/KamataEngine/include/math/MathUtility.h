@@ -107,6 +107,7 @@ float Lerp(float a, float b, float t);
 Vector3 Vector3Lerp(Vector3 a, Vector3 b, float t);
 float FloatLength(float a);
 float FloatNormalize(float a);
+Vector3 Sphere(Vector3 v1, Vector3 v2);
 
 } // namespace MathUtility
 

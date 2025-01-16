@@ -9,6 +9,9 @@ class EnemyGravity : public EnemyManager
 public:
 	void Update() override;
 
+	//// 半径を取得
+	//float GetRadius() { return radius_; }
+
 private:
 	void DrowImgui();
 	float miniBulletTimer_ = 0.0f;
@@ -27,6 +30,7 @@ private:
 	static inline const float kMiniBulletTime_ = 0.8f;
 	static inline const float kMiniBulletStartTime_ = 1.5f;
 
-	
+	//// 半径
+	//float radius_ = 6.0f;
 };
 

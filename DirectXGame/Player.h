@@ -35,6 +35,7 @@ public:
 
 	Vector3 GetWorldPosition();
 
+	void OnCollision();
 
 	virtual void PrimaryAttack();
 	virtual void SecondaryAttack();
@@ -43,6 +44,8 @@ public:
 
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
+	// 半径を取得
+	float GetRadius() { return radius_; }
 
 private:
 	Character character_;
@@ -68,6 +71,8 @@ private:
 
 	GameScene* gameScene_;
 
+	// 半径
+	float radius_ = 6.0f;
 
 private: // メンバ関数
 	/// <summary>

@@ -45,7 +45,7 @@ void PlayerNormalBullet::DrowImgui() {
 #ifdef _DEBUG
 	ImGui::Begin("playerBullet");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
-	//ImGui::Checkbox("isDelete_", &isDelete_);
+	ImGui::Checkbox("isDelete_", &isDelete_);
 	ImGui::End();
 #endif // _DEBUG
 }

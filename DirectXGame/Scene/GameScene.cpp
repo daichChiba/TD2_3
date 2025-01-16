@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include <cassert>
+#include <corecrt_math.h>
 
 using namespace KamataEngine;
 
@@ -48,9 +49,9 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	
+	CheckAllCollisions();
 	player_->Update();
-
+	
 #pragma region 敵のアップデート
 	enemyUpdate();
 #pragma endregion 
@@ -114,7 +115,7 @@ void GameScene::enemyUpdate()
 	enemy_->SetGameScene(this);
 	for (std::shared_ptr<EnemyManager> enemy : enemies_)
 	{
-		//enemy->Update();
+		enemy->Update();
 		enemy->SetGameScene(this);
 	}
 	 testBullet = 0;
@@ -150,4 +151,26 @@ void GameScene::enemyDrow()
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Draw(camera_);
 	}
+}
+
+void GameScene::CheckAllCollisions() {
+	// 判定対象AとBの座標
+	Vector3 posA, posB;
+
+	#pragma region 敵の弾とプレイヤーの当たり判定
+	posA = player_->GetWorldPosition();
+	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
+		posB = enemyBullet->GetWorldPosition();
+		Vector3 A2B = MathUtility::Sphere(posA, posB);
+		float len = MathUtility::Length(A2B);
+		float radius = enemyBullet->GetRadius() + player_->GetRadius();
+		if (len<=sqrt(radius*radius)) {
+			// 自キャラの衝突時コールバックを呼び出す
+			player_->OnCollision();
+			// 自弾の衝突時コールバックを呼び出す
+			enemyBullet->OnCollision();
+		}
+
+	}
+	#pragma endregion
 }

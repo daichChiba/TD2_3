@@ -69,6 +69,11 @@ private: // メンバ変数
 	/// </summary>
 	void enemyDrow();
 
+	/// <summary>
+	/// すべての当たり判定
+	/// </summary>
+	void CheckAllCollisions();
+
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;

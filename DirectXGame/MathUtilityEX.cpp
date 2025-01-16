@@ -23,5 +23,14 @@ float FloatNormalize(float a) {
 	return a / FloatLength(a);
 }
 
+Vector3 Sphere(Vector3 v1, Vector3 v2) {
+	Vector3 result;
+	result.x = (v2.x - v1.x) * (v2.x - v1.x);
+	result.y = (v2.y - v1.y) * (v2.y - v1.y);
+	result.z = (v2.z - v1.z) * (v2.z - v1.z);
+	return {result.x + result.y + result.z};
+}
+
+
 }
 } // namespace KamataEngine
