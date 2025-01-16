@@ -20,6 +20,7 @@ public:
 	void OnCollision();
 	// 半径を取得
 	float GetRadius() { return radius_; }
+	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
 
 protected:
 	void SetVec(float* a, Vector3 b) {
