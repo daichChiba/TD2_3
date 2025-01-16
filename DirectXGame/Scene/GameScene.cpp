@@ -13,9 +13,6 @@ GameScene::~GameScene() {
 	delete player_;
 }
 
-
-
-
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
@@ -26,10 +23,10 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
 
-	//playerのモデル
+	// playerのモデル
 	playerModel_ = new Model();
-	//playerModel_->CreateFromOBJ("player", true);
-	
+	// playerModel_->CreateFromOBJ("player", true);
+
 	enemyModel_ = Model::CreateFromOBJ("cube", true);
 
 	// player_ = new Player()
@@ -38,24 +35,22 @@ void GameScene::Initialize() {
 
 	enemy_ = new Enemy();
 	enemy_->Initialize(enemyModel_, Vector3{0.0f});
-	enemy_->SetGameScene(this); 
-	
-	playerModel_=Model::CreateFromOBJ("Player", true);
-	//playerの初期化
+	enemy_->SetGameScene(this);
+
+	playerModel_ = Model::CreateFromOBJ("Player", true);
+	// playerの初期化
 	player_ = new Player();
 	player_->Initialize(playerModel_, Vector3{0.0f}, character, enemyModel_);
 	player_->SetGameScene(this);
-
 }
 
 void GameScene::Update() {
 	CheckAllCollisions();
 	player_->Update();
-	
+
 #pragma region 敵のアップデート
 	enemyUpdate();
-#pragma endregion 
-
+#pragma endregion
 }
 
 void GameScene::Draw() {
@@ -83,11 +78,11 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-		
-	//敵
+
+	// 敵
 	enemyDrow();
 
-	//player
+	// player
 	player_->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
@@ -108,19 +103,16 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::enemyUpdate()
-{
+void GameScene::enemyUpdate() {
 
 	enemy_->Update();
 	enemy_->SetGameScene(this);
-	for (std::shared_ptr<EnemyManager> enemy : enemies_)
-	{
+	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
 		enemy->Update();
 		enemy->SetGameScene(this);
 	}
-	 testBullet = 0;
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
-	{
+	testBullet = 0;
+	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Update();
 		++testBullet;
 	}
@@ -136,15 +128,12 @@ void GameScene::enemyUpdate()
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 }
 
-void GameScene::enemyDrow()
-{
-	for (std::shared_ptr<EnemyManager> enemy : enemies_)
-	{
+void GameScene::enemyDrow() {
+	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
 		enemy->Draw(camera_);
 	}
 
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
-	{
+	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Draw(camera_);
 	}
 
@@ -157,20 +146,27 @@ void GameScene::CheckAllCollisions() {
 	// 判定対象AとBの座標
 	Vector3 posA, posB;
 
-	#pragma region 敵の弾とプレイヤーの当たり判定
+#pragma region 敵の弾とプレイヤーの当たり判定
 	posA = player_->GetWorldPosition();
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		posB = enemyBullet->GetWorldPosition();
 		Vector3 A2B = MathUtility::Sphere(posA, posB);
 		float len = MathUtility::Length(A2B);
 		float radius = enemyBullet->GetRadius() + player_->GetRadius();
-		if (len<=sqrt(radius*radius)) {
+		if (len <= sqrt(radius * radius)) {
 			// 自キャラの衝突時コールバックを呼び出す
 			player_->OnCollision();
 			// 自弾の衝突時コールバックを呼び出す
 			enemyBullet->OnCollision();
 		}
-
 	}
-	#pragma endregion
+#pragma endregion
+
+#pragma region 自機の弾と敵の当たり判定
+
+#pragma endregion
+
+#pragma region 自機の弾と敵の弾の当たり判定
+
+#pragma endregion
 }
