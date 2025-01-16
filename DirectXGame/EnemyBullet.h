@@ -14,6 +14,8 @@ public:
 	bool IsDelete() const { return isDelete_; }
 	void SetScale(const float scale) { worldTransform_.scale_ = {scale}; }
 
+	virtual void GetTagetPos(Vector3 pos) { pos = pos; }
+
 protected:
 	void SetVec(float* a, Vector3 b) {
 		b.x = a[0];

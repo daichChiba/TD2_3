@@ -130,10 +130,10 @@ void Player::Attack() {
 		if (Input::GetInstance()->ReleseKey(DIK_U)) {
 			std::shared_ptr<EnemyBullet> normal(new PlayerNormalBullet);
 			normal->Initialize(bulletModel_, GetWorldPosition());
-			normal->SetScale(10.0f);
-			gameScene_->AddPlayerBullet(normal);
+			//normal->GetTagetPos()
+			gameScene_->AddEnemyBullet(normal);
 			primaryAttackCoolTime = kPrimaryAttackCoolTime;
-			normal->Update();
+
 		}
 	} else {
 		primaryAttackCoolTime--;

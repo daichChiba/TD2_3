@@ -42,7 +42,7 @@ void GameScene::Initialize() {
 	playerModel_=Model::CreateFromOBJ("Player", true);
 	//playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f},character,playerModel_);
+	player_->Initialize(playerModel_, Vector3{0.0f}, character, enemyModel_);
 	player_->SetGameScene(this);
 
 }
@@ -114,7 +114,7 @@ void GameScene::enemyUpdate()
 	enemy_->SetGameScene(this);
 	for (std::shared_ptr<EnemyManager> enemy : enemies_)
 	{
-		enemy->Update();
+		//enemy->Update();
 		enemy->SetGameScene(this);
 	}
 	 testBullet = 0;
@@ -122,6 +122,10 @@ void GameScene::enemyUpdate()
 	{
 		enemyBullet->Update();
 		++testBullet;
+	}
+
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
+		playerBullet->Update();
 	}
 
 	ImGui::Begin("gamescene");

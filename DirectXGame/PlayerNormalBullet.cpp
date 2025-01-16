@@ -1,14 +1,15 @@
 #include "PlayerNormalBullet.h"
-#include"EnemyBullet.h"
-#include "Player.h"
 #include "Easings.h"
+#include "EnemyBullet.h"
+#include "Player.h"
 using namespace KamataEngine;
 using namespace MathUtility;
 void PlayerNormalBullet::Update() {
 	if (!start) {
-		tagetPos = player_->GetWorldPosition();
+		
 		start = true;
 		startPos = worldTransform_.translation_;
+		
 	}
 
 	DrowImgui();
@@ -18,18 +19,33 @@ void PlayerNormalBullet::Update() {
 	} else {
 		deleteTimer++;
 	}
-	worldTransform_.translation_ =
-		Vector3Lerp(startPos, tagetPos, Easings::EaselnQuart(static_cast<float>(moveTimer) / static_cast<float>(kMoveTimer)));
+	// 移動方向のベクトルを計算
+	Vector3 direction = tagetPos - startPos;
+
+	// 移動方向を正規化
+	Vector3 normalizeDirection = Normalize(direction);
+
+	velocity_ = Easings::EaseInTime(direction,normalizeDirection );
+	worldTransform_.translation_ += velocity_;
+	worldTransform_.translation_.z = 0.0f;
+	//// イージングの値を取得
+	//float easeValue = Easings::EaseInTime(static_cast<float>(moveTimer), static_cast<float>(kMoveTimer));
+
+	//// 正規化された方向ベクトルにイージングとスピードをかけ、移動量を計算
+	//float speed = kMaxSpeed * easeValue; // イージングによってスピードを調整
+	//worldTransform_.translation_ = startPos + (normalizedDirection * speed * static_cast<float>(kMoveTimer));
 
 	if (deleteTimer >= kDeleteTimer) {
 		isDelete_ = true;
 	}
-
 	worldTransform_.UpdateMatrix();
 }
 
 void PlayerNormalBullet::DrowImgui() {
+#ifdef _DEBUG
 	ImGui::Begin("playerBullet");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
+	//ImGui::Checkbox("isDelete_", &isDelete_);
 	ImGui::End();
+#endif // _DEBUG
 }
