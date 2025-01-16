@@ -9,7 +9,10 @@
 using namespace MathUtility;
 
 void Enemy::Initialize(Model* model, Vector3 pos, Player* player) {
+#ifdef _DEBUG
+
 	assert(model);
+#endif // _DEBUG
 	model_ = model;
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = pos;

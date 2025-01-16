@@ -34,6 +34,7 @@ void EnemyGravity::Update() {
 }
 
 void EnemyGravity::DrowImgui() {
+#ifdef _DEBUG
 
 	ImGui::Begin("enemy");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
@@ -41,6 +42,7 @@ void EnemyGravity::DrowImgui() {
 	ImGui::DragFloat("BigTime", &bigBulletTimer_, 0.1f);
 	ImGui::DragInt("HP", &HP);
 	ImGui::End();
+#endif // _DEBUG
 }
 
 Vector3 EnemyGravity::GetPlayerPos() {

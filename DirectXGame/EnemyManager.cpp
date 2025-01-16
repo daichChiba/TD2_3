@@ -2,10 +2,15 @@
 
 void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos)
 {
+#ifdef _DEBUG
 	assert(model);
+	assert(bulletModel);
+#endif // _DEBUG
+
+
+
 	model_ = model;
 
-	assert(bulletModel);
 	bulletModel_ = bulletModel;
 
 	worldTransform_.Initialize();

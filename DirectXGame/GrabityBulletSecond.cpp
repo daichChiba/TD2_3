@@ -23,7 +23,11 @@ void GrabityBulletSecond::Update() {
 }
 
 void GrabityBulletSecond::DrowImgui() {
+#ifdef _DEBUG
 	ImGui::Begin("GraBullet");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x);
 	ImGui::End();
+#endif // _DEBUG
+
+
 }

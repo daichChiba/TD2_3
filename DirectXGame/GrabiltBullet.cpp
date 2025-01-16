@@ -30,11 +30,13 @@ void GrabiltBullet::Update()
 
 void GrabiltBullet::DrowImgui()
 {
-	
+#ifdef _DEBUG
+
 	ImGui::Begin("EnemyBullet");
 	ImGui::Text("bullet");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.0001f);
 	ImGui::DragFloat3("sce", &worldTransform_.scale_.x, 0.001f);
 	ImGui::DragFloat3("vel", &velocity_.x, 0.001f);
 	ImGui::End();
+#endif // _DEBUG
 }

@@ -121,10 +121,12 @@ void GameScene::enemyUpdate() {
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Update();
 	}
+#ifdef _DEBUG
 
 	ImGui::Begin("gamescene");
 	ImGui::Text("%d", testBullet);
 	ImGui::End();
+#endif // _DEBUG
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 }

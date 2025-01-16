@@ -2,7 +2,11 @@
 
 void EnemyBullet::Initialize(Model* model, Vector3 pos)
 {
+#ifdef _DEBUG
 	assert(model);
+#endif // _DEBUG
+
+	
 	model_ = model;
 
 	worldTransform_.Initialize();
