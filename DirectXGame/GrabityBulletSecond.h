@@ -4,15 +4,17 @@
 
 using namespace KamataEngine;
 
-class GrabiltBullet : public EnemyBullet
+class GrabityBulletSecond : public EnemyBullet
 {
 public:
+	void GetPlayerPos(Vector3 pos) override;
 	void Update() override;
 
 private:
 	void DrowImgui();
 
-	float gravity = -0.2f;
-	float BigBulletGrabity = -0.1f;
+	Vector3 targetPos;
+
+	float speed = 0.04f;
  };
 

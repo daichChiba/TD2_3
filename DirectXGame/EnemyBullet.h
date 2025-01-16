@@ -11,7 +11,9 @@ public:
 	void Draw(Camera* camera);
 
 	bool IsDelete() const { return isDelete_; }
-	void SetScale(const float scale) { worldTransform_.scale_={scale}; }
+	void SetScale(const float scale);
+	virtual void GetPlayerPos(Vector3 pos);
+	
 protected:	
 	void SetVec(float* a, Vector3 b){
 		b.x = a[0];
