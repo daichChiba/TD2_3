@@ -9,6 +9,7 @@ using namespace KamataEngine;
 #include "../EnemyBullet.h"
 using namespace KamataEngine;
 #include "../Player.h"
+#include "../Skydome.h"
 
 /// <summary>
 /// ゲームシーン
@@ -68,6 +69,9 @@ private: // メンバ変数
 	/// 敵の描画関数
 	/// </summary>
 	void enemyDrow();
+	void playerInitialize();
+	void playerUpdate();
+	void playerDraw();
 
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -83,6 +87,7 @@ private: // メンバ変数
 	/// player
 	/// </summary>
 	Player* playerModelBody_ = nullptr;       //体
+	Player* playerModelHat_ = nullptr;        //帽子
 	Player* playerModelHead_ = nullptr;       //頭
 	Player* playerModelRightArm_ = nullptr;   //右腕
 	Player* playerModelLeftArm_ = nullptr;    //左腕
@@ -90,16 +95,22 @@ private: // メンバ変数
 	Player* playerModelLeftLeg_ = nullptr;    //左脚
 	Player* playerModelMagic_ = nullptr;      //魔法陣
 
+	Skydome* skydomeModel_ = nullptr;
+
 	/// <summary>
 	/// プレイヤーモデル
 	/// </summary>
 	Model* playerBody_ = nullptr;
+	Model* playerHat_ = nullptr;
 	Model* playerHead_ = nullptr;
 	Model* playerRightArm_ = nullptr;
 	Model* playerLeftArm_ = nullptr;
 	Model* playerRightLeg_ = nullptr;
 	Model* playerLeftLeg_ = nullptr;
 	Model* playerMagic_ = nullptr;
+
+	// SkyDomeのモデル
+	Model* skydome_ = nullptr;
 	
 	/// <summary>
 	/// 敵

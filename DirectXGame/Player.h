@@ -15,6 +15,7 @@ public:
 	/// アップデート
 	/// </summary>
 	void Update();
+	void ModelUpdate();
 
 	/// <summary>
 	/// 描画

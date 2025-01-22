@@ -26,6 +26,12 @@ void Player::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
+//体以外のパーツのアップデート。ついてくるだけ
+void Player::ModelUpdate() {
+	Move();
+	worldTransform_.UpdateMatrix();
+}
+
 void Player::Draw(Camera* camera) {
 	model_->Draw(worldTransform_, *camera);
 }

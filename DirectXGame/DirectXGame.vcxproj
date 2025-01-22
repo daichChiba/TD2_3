@@ -118,6 +118,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Skydome.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
@@ -208,6 +209,7 @@
     <ClInclude Include="MathUtliltyForText.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Skydome.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
