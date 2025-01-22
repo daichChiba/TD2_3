@@ -4,14 +4,16 @@
 
 using namespace KamataEngine;
 
-class GrabiltBullet : public EnemyBullet
+class GrabityBigBullet : public EnemyBullet
 {
-public:
+	public:
 	void Update() override;
 
 private:
+	void Player
+
 	void DrowImgui();
 
-	float gravity = -0.2f;
- };
+	float gravity = -0.1f;
+};
 

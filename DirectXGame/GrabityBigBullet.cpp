@@ -1,11 +1,8 @@
-#include "../DirectXGame/GrabiltBullet.h"
-
+#include "GrabityBigBullet.h"
 using namespace MathUtility;
 
-void GrabiltBullet::Update()
-{
-	if(!isStart_ )
-	{
+void GrabityBigBullet::Update() {
+	if (!isStart_) {
 		velocity_.y = gravity;
 
 		isStart_ = true;
@@ -14,17 +11,15 @@ void GrabiltBullet::Update()
 	worldTransform_.translation_ += velocity_;
 
 	DrowImgui();
-	
+
 	worldTransform_.UpdateMatrix();
 
-	if (worldTransform_.translation_.y < -23.3f)
-	{
+	if (worldTransform_.translation_.y < -23.3f) {
 		isDelete_ = true;
 	}
 }
 
-void GrabiltBullet::DrowImgui()
-{
+void GrabityBigBullet::DrowImgui() {
 #ifdef _DEBUG
 
 	ImGui::Begin("EnemyBullet");

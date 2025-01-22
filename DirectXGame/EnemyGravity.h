@@ -26,6 +26,7 @@ private:
 
 	Vector3 GetPlayerPos();
 
+	void LowerPlayer();
 
 	int HP = 100;
 
@@ -80,6 +81,10 @@ private:
 	static inline const float kFirstModeBigBulletTime = 2.0f;
 	static inline const float kSecondModeBigBulletTime = 1.5f;
 	static inline const float kBigBulletStartTime_ = 1.5f;
+#pragma endregion
+
+#pragma region 
+	static inline const float playerFollSpeed = -0.03f;
 #pragma endregion
 
 #pragma region 

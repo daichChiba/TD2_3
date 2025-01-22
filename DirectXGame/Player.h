@@ -37,6 +37,8 @@ public:
 
 	Vector3 GetWorldPosition();
 
+	void AddVelocity(Vector3 velocity);
+
 	void OnCollision();
 
 	virtual void PrimaryAttack();
@@ -64,7 +66,7 @@ private:
 	XINPUT_STATE xinput_;
 	XINPUT_STATE preXinput_;
 
-	Vector3 velocity = {0.0f, 0.0f, 0.0f};
+	Vector3 velocity_ = {0.0f, 0.0f, 0.0f};
 
 	int primaryAttackCoolTime;
 	static inline const int kPrimaryAttackCoolTime = 30;

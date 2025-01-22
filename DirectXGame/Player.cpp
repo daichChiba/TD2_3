@@ -29,7 +29,7 @@ void Player::Update() {
 #ifdef _DEBUG
 	ImGui::Begin("player");
 	ImGui::SliderFloat3("pos", &worldTransform_.translation_.x, -10.0f, 10.0f);
-	ImGui::SliderFloat3("vel", &velocity.x, -10.0f, 10.0f);
+	ImGui::SliderFloat3("vel", &velocity_.x, -10.0f, 10.0f);
 	ImGui::Text("primaryAttackCoolTime=%d", primaryAttackCoolTime);
 	ImGui::End();
 
@@ -57,6 +57,10 @@ Vector3 Player::GetWorldPosition() {
 	return worldPos;
 }
 
+void Player::AddVelocity(Vector3 velocity){
+	worldTransform_.translation_ += velocity; 
+}
+
 void Player::OnCollision() {
 
 }
@@ -74,30 +78,32 @@ void Player::TertiaryAttack() {
 }
 
 void Player::Move() {
-	velocity = {0.0f};
-	#pragma region 移動タイプWASD
+	velocity_ = {0.0f};
+	
+
+#pragma region 移動タイプWASD
 	if (Input::GetInstance()->PushKey(DIK_D)) {
-		velocity.x = 0.1f;
+		velocity_.x = 0.1f;
 	} else if (Input::GetInstance()->PushKey(DIK_A)) {
-		velocity.x = -0.1f;
+		velocity_.x = -0.1f;
 	}
 	if (Input::GetInstance()->PushKey(DIK_W)) {
-		velocity.y = 0.1f;
+		velocity_.y = 0.1f;
 	} else if (Input::GetInstance()->PushKey(DIK_S)) {
-		velocity.y = -0.1f;
+		velocity_.y = -0.1f;
 	}
 	#pragma endregion 
 
 	#pragma region 移動タイプ上下左右
 	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
-		velocity.x = 0.1f;
+		velocity_.x = 0.1f;
 	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
-		velocity.x = -0.1f;
+		velocity_.x = -0.1f;
 	}
 	if (Input::GetInstance()->PushKey(DIK_UP)) {
-		velocity.y = 0.1f;
+		velocity_.y = 0.1f;
 	} else if (Input::GetInstance()->PushKey(DIK_DOWN)) {
-		velocity.y = -0.1f;
+		velocity_.y = -0.1f;
 	}
 	#pragma endregion 
 
@@ -123,12 +129,13 @@ void Player::Move() {
 		const float maxSpeed = 0.1f;
 
 		// 移動速度を計算
-		velocity.x = cos(angle) * magnitude * maxSpeed;
-		velocity.y = sin(angle) * magnitude * maxSpeed;
+		velocity_.x = cos(angle) * magnitude * maxSpeed;
+		velocity_.y = sin(angle) * magnitude * maxSpeed;
 	}
 #pragma endregion
 
-	worldTransform_.translation_ += velocity;
+	worldTransform_.translation_ += velocity_;
+
 }
 
 void Player::Attack() {

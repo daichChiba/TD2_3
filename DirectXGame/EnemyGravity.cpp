@@ -13,7 +13,7 @@ void EnemyGravity::Update() {
 		HP = kMaxHP;
 
 		enemyMode = EnemyMode::First;
-		HP = 49;
+		HP = 100;
 		isStart_ = true;
 	}
 
@@ -52,6 +52,11 @@ Vector3 EnemyGravity::GetPlayerPos() {
 	return PlayerPos;
 }
 
+void EnemyGravity::LowerPlayer()
+{
+	player_->AddVelocity(Vector3{ 0.0f, playerFollSpeed, 0.0f});
+}
+
 void EnemyGravity::modeFirst() {
 	if (!isStartMode) {
 		miniBulletTimer_ = kMiniBulletStartTime_;
@@ -63,6 +68,8 @@ void EnemyGravity::modeFirst() {
 
 		isStartMode = true;
 	}
+
+	LowerPlayer();
 
 	miniBulletTimer_ -= flameTime;
 	bigBulletTimer_ -= flameTime;

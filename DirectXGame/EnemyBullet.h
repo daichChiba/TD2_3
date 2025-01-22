@@ -12,7 +12,7 @@ public:
 	void Draw(Camera* camera);
 
 	bool IsDelete() const { return isDelete_; }
-	void SetScale(const float scale) { worldTransform_.scale_ = {scale}; }
+	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
 
 	virtual void GetTagetPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
@@ -22,6 +22,7 @@ public:
 	float GetRadius() { return radius_; }
 	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
 
+	void SetPlayer(Player* player){ player_ = player;}
 protected:
 	void SetVec(float* a, Vector3 b) {
 		b.x = a[0];

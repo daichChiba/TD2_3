@@ -112,6 +112,7 @@
     <ClCompile Include="EnemyGravity.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GrabiltBullet.cpp" />
+    <ClCompile Include="GrabityBigBullet.cpp" />
     <ClCompile Include="InputEx.cpp" />
     <ClCompile Include="MagicPlayer.cpp" />
     <ClCompile Include="GrabityBulletSecond.cpp" />
@@ -200,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Easings.h" />
+    <ClInclude Include="GrabityBigBullet.h" />
     <ClInclude Include="MagicPlayer.h" />
     <ClInclude Include="GrabityBulletSecond.h" />
     <ClInclude Include="Player.h" />
