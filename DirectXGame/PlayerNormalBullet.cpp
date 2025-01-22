@@ -9,7 +9,7 @@ void PlayerNormalBullet::Update() {
 		
 		start = true;
 		startPos = worldTransform_.translation_;
-		
+		isDelete_ = false;	
 	}
 
 	DrowImgui();
@@ -36,16 +36,19 @@ void PlayerNormalBullet::Update() {
 	//worldTransform_.translation_ = startPos + (normalizedDirection * speed * static_cast<float>(kMoveTimer));
 
 	if (deleteTimer >= kDeleteTimer) {
-		//isDelete_ = true;
+		isDelete_ = true;
 	}
+
 	worldTransform_.UpdateMatrix();
 }
 
 void PlayerNormalBullet::DrowImgui() {
 #ifdef _DEBUG
 	ImGui::Begin("playerBullet");
-	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
-	ImGui::Checkbox("isDelete_", &isDelete_);
+	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);	
+	ImGui::DragFloat3("targetPos", &tagetPos.x, 0.01f);	
+	ImGui::DragFloat3("startPos", &startPos.x, 0.01f);	
+	//ImGui::Checkbox("isDelete_", &isDelete_);
 	ImGui::End();
 #endif // _DEBUG
 }

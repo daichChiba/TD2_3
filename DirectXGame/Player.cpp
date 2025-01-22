@@ -138,7 +138,7 @@ void Player::Attack() {
 			normal->Initialize(bulletModel_, GetWorldPosition());
 			normal->GetTagetPos(enemyPos);
 			//normal->SetStartPos(worldTransform_.translation_);
-			gameScene_->AddEnemyBullet(normal);
+			gameScene_->AddPlayerBullet(normal);
 			primaryAttackCoolTime = kPrimaryAttackCoolTime;
 
 		}

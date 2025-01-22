@@ -129,7 +129,10 @@ void GameScene::enemyUpdate() {
 	ImGui::End();
 #endif // _DEBUG
 
-	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
+		return a->IsDelete(); });
+	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
+		return a->IsDelete(); });
 }
 
 void GameScene::enemyDrow() {
