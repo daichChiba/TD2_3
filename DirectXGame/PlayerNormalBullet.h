@@ -17,6 +17,8 @@ private:
 	static inline const int kMoveTimer = 60;
 	int moveTimer;
 
+    float currentTime; // 現在の経過時間
+
 	static inline const int kDeleteTimer = 60;
 	int deleteTimer;
 
