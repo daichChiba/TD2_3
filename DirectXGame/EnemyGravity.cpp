@@ -35,7 +35,6 @@ void EnemyGravity::Update() {
 
 void EnemyGravity::DrowImgui() {
 #ifdef _DEBUG
-
 	ImGui::Begin("enemy");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
 	ImGui::DragFloat("miniTime", &miniBulletTimer_, 0.1f);
