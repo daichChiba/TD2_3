@@ -59,6 +59,7 @@ public: // メンバ関数
 	
 	void AddPlayerBullet(std::shared_ptr<EnemyBullet> playerBullet) { playerBullets_.push_back(playerBullet); }
 
+
 private: // メンバ変数
 
 	/// <summary>

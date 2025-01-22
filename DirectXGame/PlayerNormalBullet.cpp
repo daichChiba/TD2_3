@@ -25,7 +25,7 @@ void PlayerNormalBullet::Update() {
 	// 移動方向を正規化
 	Vector3 normalizeDirection = Normalize(direction);
 
-	velocity_ = Easings::EaseInTime(direction,normalizeDirection );
+	velocity_ = Easings::EaseInTime(normalizeDirection, (normalizedDirection * speed * static_cast<float>(kMoveTimer)));
 	velocity_.z = 0.0f;
 	worldTransform_.translation_ += velocity_;
 	//// イージングの値を取得

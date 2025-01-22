@@ -6,6 +6,6 @@ float EaselnQuart(float t);
 
 float EaseInTime(float t, float time);
 
-Vector3 EaseInTime(Vector3 t, Vector3 time_);
+Vector3 EaseInTime(Vector3 t, int time_);
 
 }
