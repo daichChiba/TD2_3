@@ -26,8 +26,8 @@ void PlayerNormalBullet::Update() {
 	Vector3 normalizeDirection = Normalize(direction);
 
 	velocity_ = Easings::EaseInTime(direction,normalizeDirection );
+	velocity_.z = 0.0f;
 	worldTransform_.translation_ += velocity_;
-	worldTransform_.translation_.z = 0.0f;
 	//// イージングの値を取得
 	//float easeValue = Easings::EaseInTime(static_cast<float>(moveTimer), static_cast<float>(kMoveTimer));
 
@@ -36,7 +36,7 @@ void PlayerNormalBullet::Update() {
 	//worldTransform_.translation_ = startPos + (normalizedDirection * speed * static_cast<float>(kMoveTimer));
 
 	if (deleteTimer >= kDeleteTimer) {
-		isDelete_ = true;
+		//isDelete_ = true;
 	}
 	worldTransform_.UpdateMatrix();
 }

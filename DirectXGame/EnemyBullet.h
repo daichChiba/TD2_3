@@ -15,6 +15,7 @@ public:
 	void SetScale(const float scale) { worldTransform_.scale_ = {scale}; }
 
 	virtual void GetTagetPos(Vector3 pos) { pos = pos; }
+	//virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
 	void OnCollision();

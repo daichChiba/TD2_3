@@ -8,6 +8,7 @@ class PlayerNormalBullet : public EnemyBullet {
 public:
 	void Update() override;
 	void GetTagetPos(Vector3 pos) override { tagetPos = pos; }
+	//void SetStartPos(Vector3 pos) override { startPos = pos; }
 
 private:
 	Vector3 startPos;
