@@ -9,7 +9,7 @@ class EnemyBullet {
 public:
 	void Initialize(Model* model, Vector3 pos);
 	virtual void Update();
-	void Draw(Camera* camera);
+	virtual void Draw(Camera* camera);
 
 	bool IsDelete() const { return isDelete_; }
 	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
@@ -19,8 +19,10 @@ public:
 
 	void OnCollision();
 	// 半径を取得
-	float GetRadius() { return radius_; }
+	float GetRadius() { return worldTransform_.scale_.x * radius_; }
 	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
+
+	virtual bool IsOnColision(){ return true; }
 
 	void SetPlayer(Player* player){ player_ = player;}
 protected:
@@ -45,5 +47,5 @@ protected:
 	Player* player_;
 
 	// ���a
-	float radius_ = 6.0f;
+	float radius_ = 1.0f;
 };

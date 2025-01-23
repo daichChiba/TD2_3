@@ -1,13 +1,12 @@
 #pragma once
 
 #include <KamataEngine.h>
-#include <vector>
 using namespace KamataEngine;
 
 #include "../Enemy.h"
+#include "../EnemyFactoy.h"
 #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
-using namespace KamataEngine;
 #include "../Player.h"
 
 //enum class Character {
@@ -46,11 +45,6 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
-
-	/// <summary>
-	/// 敵のモードの読み取り(enemy内で使う)
-	/// </summary>
-	void AddEnemy(std::shared_ptr<EnemyManager> enemy) { enemies_.push_back(enemy); }
 	
 	/// <summary>
 	/// 敵の弾の読み取り(enemy内で使う)
@@ -94,17 +88,9 @@ private: // メンバ変数
 	/// </summary>
 	Model* playerModel_ = nullptr;
 	
-	/// <summary>
-	/// 敵
-	/// </summary>
-	Enemy* enemy_ = nullptr;
+	EnemyManager* enemyManger = nullptr;
 
 	int testBullet = 0;
-
-	/// <summary>
-	///敵マネージャー(GameSceneではUpdateとDrowのみ行う)
-	/// </summary>
-	std::list<std::shared_ptr<EnemyManager>> enemies_;
 
 	/// <summary>
 	///敵の弾(GameSceneではUpdateとDrowのみ行う)

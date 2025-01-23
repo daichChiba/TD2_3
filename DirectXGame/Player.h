@@ -82,6 +82,7 @@ private:
 
 private: // メンバ関数
 	Vector3 enemyPos;
+	std::vector<std::shared_ptr<EnemyManager>>enemy_;
 
 private://メンバ関数
 	/// <summary>

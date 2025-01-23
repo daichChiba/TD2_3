@@ -1,6 +1,6 @@
 #pragma once
-#include "EnemyManager.h"
 #include "KamataEngine.h"
+#include "EnemyActor.h"
 #include <map>
 #include <functional>
 
@@ -12,15 +12,9 @@ enum class EnemyMode
 	Second,
 };
 
-class EnemyGravity : public EnemyManager {
+class EnemyGravity : public EnemyActor {
 public:
 	void Update() override;
-
-	Vector3 SetPos() {
-		Vector3 pos = {worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1],worldTransform_.matWorld_.m[3][2]};
-
-		return pos;
-	}
 private:
 	void DrowImgui();
 
@@ -50,21 +44,23 @@ private:
 	void PlayerFollBigBullet();
 
 	void modeSecond();
+	void RepelPlayer();
 
 #pragma region 小さい弾
 	float miniBulletTimer_ = 0.0f;
+	int miniBulletCount = 0;
 	
-	 float miniBulletOffset_ = 0.0f; 
-
 	// 弾の間隔
-	static inline const float spacing = 15.04f;
+	static inline const float spacing =7.0f;
 
 	// 弾の初期Y座標
 	static inline const float initialY = -22.1f;
 
 	// 小さい球のクールダウン
-	static inline const float kMiniBulletTime_ = 1.5f;
+	static inline const float kMiniBulletTime_ = 2.0f;
 	static inline const float kMiniBulletStartTime_ = 1.0f;
+	static inline const float kMiniBulletIntervalTime_ = 0.3f;
+	static inline const int kMiniBulletMaxConunt_ = 3;
 #pragma endregion
 
 #pragma region 大きい弾
@@ -84,12 +80,16 @@ private:
 #pragma endregion
 
 #pragma region 
-	static inline const float playerFollSpeed = -0.03f;
+	static inline const float playerFollSpeed = -0.01f;
 #pragma endregion
 
 #pragma region 
-	static inline const float radius = 72.0f;
-	static inline const int kBulletPoint = 8;
+	static inline const float radius = 5.0f;
+	static inline const int kBulletPoint = 24;
+	
+	static inline const float repelSpeed = 0.05f; // 反発速度のスケール
+
+	static inline const float bigBulletSpace = 15.0f;
 #pragma endregion
 	
 	

@@ -10,10 +10,13 @@ class GrabityBigBullet : public EnemyBullet
 	void Update() override;
 
 private:
-	void Player
+	void PlayerSuction();
 
 	void DrowImgui();
 
 	float gravity = -0.1f;
+	static inline const float Suction = 20.0f;
+	static inline const float PlayerSuctionSpeed = 0.001f;
+	Vector3 playerPos;
 };
 
