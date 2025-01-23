@@ -71,7 +71,7 @@ void GameScene::Initialize() {
 	playerLeftArm_ = Model::CreateFromOBJ("playerLeftArm", true);
 	playerRightLeg_ = Model::CreateFromOBJ("playerRightLeg", true);
 	playerLeftLeg_ = Model::CreateFromOBJ("playerLeftLeg", true);
-	playerMagic_ = Model::CreateFromOBJ("mahou", true);
+	playerMagic_ = Model::CreateFromOBJ("weapon", true);
 #pragma endregion
 
 
@@ -238,7 +238,7 @@ void GameScene::playerInitialize() {
 	playerModelLeftArm_->Initialize(playerLeftArm_, Vector3{0.0f});
 	playerModelRightLeg_->Initialize(playerRightLeg_, Vector3{0.0f});
 	playerModelLeftLeg_->Initialize(playerLeftLeg_, Vector3{0.0f});
-	//playerModelMagic_->Initialize(playerMagic_, Vector3{0.0f});
+	playerModelMagic_->Initialize(playerMagic_, Vector3{0.0f});
 #pragma endregion
 }
 
@@ -250,7 +250,7 @@ void GameScene::playerUpdate() {
 	playerModelLeftArm_->ModelUpdate();
 	playerModelRightLeg_->ModelUpdate();
 	playerModelLeftLeg_->ModelUpdate();
-	// playerModelMagic_->Update();
+	playerModelMagic_->Update();
 #pragma endregion
 }
 
@@ -263,6 +263,6 @@ void GameScene::playerDraw() {
 	playerModelLeftArm_->Draw(camera_);
 	playerModelRightLeg_->Draw(camera_);
 	playerModelLeftLeg_->Draw(camera_);
-	// playerModelMagic_->Draw(camera_);
+	playerModelMagic_->Draw(camera_);
 #pragma endregion
 }

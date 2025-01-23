@@ -21,6 +21,10 @@ void RuleScene::Initialize() {
 
 	modelFont_ = Model::CreateFromOBJ("ruleFont");
 
+	// 2D背景
+	skydome_ = TextureManager::Load("ruleSkydome/ruleSkydome.png");
+	ruleSkydome_ = Sprite::Create(skydome_, {0, 0});
+
 	worldTransformFont_.Initialize();
 	worldTransformPlayer_.Initialize();
 
@@ -77,11 +81,23 @@ void RuleScene::Draw() {
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
+	// 背景スプライト描画前処理
+	Sprite::PreDraw(commandList);
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
+
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(commandList);
 
 	// ここに3Dオブジェクトの描画処理を追加できる
-	modelFont_->Draw(worldTransformFont_, camera_);
+	//modelFont_->Draw(worldTransformFont_, camera_);
+
+	// 前景スプライト描画前処理
+	Sprite::PreDraw(commandList);
+
+	// ここに2Dオブジェクトの描画処理を追加できる
+    ruleSkydome_->Draw();
 	
 	// 3Dオブジェクト描画処理後
 	Model::PostDraw();

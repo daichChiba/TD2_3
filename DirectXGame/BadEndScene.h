@@ -37,7 +37,9 @@ private:
 	// 終了フラグ
 	bool finished_ = false;
 	Model* modelFont_ = nullptr;
-	
+	uint32_t skydome_ = 0;
+	Sprite* badEndSkydome_ = nullptr;
+
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 

@@ -22,7 +22,12 @@ void BadEndScene::Initialize() {
 	fade_->Initialize();
 	fade_->Start(Fade::Status::FadeIn, 1);
 
+	//3D文字
 	modelFont_ = Model::CreateFromOBJ("badEndFont");
+
+	//2D背景
+	skydome_ = TextureManager::Load("badEndSkydome/badEndSkydome.png");
+	badEndSkydome_ = Sprite::Create(skydome_, {0, 0});
 	
 	worldTransformFont_.Initialize();
 	worldTransform_.Initialize();
@@ -60,12 +65,22 @@ void BadEndScene::Draw() {
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
+	// 背景スプライト描画前処理
+	Sprite::PreDraw(commandList);
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
+
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(commandList);
+	
+	//modelFont_->Draw(worldTransformFont_, camera_);
+
+	// 前景スプライト描画前処理
+	Sprite::PreDraw(commandList);
 
 	// ここに3Dオブジェクトの描画処理を追加できる
-	modelFont_->Draw(worldTransformFont_, camera_);
-	// modelPlayer_->Draw(worldTransform_, camera_);
+	badEndSkydome_->Draw();
 
 	// 3Dオブジェクト描画処理後
 	Model::PostDraw();

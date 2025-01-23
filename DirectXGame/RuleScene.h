@@ -38,6 +38,10 @@ private:
 	// 終了フラグ
 	bool finished_ = false;
 
+	//2D
+	uint32_t skydome_ = 0;
+	Sprite* ruleSkydome_ = nullptr;
+
 	Model* modelFont_ = nullptr;
 	Model* modelEnemy_ = nullptr;
 
