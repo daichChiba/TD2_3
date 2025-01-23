@@ -14,18 +14,20 @@ class EnemyBullet {
 public:
 	void Initialize(Model* model, Vector3 pos);
 	virtual void Update();
-	void Draw(Camera* camera);
+	virtual void Draw(Camera* camera);
 
 	bool IsDelete() const { return isDelete_; }
-	void SetScale(const float scale) { worldTransform_.scale_ = {scale}; }
+	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
 
 	virtual void SetTagetPos(Vector3 pos) { pos = pos; }
 	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
+	void GetPlayer(Player* player) {player_ = player; }
+
 	void OnCollision();
 	// 半径を取得
-	float GetRadius() { return radius_; }
+	float GetRadius() { return worldTransform_.scale_.x * radius_; }
 	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
 
 	void SetBullet(Bullet bullet) { bullet_ = bullet; }

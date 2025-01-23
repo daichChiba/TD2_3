@@ -13,6 +13,5 @@ private:
 	void DrowImgui();
 
 	float gravity = -0.2f;
-	float BigBulletGrabity = -0.1f;
  };
 

@@ -31,11 +31,13 @@ void Enemy::Update() {
 	}
 }
 
+inline void Enemy::SetEnemyStage(const int i) { stage = static_cast<Stage>(i); }
+
 void Enemy::InitializeGrabity() {
-	std::shared_ptr<EnemyManager> modeGravity(new EnemyGravity);
+	std::unique_ptr<EnemyManager> modeGravity(new EnemyGravity);
 	modeGravity->Initialize(model_, model_, worldTransform_.translation_);
 	modeGravity->GetPlayer(player_);
-	gameScene_->AddEnemy(modeGravity);
+	gameScene_->AddEnemy(std::move(modeGravity));
 }
 
 Vector3 Enemy::GetWorldPosition() {

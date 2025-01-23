@@ -7,11 +7,6 @@ void GrabiltBullet::Update()
 	if(!isStart_ )
 	{
 		velocity_.y = gravity;
-	
-		if (worldTransform_.scale_.x < 1.0f)
-		{
-			velocity_.y = BigBulletGrabity;
-		}
 
 		isStart_ = true;
 	}

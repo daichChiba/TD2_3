@@ -6,18 +6,26 @@ using namespace KamataEngine;
 
 class GameScene;
 class Player;
+class EnemyFactory;
+class EnemyActor;
 
 class EnemyManager
 {
 public:
-	void Initialize(Model* model, Model* bulletModel, Vector3 pos);
+	void Initialize(Model* model, Model* bulletModel,Vector3 pos ,Player* player, GameScene* gameScene);
 	virtual void Update();
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
+	void CreateEnemy();
+
+	Vector3 GetEnemyPos();
+	float GetRadius();
+	void OnCollision( int damage);
+
 	virtual void GetPlayer(Player* player){  player_ = player; }
-	Vector3 GetWorldPos(){ return Vector3{ worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1],worldTransform_.matWorld_.m[3][2]};}
-protected:
+	
+private:
 
 	GameScene* gameScene_;
 
@@ -27,7 +35,7 @@ protected:
 
 	Player* player_;
 
-	static inline const float flameTime = 1.0f/ 60.0f;
-	bool isStart_ = false;
-	bool isDelete_ = false;
+	EnemyFactory* enemyFactory_;
+
+	std::unique_ptr<EnemyActor> enemy_;
 };

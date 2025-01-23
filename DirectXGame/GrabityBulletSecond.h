@@ -14,7 +14,10 @@ private:
 	void DrowImgui();
 
 	Vector3 targetPos;
+	Vector3 direction;
 
-	float speed = 0.04f;
+	float speed;
+
+	static inline const float kSpeed = 0.01f;
  };
 

@@ -38,9 +38,8 @@ void GameScene::Initialize() {
 	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_,enemyModel_);
 	player_->SetGameScene(this);
 
-	enemy_ = new Enemy();
-	enemy_->Initialize(enemyModel_, Vector3{0.0f}, player_);
-	enemy_->SetGameScene(this);
+	enemyManger = new EnemyManager();
+	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);
 
 	
 }
@@ -106,13 +105,7 @@ void GameScene::Draw() {
 
 void GameScene::enemyUpdate() {
 
-	enemy_->Update();
-	enemy_->SetGameScene(this);
-	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
-		enemy->Update();
-		enemy->SetGameScene(this);
-		player_->GetEnemyPos(enemy->GetWorldPos());
-	}
+	enemyManger->Update();
 	testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Update();
@@ -122,12 +115,6 @@ void GameScene::enemyUpdate() {
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Update();
 	}
-#ifdef _DEBUG
-
-	ImGui::Begin("gamescene");
-	ImGui::Text("%d", testBullet);
-	ImGui::End();
-#endif // _DEBUG
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
 		return a->IsDelete(); });
@@ -136,9 +123,7 @@ void GameScene::enemyUpdate() {
 }
 
 void GameScene::enemyDrow() {
-	for (std::shared_ptr<EnemyManager> enemy : enemies_) {
-		enemy->Draw(camera_);
-	}
+		enemyManger->Draw(camera_);
 
 	//for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 	//	enemyBullet->Draw(camera_);
@@ -181,7 +166,20 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
+	posA = enemyManger->GetEnemyPos();
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
+	{
+		posB = playerBullet->GetWorldPosition();
+		Vector3 A2B = MathUtility::Sphere(posA, posB);
+		float len = MathUtility::Length(A2B);
+		float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+		if (len <= radius)
+		{
+			playerBullet->OnCollision();
 
+			enemyManger->OnCollision(1);
+		}
+	}
 #pragma endregion
 
 #pragma region 自機の弾と敵の弾の当たり判定
