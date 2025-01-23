@@ -4,7 +4,12 @@
 using namespace KamataEngine;
 
 class Player;
-
+enum class Bullet {
+	Grabity,
+	Enemy,
+	Player,
+	Zoldorak
+};
 class EnemyBullet {
 public:
 	void Initialize(Model* model, Vector3 pos);
@@ -14,7 +19,8 @@ public:
 	bool IsDelete() const { return isDelete_; }
 	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
 
-	virtual void GetTagetPos(Vector3 pos) { pos = pos; }
+	virtual void SetTagetPos(Vector3 pos) { pos = pos; }
+	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
 	void OnCollision();
@@ -22,9 +28,14 @@ public:
 	float GetRadius() { return worldTransform_.scale_.x * radius_; }
 	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
 
-	virtual bool IsOnColision(){ return true; }
+	void SetBullet(Bullet bullet) { bullet_ = bullet; }
 
-	void SetPlayer(Player* player){ player_ = player;}
+	Bullet GetBullet() const { return bullet_; }
+	
+	void SetParent(WorldTransform* parent) { worldTransform_.parent_ = parent; }
+
+	bool GetIsHit() { return isHit_; }
+
 protected:
 	void SetVec(float* a, Vector3 b) {
 		b.x = a[0];
@@ -46,6 +57,10 @@ protected:
 
 	Player* player_;
 
-	// ���a
-	float radius_ = 1.0f;
+	// 半径
+	float radius_ = 6.0f;
+
+	Bullet bullet_;
+
+	bool isHit_ = true;
 };

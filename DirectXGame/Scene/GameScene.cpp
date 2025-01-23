@@ -35,7 +35,8 @@ void GameScene::Initialize() {
 	character_ = Character::wizard;
 	// playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_);
+	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_,enemyModel_);
+	player_->SetGameScene(this);
 
 	enemyManger = new EnemyManager();
 	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);
@@ -115,7 +116,10 @@ void GameScene::enemyUpdate() {
 		playerBullet->Update();
 	}
 
-	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
+		return a->IsDelete(); });
+	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
+		return a->IsDelete(); });
 }
 
 void GameScene::enemyDrow() {
@@ -135,17 +139,27 @@ void GameScene::CheckAllCollisions() {
 	Vector3 posA, posB;
 
 #pragma region 敵の弾とプレイヤーの当たり判定
+	bool is = false;
 	posA = player_->GetWorldPosition();
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		posB = enemyBullet->GetWorldPosition();
 		Vector3 A2B = MathUtility::Sphere(posA, posB);
 		float len = MathUtility::Length(A2B);
 		float radius = enemyBullet->GetRadius() + player_->GetRadius();
-		if (len <= sqrt(radius * radius)) {
+		if (len <= radius) {
 			// 自キャラの衝突時コールバックを呼び出す
 			player_->OnCollision();
 			// 自弾の衝突時コールバックを呼び出す
 			enemyBullet->OnCollision();
+		}
+
+
+
+
+		if (enemyBullet->GetBullet() == Bullet::Zoldorak) {
+			if (!is) {
+
+			}
 		}
 	}
 

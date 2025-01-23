@@ -50,6 +50,9 @@ public: // メンバ関数
 	/// 敵の弾の読み取り(enemy内で使う)
 	/// </summary>
 	void AddEnemyBullet(std::shared_ptr<EnemyBullet> enemyBullet) { enemiesBullet_.push_back(enemyBullet); }
+	
+	void AddPlayerBullet(std::shared_ptr<EnemyBullet> playerBullet) { playerBullets_.push_back(playerBullet); }
+
 
 private: // メンバ変数
 

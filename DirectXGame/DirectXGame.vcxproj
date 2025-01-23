@@ -106,6 +106,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
     <ClCompile Include="EnemyActor.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
@@ -121,9 +122,10 @@
     <ClCompile Include="MathUtilityEX.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerNormalBullet.cpp" />
+    <ClCompile Include="PlayerAccelerationBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
+    <ClCompile Include="Zoldorak.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -201,6 +203,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />
     <ClInclude Include="EnemyActor.h" />
     <ClInclude Include="EnemyFactoy.h" />
@@ -213,8 +216,9 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GrabiltBullet.h" />
     <ClInclude Include="MathUtliltyForText.h" />
-    <ClInclude Include="PlayerNormalBullet.h" />
+    <ClInclude Include="PlayerAccelerationBullet.h" />
     <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Zoldorak.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
