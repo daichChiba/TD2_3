@@ -1,17 +1,16 @@
-#include "TitleScene.h"
+#include "RuleScene.h"
 #include <numbers>
 
+RuleScene::RuleScene() {}
 
-TitleScene::TitleScene() {}
-
-TitleScene::~TitleScene() {
+RuleScene::~RuleScene() {
 	delete modelFont_;
 	delete modelEnemy_;
 	delete fade_;
 	finished_ = false;
 }
 
-void TitleScene::Initialize() {
+void RuleScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
@@ -20,8 +19,8 @@ void TitleScene::Initialize() {
 	// ビュープロジェクション
 	camera_.Initialize();
 
-	modelFont_ = Model::CreateFromOBJ("titleFont");
-	
+	modelFont_ = Model::CreateFromOBJ("ruleFont");
+
 	worldTransformFont_.Initialize();
 	worldTransformPlayer_.Initialize();
 
@@ -32,42 +31,40 @@ void TitleScene::Initialize() {
 	worldTransformPlayer_.rotation_.y = std::numbers::pi_v<float>;
 
 	// フェード
-	phase_ = Phase::kFadeIn;
-	fade_ = new Fade();
-	fade_->Initialize();
-	fade_->Start(Fade::Status::FadeIn, 1);
+	 phase_ = Phase::kFadeIn;
+	 fade_ = new Fade();
+	 fade_->Initialize();
+	 fade_->Start(Fade::Status::FadeIn, 1);
 
 	//// サウンドデータの読み込み
-	//soundDataHandle_ = audio_->LoadWave("yuruyakanaasayake.mp3");
+	// soundDataHandle_ = audio_->LoadWave("yuruyakanaasayake.mp3");
 	//// 音声再生
-	//audio_->PauseWave(soundDataHandle_);
+	// audio_->PauseWave(soundDataHandle_);
 	//// 第2引数でループ再生を指定
-	//voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
+	// voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
 }
 
-void TitleScene::Update() {
+void RuleScene::Update() {
 
 	// SPACEキーを押すとフェードアウトを開始
 	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
 		if (phase_ != Phase::kFadeOut) {
-			phase_ = Phase::kFadeOut;
-			fade_->Start(Fade::Status::FadeOut, 1);
+		    phase_ = Phase::kFadeOut;
+		    fade_->Start(Fade::Status::FadeOut, 1);
 		}
 		//finished_ = true;
 	}
 
 	// フェードアウトが終了したらゲームシーンに行く
-	if (fade_->IsFadeOutFinished() == true) {
+	 if (fade_->IsFadeOutFinished() == true) {
 		// 音声停止
 		//audio_->StopWave(voiceHandle_);
 		finished_ = true;
-	} 
-	
+	 }
 
 	// タイマーを加算
 	timer_ += 1.0f / 60.0f;
 
-	
 	// 行列を更新
 	worldTransformFont_.UpdateMatrix();
 	worldTransformPlayer_.UpdateMatrix();
@@ -76,7 +73,7 @@ void TitleScene::Update() {
 	fade_->Update();
 }
 
-void TitleScene::Draw() {
+void RuleScene::Draw() {
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
@@ -85,8 +82,7 @@ void TitleScene::Draw() {
 
 	// ここに3Dオブジェクトの描画処理を追加できる
 	modelFont_->Draw(worldTransformFont_, camera_);
-	//modelEnemy_->Draw(worldTransformPlayer_, camera_);
-
+	
 	// 3Dオブジェクト描画処理後
 	Model::PostDraw();
 

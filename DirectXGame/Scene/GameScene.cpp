@@ -9,6 +9,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 #pragma region delete
 	delete skydomeModel_;
+	delete fade_;
 
 	delete playerBody_;
 	delete playerHat_;
@@ -39,6 +40,12 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
+
+	// フェード
+	phase_ = Phase::kFadeIn;
+	fade_ = new Fade();
+	fade_->Initialize();
+	fade_->Start(Fade::Status::FadeIn, 1);
 
 	//playerのモデル
 	//playerModel_ = new Model(); 
@@ -89,20 +96,32 @@ void GameScene::Update() {
 	
 #pragma region プレイヤーのアップデート
 	playerModelBody_->Update();
-
-    
 #pragma endregion
 
 	playerUpdate();
 
-	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) { // 後で消す
-		finished_ = true;
+	// SPACEキーを押すとフェードアウトを開始
+	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
+		if (phase_ != Phase::kFadeOut) {
+			phase_ = Phase::kFadeOut;
+			fade_->Start(Fade::Status::FadeOut, 1);
+		}
+		// finished_ = true;
 	}
+
+	// フェードアウトが終了したらゲームシーンに行く
+	if (fade_->IsFadeOutFinished() == true) {
+		// 音声停止
+		// audio_->StopWave(voiceHandle_);
+		finished_ = true;
+	} 
 
 #pragma region 敵のアップデート
 	enemyUpdate();
 #pragma endregion 
 
+	// フェード
+	fade_->Update();
 }
 
 void GameScene::Draw() {
@@ -130,6 +149,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
 	
 #pragma region 敵	
 	enemyDrow();
@@ -162,6 +182,9 @@ void GameScene::Draw() {
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
+
+	// フェード
+	fade_->Draw(commandList);
 
 #pragma endregion
 }

@@ -1,5 +1,6 @@
 #include <KamataEngine.h>
 #include "TitleScene.h"
+#include "RuleScene.h"
 #include "ClearScene.h"
 #include "scene/gamescene.h"
 #include "BadEndScene.h"
@@ -12,6 +13,7 @@ using namespace KamataEngine;
 enum class Scene {
 	kUnknown = 0,
 	kTitle,
+	kRule,
 	kGame,
 	kClear,
 	kDead,
@@ -25,6 +27,7 @@ void DrawScene();
 Scene scene = Scene::kUnknown;
 
 TitleScene* titleScene = nullptr;
+RuleScene* ruleScene = nullptr;
 GameScene* gameScene = nullptr;
 ClearScene* clearScene = nullptr;
 BadEndScene* badEndScene = nullptr;
@@ -122,6 +125,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// 各種解放
 	delete gameScene;
 	delete titleScene;
+	delete ruleScene;
 	delete clearScene;
 	delete badEndScene;
 
@@ -145,10 +149,22 @@ void ChangeScene() {
 	case Scene::kTitle:
 		if (titleScene->IsFinished()) {
 			// シーン変更
-			scene = Scene::kGame;
+			scene = Scene::kRule;
 			// 旧シーンの開放
 			delete titleScene;
 			titleScene = nullptr;
+			// 新シーンの生成と初期化
+			ruleScene = new RuleScene;
+			ruleScene->Initialize();
+		}
+		break;
+	case Scene::kRule:
+		if (ruleScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kGame;
+			// 旧シーンの開放
+			delete ruleScene;
+			ruleScene = nullptr;
 			// 新シーンの生成と初期化
 			gameScene = new GameScene;
 			gameScene->Initialize();
@@ -199,6 +215,9 @@ void UpdateScene() {
 	case Scene::kTitle:
 		titleScene->Update();
 		break;
+	case Scene::kRule:
+		ruleScene->Update();
+		break;
 	case Scene::kGame:
 		gameScene->Update();
 		break;
@@ -216,6 +235,9 @@ void DrawScene() {
 	switch (scene) {
 	case Scene::kTitle:
 		titleScene->Draw();
+		break;
+	case Scene::kRule:
+		ruleScene->Draw();
 		break;
 	case Scene::kGame:
 		gameScene->Draw();

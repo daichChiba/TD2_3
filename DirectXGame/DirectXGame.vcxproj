@@ -112,11 +112,13 @@
     <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="EnemyGravity.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="GrabiltBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
+    <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Skydome.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -200,6 +202,7 @@
   <ItemGroup>
     <ClInclude Include="BadEndScene.h" />
     <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBullet.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="GrabiltBullet.h" />
     <ClInclude Include="MathUtliltyForText.h" />
     <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="RuleScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Skydome.h" />
     <ClInclude Include="TitleScene.h" />

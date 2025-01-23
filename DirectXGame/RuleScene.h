@@ -1,11 +1,10 @@
 #pragma once
 #include <KamataEngine.h>
 using namespace KamataEngine;
-#include "Enemy.h"
 #include"Fade.h"
 #include <vector>
 
-class TitleScene {
+class RuleScene {
 public:
 	enum class Phase {
 		kFadeIn,  // フェードイン
@@ -13,9 +12,9 @@ public:
 		kFadeOut, // フェードアウト
 	};
 
-	TitleScene();
+	RuleScene();
 
-	~TitleScene();
+	~RuleScene();
 
 	/// <summary>
 	/// 初期化

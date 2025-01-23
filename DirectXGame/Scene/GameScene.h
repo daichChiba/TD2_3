@@ -1,6 +1,7 @@
 #pragma once
 
 #include <KamataEngine.h>
+#include "../Fade.h"
 #include <vector>
 using namespace KamataEngine;
 
@@ -17,6 +18,12 @@ using namespace KamataEngine;
 class GameScene {
 
 public: // メンバ関数
+	enum class Phase {
+		kFadeIn,  // フェードイン
+		kMain,    // メイン部
+		kFadeOut, // フェードアウト
+	};
+
 	/// <summary>
 	/// コンストクラタ
 	/// </summary>
@@ -133,5 +140,10 @@ private: // メンバ変数
 	/// 敵モデル
 	/// </summary>
 	Model* enemyModel_ = nullptr;
+
+	// 画面フェード
+	Fade* fade_ = nullptr;
+	// 現在のフェーズ
+	Phase phase_ = Phase::kFadeIn;
 	
 };

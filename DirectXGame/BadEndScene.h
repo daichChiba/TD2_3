@@ -1,10 +1,17 @@
 #pragma once
 #include <KamataEngine.h>
 using namespace KamataEngine;
+#include "Fade.h"
 #include <vector>
 
 class BadEndScene {
 public:
+	enum class Phase {
+		kFadeIn,  // フェードイン
+		kMain,    // メイン部
+		kFadeOut, // フェードアウト
+	};
+
 	BadEndScene();
 	~BadEndScene();
 
@@ -42,4 +49,9 @@ private:
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
+
+	// 画面フェード
+	Fade* fade_ = nullptr;
+	// 現在のフェーズ
+	Phase phase_ = Phase::kFadeIn;
 };

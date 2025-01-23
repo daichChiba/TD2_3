@@ -4,6 +4,7 @@ ClearScene::ClearScene() {}
 
 ClearScene::~ClearScene() {
 	delete modelFont_;
+	delete fade_;
 	finished_ = false;
 }
 
@@ -16,6 +17,12 @@ void ClearScene::Initialize() {
 	// ビュープロジェクション
 	camera_.Initialize();
 
+	// フェード
+	phase_ = Phase::kFadeIn;
+	fade_ = new Fade();
+	fade_->Initialize();
+	fade_->Start(Fade::Status::FadeIn, 1);
+
 	modelFont_ = Model::CreateFromOBJ("clearFont");
 
 	worldTransformFont_.Initialize();
@@ -26,11 +33,27 @@ void ClearScene::Initialize() {
 }
 
 void ClearScene::Update() {
+	// SPACEキーを押すとフェードアウトを開始
 	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
-		finished_ = true;
+		if (phase_ != Phase::kFadeOut) {
+			phase_ = Phase::kFadeOut;
+			fade_->Start(Fade::Status::FadeOut, 1);
+		}
+		// finished_ = true;
 	}
+
+	// フェードアウトが終了したらゲームシーンに行く
+	if (fade_->IsFadeOutFinished() == true) {
+		// 音声停止
+		// audio_->StopWave(voiceHandle_);
+		finished_ = true;
+	} 
+
 	// 行列を更新
 	worldTransformFont_.UpdateMatrix();
+
+	// フェード
+	fade_->Update();
 }
 
 void ClearScene::Draw() {
@@ -46,4 +69,7 @@ void ClearScene::Draw() {
 
 	// 3Dオブジェクト描画処理後
 	Model::PostDraw();
+
+	// フェード
+	fade_->Draw(commandList);
 }
