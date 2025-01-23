@@ -22,7 +22,7 @@ public:
 	/// </summary>
 	/// <param name="model">モデル</param>
 	/// <param name="position">モデルの座標</param>
-	void Initialize(Model* model, const Vector3 position,Character character,Model* bulletModel);
+	void Initialize(Model* model, const Vector3 position,Character character,Model* bulletModel,Model* zoldrakModel);
 
 	/// <summary>
 	/// アップデート
@@ -43,6 +43,7 @@ public:
 	virtual void SecondaryAttack();
 	virtual void TertiaryAttack();
 	Model* bulletModel_ = nullptr;
+	Model* zoldrakModel_ = nullptr;
 
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
@@ -70,13 +71,15 @@ private:
 	static inline const int kPrimaryAttackCoolTime = 30;
 	int secondaryAttackCoolTime;
 	static inline const int kSecondaryAttackCoolTime = 45;
-	//int tertiaryAttackCoolTime;
-	//static inline const int kTertiaryAttackCoolTime = 60;
+	int tertiaryAttackCoolTime;
+	static inline const int kTertiaryAttackCoolTime = 60;
 
 	GameScene* gameScene_;
 
 	// 半径
-	float radius_ = 6.0f;
+	float radius_ = 0.5f;
+
+	const float kZoldorakRadius_ = 3.0f;
 
 private: // メンバ関数
 	Vector3 enemyPos;

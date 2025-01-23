@@ -1,6 +1,6 @@
 #include "MagicPlayer.h"
 #include"EnemyBullet.h"
-#include"PlayerNormalBullet.h"
+//#include"PlayerNormalBullet.h"
 #include"../DirectXGame/Scene/GameScene.h"
 
 void MagicPlayer::PrimaryAttack() {

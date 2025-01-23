@@ -7,7 +7,7 @@ using namespace MathUtility;
 class PlayerAccelerationBullet : public EnemyBullet {
 public:
 	void Update() override;
-	void GetTagetPos(Vector3 pos) override { tagetPos = pos; }
+	void SetTagetPos(Vector3 pos) override { tagetPos = pos; }
 	// void SetStartPos(Vector3 pos) override { startPos = pos; }
 
 private:
