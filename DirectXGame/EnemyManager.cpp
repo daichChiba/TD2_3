@@ -28,6 +28,8 @@ void EnemyManager::Initialize(Model* model, Model* bulletModel,Vector3 pos ,Play
 	enemyFactory_->SetGameScene(gameScene_);
 
 	CreateEnemy();
+
+	
 }
 
 void EnemyManager::Update()
@@ -42,6 +44,8 @@ void EnemyManager::Draw(Camera* camera)
 void EnemyManager::CreateEnemy()
 {
 	enemy_ = enemyFactory_->AddEnemy();
+
+	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, gameScene_);
 }
 
 //Vector3 EnemyManager::GetWorldPosition() {
