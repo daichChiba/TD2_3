@@ -119,6 +119,7 @@
     <ClCompile Include="MathUtilityEX.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAccelerationBullet.cpp" />
     <ClCompile Include="PlayerNormalBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GrabiltBullet.h" />
     <ClInclude Include="MathUtliltyForText.h" />
+    <ClInclude Include="PlayerAccelerationBullet.h" />
     <ClInclude Include="PlayerNormalBullet.h" />
     <ClInclude Include="Scene\GameScene.h" />
   </ItemGroup>

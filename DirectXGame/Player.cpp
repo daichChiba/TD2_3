@@ -5,6 +5,7 @@
 
 #include"../DirectXGame/Scene/GameScene.h"
 #include"PlayerNormalBullet.h"
+#include"PlayerAccelerationBullet.h"
 using namespace MathUtility;
 void Player::Initialize(Model* model, const Vector3 position, Character character, Model* bulletModel) {
 	assert(model);
@@ -133,17 +134,28 @@ void Player::Move() {
 
 void Player::Attack() {
 	if (primaryAttackCoolTime<0) {
-		if (Input::GetInstance()->ReleseKey(DIK_U)) {
+		if (Input::GetInstance()->ReleseKey(DIK_U)||xinput_.Gamepad.wButtons==XINPUT_GAMEPAD_X&&preXinput_.Gamepad.wButtons!=XINPUT_GAMEPAD_X) {
 			std::shared_ptr<EnemyBullet> normal(new PlayerNormalBullet);
 			normal->Initialize(bulletModel_, GetWorldPosition());
 			normal->GetTagetPos(enemyPos);
 			//normal->SetStartPos(worldTransform_.translation_);
 			gameScene_->AddPlayerBullet(normal);
 			primaryAttackCoolTime = kPrimaryAttackCoolTime;
-
 		}
 	} else {
 		primaryAttackCoolTime--;
+	}
+	if (secondaryAttackCoolTime < 0) {
+		if (Input::GetInstance()->ReleseKey(DIK_I) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_Y && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_Y) {
+			std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
+			acceleration->Initialize(bulletModel_, GetWorldPosition());
+			acceleration->GetTagetPos(enemyPos);
+			// acceleration->SetStartPos(worldTransform_.translation_);
+			gameScene_->AddPlayerBullet(acceleration);
+			secondaryAttackCoolTime = kSecondaryAttackCoolTime;
+		}
+	} else {
+		secondaryAttackCoolTime--;
 	}
 }
 

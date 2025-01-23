@@ -68,10 +68,10 @@ private:
 
 	int primaryAttackCoolTime;
 	static inline const int kPrimaryAttackCoolTime = 30;
-	//int secondaryAttackCoolTime;
-	//static inline const int kSecondaryAttackCoolTime = 30;
+	int secondaryAttackCoolTime;
+	static inline const int kSecondaryAttackCoolTime = 45;
 	//int tertiaryAttackCoolTime;
-	//static inline const int kTertiaryAttackCoolTime = 45;
+	//static inline const int kTertiaryAttackCoolTime = 60;
 
 	GameScene* gameScene_;
 
