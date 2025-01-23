@@ -152,7 +152,7 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
-
+	
 #pragma endregion
 
 #pragma region 自機の弾と敵の弾の当たり判定

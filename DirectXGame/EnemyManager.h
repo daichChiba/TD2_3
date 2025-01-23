@@ -19,6 +19,8 @@ public:
 
 	void CreateEnemy();
 
+	//Vector3 GetEnemyPos(){ return enemy_->GetWorldPos(); }
+
 	virtual void GetPlayer(Player* player){  player_ = player; }
 	
 private:
