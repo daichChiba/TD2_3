@@ -23,6 +23,8 @@ public:
 	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
+	void GetPlayer(Player* player) {player_ = player; }
+
 	void OnCollision();
 	// 半径を取得
 	float GetRadius() { return worldTransform_.scale_.x * radius_; }

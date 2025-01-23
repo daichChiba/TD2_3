@@ -103,7 +103,7 @@ void EnemyGravity::PlayerFollBigBullet() {
 	std::shared_ptr<EnemyBullet> grabityBullet_(new GrabityBigBullet);
 	grabityBullet_->Initialize(bulletModel_, Vector3{playerPos.x, -initialY, 0.0f});
 	grabityBullet_->SetScale(kBigBulletScale);
-	grabityBullet_->SetPlayer(player_);
+	grabityBullet_->GetPlayer(player_);
 	gameScene_->AddEnemyBullet(grabityBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 }
 
