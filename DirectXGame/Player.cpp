@@ -176,6 +176,8 @@ void Player::Attack() {
 				std::shared_ptr<EnemyBullet> zoldrak(new Zoldorak);
 				zoldrak->Initialize(zoldrakModel_, direction * (radius_ * i + radius_ /*/ 2*/));
 				zoldrak->SetTagetPos(direction);
+				zoldrak->SetPlayer(this);
+				zoldrak->SetBullet(Bullet::Zoldorak);
 				gameScene_->AddPlayerBullet(zoldrak);
 			}
 			tertiaryAttackCoolTime = kTertiaryAttackCoolTime;
