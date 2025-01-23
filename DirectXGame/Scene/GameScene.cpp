@@ -140,9 +140,9 @@ void GameScene::enemyDrow() {
 		enemy->Draw(camera_);
 	}
 
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
-		enemyBullet->Draw(camera_);
-	}
+	//for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
+	//	enemyBullet->Draw(camera_);
+	//}
 
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Draw(camera_);

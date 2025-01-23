@@ -5,6 +5,9 @@ void Zoldorak::Update() {
 		start = true;
 		isDelete_ = false;
 		isHit_ = false;
+		worldTransform_.scale_ = {1.0f, 1.0f, 1.0f};
+		worldTransform_.rotation_.z = std::atan2(direction.y, direction.x);
+		//worldTransform_.rotation_ = Vector3(1.0f,0.0f,0.0f)*MakeRotateZMatrix(rotate);
 	}
 	if (!isHit_) {
 		predictionTimer++;

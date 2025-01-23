@@ -18,6 +18,7 @@ private:
 	int firingTimer = 0;
 	const int kFiringTimer = 30;
 
+	//float rotate;
 
 private:
 	void DrowImgui();
