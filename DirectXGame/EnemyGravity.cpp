@@ -12,17 +12,16 @@ using namespace MathUtility;
 
 void EnemyGravity::Update() {
 	if (!isStart_) {
-		HP = kMaxHP;
+		hp = kMaxHP;
 
 		enemyMode = EnemyMode::First;
-		HP = 30;
 		isStart_ = true;
 	}
 
-	if (HP < kChangeModeHP && enemyMode != EnemyMode::Second) {
+	if (hp < kChangeModeHP && enemyMode != EnemyMode::Second) {
 		enemyMode = EnemyMode::Second;
 		isStartMode = false;
-	} else if (HP < 1) {
+	} else if (hp < 1) {
 		isDelete_ = true;
 	}
 
@@ -41,7 +40,7 @@ void EnemyGravity::DrowImgui() {
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
 	ImGui::DragFloat("miniTime", &miniBulletTimer_, 0.1f);
 	ImGui::DragFloat("BigTime", &bigBulletTimer_, 0.1f);
-	ImGui::DragInt("HP", &HP);
+	ImGui::DragInt("HP", &hp);
 	ImGui::End();
 #endif // _DEBUG
 }

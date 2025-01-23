@@ -19,7 +19,9 @@ public:
 
 	void CreateEnemy();
 
-	//Vector3 GetEnemyPos(){ return enemy_->GetWorldPos(); }
+	Vector3 GetEnemyPos();
+	float GetRadius();
+	void OnCollision( int damage);
 
 	virtual void GetPlayer(Player* player){  player_ = player; }
 	

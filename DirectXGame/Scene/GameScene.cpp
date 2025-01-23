@@ -166,7 +166,20 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
-	
+	posA = enemyManger->GetEnemyPos();
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
+	{
+		posB = playerBullet->GetWorldPosition();
+		Vector3 A2B = MathUtility::Sphere(posA, posB);
+		float len = MathUtility::Length(A2B);
+		float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+		if (len <= radius)
+		{
+			playerBullet->OnCollision();
+
+			enemyManger->OnCollision(1);
+		}
+	}
 #pragma endregion
 
 #pragma region 自機の弾と敵の弾の当たり判定

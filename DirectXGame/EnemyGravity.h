@@ -22,8 +22,6 @@ private:
 
 	void LowerPlayer();
 
-	int HP = 100;
-
 	static inline const int kMaxHP = 100;
 	static inline const int kChangeModeHP = 50;
 
