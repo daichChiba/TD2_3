@@ -10,6 +10,10 @@ void EnemyBullet::Initialize(Model* model, Vector3 pos)
 
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = pos;
+
+	color = new ObjectColor;
+	color->Initialize();
+	color->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 }
 
 void EnemyBullet::Update()
@@ -19,7 +23,8 @@ void EnemyBullet::Update()
 
 void EnemyBullet::Draw(Camera* camera)
 {
-	model_->Draw(worldTransform_, *camera); }
+	model_->Draw(worldTransform_, *camera,color);
+}
 
 Vector3 EnemyBullet::GetWorldPosition() {
 	Vector3 worldPos;

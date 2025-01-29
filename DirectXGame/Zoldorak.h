@@ -3,6 +3,7 @@
 class Zoldorak : public EnemyBullet {
 	void Update() override;
 	void SetTagetPos(Vector3 pos) override { direction = pos; }
+	void OnCollision()override;
 
 private:
 	bool start = false;
@@ -18,7 +19,8 @@ private:
 	int firingTimer = 0;
 	const int kFiringTimer = 30;
 
-
+	Vector3 pos_;
+	
 private:
 	void DrowImgui();
 };

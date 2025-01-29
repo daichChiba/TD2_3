@@ -76,6 +76,10 @@ private:
 	int tertiaryAttackCoolTime;
 	static inline const int kTertiaryAttackCoolTime = 60;
 
+	//
+	int globalCoolTime;
+	static inline const int kGlobalCoolTime=20;
+
 	GameScene* gameScene_;
 
 	// 半径

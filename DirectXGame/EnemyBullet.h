@@ -23,9 +23,9 @@ public:
 	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
-	void GetPlayer(Player* player) {player_ = player; }
+	void SetPlayer(Player* player) {player_ = player; }
 
-	void OnCollision();
+	virtual void OnCollision();
 	// 半径を取得
 	float GetRadius() { return worldTransform_.scale_.x * radius_; }
 	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
@@ -65,4 +65,6 @@ protected:
 	Bullet bullet_;
 
 	bool isHit_ = true;
+
+	ObjectColor* color = nullptr;
 };

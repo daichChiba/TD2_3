@@ -35,13 +35,11 @@ void GameScene::Initialize() {
 	character_ = Character::wizard;
 	// playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_,enemyModel_);
+	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
 	player_->SetGameScene(this);
 
 	enemyManger = new EnemyManager();
 	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);
-
-	
 }
 
 void GameScene::Update() {
@@ -116,14 +114,12 @@ void GameScene::enemyUpdate() {
 		playerBullet->Update();
 	}
 
-	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
-		return a->IsDelete(); });
-	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { 
-		return a->IsDelete(); });
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 }
 
 void GameScene::enemyDrow() {
-		enemyManger->Draw(camera_);
+	enemyManger->Draw(camera_);
 
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Draw(camera_);
@@ -152,32 +148,38 @@ void GameScene::CheckAllCollisions() {
 			// 自弾の衝突時コールバックを呼び出す
 			enemyBullet->OnCollision();
 		}
-
-
-
-
-		if (enemyBullet->GetBullet() == Bullet::Zoldorak) {
-			if (!is) {
-
-			}
-		}
 	}
 
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
 	posA = enemyManger->GetEnemyPos();
-	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
-	{
-		posB = playerBullet->GetWorldPosition();
-		Vector3 A2B = MathUtility::Sphere(posA, posB);
-		float len = MathUtility::Length(A2B);
-		float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
-		if (len <= radius)
-		{
-			playerBullet->OnCollision();
+	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
+		if (playerBullet->GetBullet() == Bullet::Zoldorak) {
+			if (!is) {
+				if (playerBullet->GetIsHit()) {
+					posB = playerBullet->GetWorldPosition();
+					Vector3 A2B = MathUtility::Sphere(posA, posB);
+					float len = MathUtility::Length(A2B);
+					float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+					if (len <= radius) {
+						is = true;
+						// playerBullet->OnCollision();
 
-			enemyManger->OnCollision(1);
+						enemyManger->OnCollision(1);
+					}
+				}
+			}
+		} else {
+			posB = playerBullet->GetWorldPosition();
+			Vector3 A2B = MathUtility::Sphere(posA, posB);
+			float len = MathUtility::Length(A2B);
+			float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+			if (len <= radius) {
+				playerBullet->OnCollision();
+
+				enemyManger->OnCollision(1);
+			}
 		}
 	}
 #pragma endregion
