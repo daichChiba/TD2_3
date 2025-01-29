@@ -1,6 +1,9 @@
 #pragma once
 #include "kamataEngine.h"
 
+#include <map>
+#include <functional>
+
 using namespace KamataEngine;
 
 class GameScene;
@@ -30,6 +33,21 @@ protected:
 	bool isDelete_ = false;
 
 	int hp;
+
+	enum class EnemyMode {
+		First,
+		Second,
+	};
+
+	EnemyMode enemyMode;
+
+	virtual void modeFirst();
+	virtual void modeSecond();
+
+	std::map<EnemyMode, std::function<void()>> modeUpdate{
+	    {EnemyMode::First, [this]() { modeFirst(); }},
+	    {EnemyMode::Second, [this]() { modeSecond(); }},
+	};
 
 	float radius_ = 0.5f;
 };

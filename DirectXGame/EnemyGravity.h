@@ -1,8 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
 #include "EnemyActor.h"
-#include <map>
-#include <functional>
 
 using namespace KamataEngine;
 
@@ -32,16 +30,11 @@ private:
 	// 画面の右端と左端のX座標
 	static inline const float rightEdgeX = 35.0f;
 	static inline const float leftEdgeX = -35.0f;
-
-	std::map<EnemyMode, std::function<void()>> modeUpdate{
-	    {EnemyMode::First, [this]() { modeFirst(); }},
-	    {EnemyMode::Second, [this]() { modeSecond(); }},
-	};
 	
-	void modeFirst();
+	void modeFirst()override;
 	void PlayerFollBigBullet();
 
-	void modeSecond();
+	void modeSecond()override;
 	void RepelPlayer();
 
 #pragma region 小さい弾

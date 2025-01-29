@@ -25,3 +25,12 @@ void EnemyActor::Update()
 void EnemyActor::Draw(Camera* camera)
 {
 	model_->Draw(worldTransform_, *camera); }
+
+void EnemyActor::modeFirst()
+{
+
+}
+
+void EnemyActor::modeSecond()
+{
+}
