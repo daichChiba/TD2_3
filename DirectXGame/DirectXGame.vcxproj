@@ -106,6 +106,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlackHoleBullet.cpp" />
     <ClCompile Include="EnemyBlackHole.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
@@ -204,6 +205,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlackHoleBullet.h" />
     <ClInclude Include="EnemyBlackHole.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />

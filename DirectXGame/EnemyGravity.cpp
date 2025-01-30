@@ -29,7 +29,7 @@ void EnemyGravity::Update() {
 	DrowImgui();
 #endif // _DEBUG
 
-	EnemyActor::modeUpdate[enemyMode]();
+	modeUpdate[enemyMode]();
 
 	worldTransform_.UpdateMatrix();
 }
