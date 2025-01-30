@@ -146,17 +146,21 @@ void Player::Attack() {
 	if (globalCoolTime <= 0) {
 		if (primaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_U) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_X && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_X) {
+#pragma region 魔法使いの第一攻撃
 				std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
 				acceleration->Initialize(bulletModel_, GetWorldPosition());
 				acceleration->SetTagetPos(enemyPos);
 				// acceleration->SetStartPos(worldTransform_.translation_);
 				gameScene_->AddPlayerBullet(acceleration);
+#pragma endregion
+
 				primaryAttackCoolTime = kPrimaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}
 		}
 		if (secondaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_I) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_Y && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_Y) {
+#pragma region 魔法使いの第二攻撃
 				std::shared_ptr<EnemyBullet> straight(new Straight);
 				straight->Initialize(bulletModel_, GetWorldPosition());
 				Vector3 direction = enemyPos - GetWorldPosition();
@@ -164,6 +168,7 @@ void Player::Attack() {
 				straight->SetTagetPos(direction);
 				// straight->SetStartPos(worldTransform_.translation_);
 				gameScene_->AddPlayerBullet(straight);
+#pragma endregion
 				secondaryAttackCoolTime = kSecondaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}
@@ -171,6 +176,7 @@ void Player::Attack() {
 
 		if (tertiaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_O) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_B && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_B) {
+#pragma region 魔法使いの第三攻撃
 				Vector3 direction = enemyPos - GetWorldPosition();
 				direction = Normalize(direction);
 				for (int i = 0; i < 60; i++) {
@@ -181,6 +187,7 @@ void Player::Attack() {
 					zoldrak->SetBullet(Bullet::Zoldorak);
 					gameScene_->AddPlayerBullet(zoldrak);
 				}
+#pragma endregion
 				tertiaryAttackCoolTime = kTertiaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}
