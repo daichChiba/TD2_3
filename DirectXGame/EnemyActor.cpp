@@ -1,6 +1,6 @@
 #include "EnemyActor.h"
 
-void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, Player* player, GameScene* gameScene) {
+void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, PlayerWizard* player, GameScene* gameScene) {
 #ifdef _DEBUG
 	assert(model);
 	assert(bulletModel);

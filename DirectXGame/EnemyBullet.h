@@ -3,7 +3,7 @@
 
 using namespace KamataEngine;
 
-class Player;
+class PlayerWizard;
 enum class Bullet {
 	Grabity,
 	Enemy,
@@ -23,7 +23,7 @@ public:
 	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
 	Vector3 GetWorldPosition();
 
-	void SetPlayer(Player* player) {player_ = player; }
+	void SetPlayer(PlayerWizard* player) {player_ = player; }
 
 	virtual void OnCollision();
 	// 半径を取得
@@ -57,7 +57,7 @@ protected:
 	static inline const float flameTime = 1.0f / 60.0f;
 	bool isStart_ = false;
 
-	Player* player_;
+	PlayerWizard* player_;
 
 	// 半径
 	float radius_ = 6.0f;

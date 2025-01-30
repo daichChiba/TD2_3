@@ -6,7 +6,6 @@
 #include "EnemyBullet.h"
 #include "GrabiltBullet.h"
 
-#include "../DirectXGame/Player.h"
 #include <algorithm>
 using namespace MathUtility;
 

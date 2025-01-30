@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include <cassert>
 #include <corecrt_math.h>
-
+#include "../PlayerWizard.h"
 using namespace KamataEngine;
 
 // インストラクタ
@@ -9,8 +9,6 @@ GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 	delete playerModel_;
-
-	delete player_;
 }
 
 void GameScene::Initialize() {
@@ -34,9 +32,9 @@ void GameScene::Initialize() {
 	playerModel_ = Model::CreateFromOBJ("Player", true);
 	character_ = Character::wizard;
 	// playerの初期化
-	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
-	player_->SetGameScene(this);
+	std::shared_ptr<PlayerActor> player(new PlayerWizard); 
+	player_->Initialize(playerModel_, playerModel_, playerModel_, Vector3{0.0f}, character_, this);
+	player_ = player;
 
 	enemyManger = new EnemyManager();
 	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);

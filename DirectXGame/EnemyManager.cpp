@@ -2,8 +2,9 @@
 #include "EnemyActor.h"
 #include "EnemyFactoy.h"
 #include "EnemyGravity.h"
+#include "PlayerActor.h"
 
-void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, Player* player, GameScene* gameScene) {
+void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene) {
 #ifdef _DEBUG
 	assert(model);
 	assert(bulletModel);

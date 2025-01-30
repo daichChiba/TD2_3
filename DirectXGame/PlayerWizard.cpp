@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "PlayerWizard.h"
 // #include "magic"
 #include "../DirectXGame/Scene/GameScene.h"
 #include "EnemyManager.h"
@@ -7,24 +7,8 @@
 #include "Zoldorak.h"
 #include <cassert>
 using namespace MathUtility;
-void Player::Initialize(Model* model, const Vector3 position, Character character, Model* bulletModel, Model* zoldrakModel) {
-	assert(model);
-	model_ = model;
-	bulletModel_ = bulletModel;
-	zoldrakModel_ = zoldrakModel;
-	character_ = character;
 
-	// camera_ = camera;
-	worldTransform_.Initialize();
-	worldTransform_.translation_ = position;
-	// worldTransform_.rotation_ = {0.0f, 0.5f, 0.0f};
-
-	primaryAttackCoolTime = 0;
-	secondaryAttackCoolTime = 0;
-	tertiaryAttackCoolTime = 0;
-}
-
-void Player::Update() {
+void PlayerWizard::Update() {
 	Input::GetInstance()->GetJoystickState(0, xinput_);
 	Input::GetInstance()->GetJoystickStatePrevious(0, preXinput_);
 #ifdef _DEBUG
@@ -49,29 +33,38 @@ void Player::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
-void Player::Draw(Camera* camera) { model_->Draw(worldTransform_, *camera); }
-
-Vector3 Player::GetWorldPosition() {
-	Vector3 worldPos;
-
-	worldPos.x = worldTransform_.matWorld_.m[3][0];
-	worldPos.y = worldTransform_.matWorld_.m[3][1];
-	worldPos.z = worldTransform_.matWorld_.m[3][2];
-
-	return worldPos;
+void PlayerWizard::PrimaryAttack() {
+	std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
+	acceleration->Initialize(bulletModel_, GetWorldPos());
+	acceleration->SetTagetPos(enemyPos);
+	// acceleration->SetStartPos(worldTransform_.translation_);
+	gameScene_->AddPlayerBullet(acceleration);
 }
 
-void Player::AddVelocity(Vector3 velocity) { worldTransform_.translation_ += velocity; }
+void PlayerWizard::SecondaryAttack() {
+	std::shared_ptr<EnemyBullet> straight(new Straight);
+	straight->Initialize(bulletModel_, GetWorldPos());
+	Vector3 direction = enemyPos - GetWorldPos();
+	direction = Normalize(direction);
+	straight->SetTagetPos(direction);
+	// straight->SetStartPos(worldTransform_.translation_);
+	gameScene_->AddPlayerBullet(straight);
+}
 
-void Player::OnCollision() {}
+void PlayerWizard::SpecialAttack() {
+	Vector3 direction = enemyPos - GetWorldPos();
+	direction = Normalize(direction);
+	for (int i = 0; i < 60; i++) {
+		std::shared_ptr<EnemyBullet> zoldrak(new Zoldorak);
+		zoldrak->Initialize(zoldrakModel_, direction * (radius_ * i + radius_ /*/ 2*/));
+		zoldrak->SetTagetPos(direction);
+		zoldrak->SetPlayer(this);
+		zoldrak->SetBullet(Bullet::Zoldorak);
+		gameScene_->AddPlayerBullet(zoldrak);
+	}
+}
 
-void Player::PrimaryAttack() {}
-
-void Player::SecondaryAttack() {}
-
-void Player::TertiaryAttack() {}
-
-void Player::Move() {
+void PlayerWizard::Move() {
 	velocity_ = {0.0f};
 
 #pragma region 移動タイプWASD
@@ -130,7 +123,7 @@ void Player::Move() {
 	worldTransform_.translation_ += velocity_;
 }
 
-void Player::Attack() {
+void PlayerWizard::Attack() {
 	if (globalCoolTime > 0) {
 		globalCoolTime--;
 	}
@@ -146,24 +139,14 @@ void Player::Attack() {
 	if (globalCoolTime <= 0) {
 		if (primaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_U) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_X && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_X) {
-				std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
-				acceleration->Initialize(bulletModel_, GetWorldPosition());
-				acceleration->SetTagetPos(enemyPos);
-				// acceleration->SetStartPos(worldTransform_.translation_);
-				gameScene_->AddPlayerBullet(acceleration);
+				PrimaryAttack();
 				primaryAttackCoolTime = kPrimaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}
 		}
 		if (secondaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_I) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_Y && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_Y) {
-				std::shared_ptr<EnemyBullet> straight(new Straight);
-				straight->Initialize(bulletModel_, GetWorldPosition());
-				Vector3 direction = enemyPos - GetWorldPosition();
-				direction = Normalize(direction);
-				straight->SetTagetPos(direction);
-				// straight->SetStartPos(worldTransform_.translation_);
-				gameScene_->AddPlayerBullet(straight);
+				SecondaryAttack();
 				secondaryAttackCoolTime = kSecondaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}
@@ -171,16 +154,7 @@ void Player::Attack() {
 
 		if (tertiaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_O) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_B && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_B) {
-				Vector3 direction = enemyPos - GetWorldPosition();
-				direction = Normalize(direction);
-				for (int i = 0; i < 60; i++) {
-					std::shared_ptr<EnemyBullet> zoldrak(new Zoldorak);
-					zoldrak->Initialize(zoldrakModel_, direction * (radius_ * i + radius_ /*/ 2*/));
-					zoldrak->SetTagetPos(direction);
-					zoldrak->SetPlayer(this);
-					zoldrak->SetBullet(Bullet::Zoldorak);
-					gameScene_->AddPlayerBullet(zoldrak);
-				}
+				SpecialAttack();
 				tertiaryAttackCoolTime = kTertiaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;
 			}

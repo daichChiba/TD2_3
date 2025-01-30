@@ -1,8 +1,8 @@
 #pragma once
 #include "Player.h"
-class MagicPlayer : public Player {
+class MagicPlayer : public PlayerWizard {
 public:
 	void PrimaryAttack()override;
 	void SecondaryAttack()override;
-	void TertiaryAttack() override;
+	void SpecialAttack() override;
 };

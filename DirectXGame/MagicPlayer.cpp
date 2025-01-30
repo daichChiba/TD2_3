@@ -14,6 +14,6 @@ void MagicPlayer::SecondaryAttack() {
 
 }
 
-void MagicPlayer::TertiaryAttack() {
+void MagicPlayer::SpecialAttack() {
 
 }

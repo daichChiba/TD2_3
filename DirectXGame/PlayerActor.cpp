@@ -1,0 +1,116 @@
+#include "PlayerActor.h"
+
+using namespace MathUtility;
+
+void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* zoldrakModel, const Vector3 position, Character character, GameScene* gameScene) {
+#ifdef _DEBUG 
+	assert(model); 
+#endif
+	model_ = model;
+	bulletModel_ = bulletModel;
+	zoldrakModel_ = zoldrakModel;
+	character_ = character;
+
+	// camera_ = camera;
+	worldTransform_.Initialize();
+	worldTransform_.translation_ = position;
+	// worldTransform_.rotation_ = {0.0f, 0.5f, 0.0f};
+}
+
+void PlayerActor::Update()
+{
+	Input::GetInstance()->GetJoystickState(0, xinput_);
+	Input::GetInstance()->GetJoystickStatePrevious(0, preXinput_);
+
+	Move();
+
+	Attack();
+
+	worldTransform_.UpdateMatrix();
+}
+
+void PlayerActor::Draw(Camera* camera)
+{
+	model_->Draw(worldTransform_, *camera);
+}
+
+void PlayerActor::Move()
+{
+	velocity_ = {0.0f};
+
+#pragma region 移動タイプWASD
+	if (Input::GetInstance()->PushKey(DIK_D)) {
+		velocity_.x = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_A)) {
+		velocity_.x = -0.1f;
+	}
+	if (Input::GetInstance()->PushKey(DIK_W)) {
+		velocity_.y = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_S)) {
+		velocity_.y = -0.1f;
+	}
+#pragma endregion
+
+#pragma region 移動タイプ上下左右
+	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		velocity_.x = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		velocity_.x = -0.1f;
+	}
+	if (Input::GetInstance()->PushKey(DIK_UP)) {
+		velocity_.y = 0.1f;
+	} else if (Input::GetInstance()->PushKey(DIK_DOWN)) {
+		velocity_.y = -0.1f;
+	}
+#pragma endregion
+
+#pragma region 移動タイプコントローラー
+
+	// 左スティックのX, Y値を取得
+	float lx = xinput_.Gamepad.sThumbLX / 32767.0f; // 正規化（-1.0 ～ 1.0）
+	float ly = xinput_.Gamepad.sThumbLY / 32767.0f;
+
+	if (lx != 0.0f || ly != 0.0f) {
+		// デッドゾーンの設定(スティックがニュートラルに近い場合に意図せず移動しないようにする)
+		const float deadZone = 0.1f;
+		if (fabs(lx) < deadZone)
+			lx = 0.0f;
+		if (fabs(ly) < deadZone)
+			ly = 0.0f;
+
+		// スティックの強度と角度を計算
+		float magnitude = sqrtf(lx * lx + ly * ly); // 入力強度（0 ～ 1）
+		float angle = atan2f(ly, lx);               // スティックの角度（ラジアン）
+
+		// 最大速度
+		const float maxSpeed = 0.3f;
+
+		// 移動速度を計算
+		velocity_.x = cos(angle) * magnitude * maxSpeed;
+		velocity_.y = sin(angle) * magnitude * maxSpeed;
+	}
+#pragma endregion
+
+	worldTransform_.translation_ += velocity_;
+}
+
+void PlayerActor::Attack()
+{
+}
+
+void PlayerActor::PrimaryAttack()
+{
+}
+
+void PlayerActor::SecondaryAttack()
+{
+}
+
+void PlayerActor::SpecialAttack()
+{
+}
+
+void PlayerActor::AddVelocity(Vector3 velocity)
+{
+	worldTransform_.translation_ += velocity; 
+}

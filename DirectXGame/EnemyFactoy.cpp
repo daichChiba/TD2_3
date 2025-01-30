@@ -16,4 +16,4 @@ std::unique_ptr<EnemyActor> EnemyFactory::AddEnemy() {
 	return enemy_;
 }
 
-void EnemyFactory::SetPlayer(Player* player) { player_ = player; }
+void EnemyFactory::SetPlayer(PlayerWizard* player) { player_ = player; }

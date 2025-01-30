@@ -5,14 +5,14 @@
 using namespace KamataEngine;
 
 class GameScene;
-class Player;
+class PlayerWizard;
 class EnemyFactory;
 class EnemyActor;
 
 class EnemyManager
 {
 public:
-	void Initialize(Model* model, Model* bulletModel,Vector3 pos ,Player* player, GameScene* gameScene);
+	void Initialize(Model* model, Model* bulletModel,Vector3 pos ,std::unique_ptr<EnemyActor> player, GameScene* gameScene);
 	virtual void Update();
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
@@ -23,7 +23,7 @@ public:
 	float GetRadius();
 	void OnCollision( int damage);
 
-	virtual void GetPlayer(Player* player){  player_ = player; }
+	virtual void GetPlayer(std::unique_ptr<PlayerActor> player){  player_->= player; }
 	
 private:
 
@@ -33,7 +33,7 @@ private:
 	Model* bulletModel_ = nullptr;
 	WorldTransform worldTransform_;
 
-	Player* player_;
+	std::unique_ptr<PlayerActor> player_;
 
 	EnemyFactory* enemyFactory_;
 

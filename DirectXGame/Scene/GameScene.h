@@ -7,7 +7,7 @@ using namespace KamataEngine;
 #include "../EnemyFactoy.h"
 #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
-#include "../Player.h"
+#include "../PlayerActor.h"
 
 //enum class Character {
 //	wizard,
@@ -84,7 +84,7 @@ private: // メンバ変数
 	/// <summary>
 	/// player
 	/// </summary>
-	Player* player_ = nullptr;
+	std::shared_ptr<PlayerActor> player_;
 
 	/// <summary>
 	/// プレイヤーモデル
