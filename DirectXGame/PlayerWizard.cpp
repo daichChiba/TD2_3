@@ -140,9 +140,7 @@ void PlayerWizard::Attack() {
 		if (primaryAttackCoolTime <= 0) {
 			if (Input::GetInstance()->ReleseKey(DIK_U) || xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_X && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_X) {
 				std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
-				acceleration->Initialize(bulletModel_, GetWorldPosition());
-				acceleration->SetTagetPos(enemyPos);
-				// acceleration->SetStartPos(worldTransform_.translation_);
+				acceleration->Initialize(bulletModel_, GetWorldPos());
 				gameScene_->AddPlayerBullet(acceleration);
 				primaryAttackCoolTime = kPrimaryAttackCoolTime;
 				globalCoolTime = kGlobalCoolTime;

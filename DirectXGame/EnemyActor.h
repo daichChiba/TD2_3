@@ -16,7 +16,7 @@ public:
 	float GetRadius() { return radius_; }
 	virtual void OnCollision(int damage) { hp -= damage; }
 
-	void SetPlayerPos(Vector3 pos)
+	void SetPlayerPos(Vector3 pos);
 
 protected:
 	GameScene* gameScene_;
