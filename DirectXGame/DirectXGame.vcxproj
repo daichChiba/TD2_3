@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="BlackHoleBullet.cpp" />
     <ClCompile Include="EnemyBlackHole.cpp" />
+    <ClCompile Include="PlayerManger.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
     <ClCompile Include="EnemyActor.cpp" />
@@ -207,6 +208,7 @@
   <ItemGroup>
     <ClInclude Include="BlackHoleBullet.h" />
     <ClInclude Include="EnemyBlackHole.h" />
+    <ClInclude Include="PlayerManger.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />
     <ClInclude Include="EnemyActor.h" />
