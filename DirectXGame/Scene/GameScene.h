@@ -7,7 +7,10 @@ using namespace KamataEngine;
 #include "../EnemyFactoy.h"
 #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
-//#include "../Player.h"
+////#include "../Player.h"
+//#include "../PlayerActor.h"
+//#include "../PlayerWizard.h"
+#include "../PlayerManager.h"
 #include "../PlayerActor.h"
 #include "../PlayerWizard.h"
 
@@ -87,7 +90,8 @@ private: // メンバ変数
 	/// player
 	/// </summary>
 	//Player* player_ = nullptr;
-	std::unique_ptr<PlayerActor> player_;
+	//std::unique_ptr<PlayerActor> player_;
+	PlayerManager* playerManager;
 
 	/// <summary>
 	/// プレイヤーモデル

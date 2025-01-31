@@ -36,8 +36,11 @@ void GameScene::Initialize() {
 	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
 	player_->SetGameScene(this);*/
 
-	player_ = std::make_unique< PlayerWizard>();
-	player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
+	//player_ = std::make_unique< PlayerWizard>();
+	//player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
+
+	playerManager = new PlayerManager;
+	playerManager->Initialize(playerModel_, playerModel_, enemyModel_, Vector3(0.0f, 0.0f, 0.0f), this);
 
 	/*enemyManger = new EnemyManager();
 	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);*/
@@ -45,7 +48,8 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	CheckAllCollisions();
-	player_->Update();
+	//player_->Update();
+	playerManager->Update();
 
 #pragma region 敵のアップデート
 	enemyUpdate();
@@ -82,7 +86,8 @@ void GameScene::Draw() {
 	enemyDrow();
 
 	// player
-	player_->Draw(camera_);
+	//player_->Draw(camera_);
+	playerManager->Draw(camera_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -133,23 +138,23 @@ void GameScene::enemyDrow() {
 
 void GameScene::CheckAllCollisions() {
 	// 判定対象AとBの座標
-	Vector3 posA, posB;
+	//Vector3 posA, posB;
 
 #pragma region 敵の弾とプレイヤーの当たり判定
 	//bool is = false;
-	posA = player_->GetWorldPosition();
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
-		posB = enemyBullet->GetWorldPosition();
-		Vector3 A2B = MathUtility::Sphere(posA, posB);
-		float len = MathUtility::Length(A2B);
-		float radius = enemyBullet->GetRadius() + player_->GetRadius();
-		if (len <= radius) {
-			// 自キャラの衝突時コールバックを呼び出す
-			player_->OnCollision();
-			// 自弾の衝突時コールバックを呼び出す
-			enemyBullet->OnCollision();
-		}
-	}
+	//posA = player_->GetWorldPosition();
+	//for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
+	//	posB = enemyBullet->GetWorldPosition();
+	//	Vector3 A2B = MathUtility::Sphere(posA, posB);
+	//	float len = MathUtility::Length(A2B);
+	//	float radius = enemyBullet->GetRadius() + player_->GetRadius();
+	//	if (len <= radius) {
+	//		// 自キャラの衝突時コールバックを呼び出す
+	//		player_->OnCollision();
+	//		// 自弾の衝突時コールバックを呼び出す
+	//		enemyBullet->OnCollision();
+	//	}
+	//}
 
 #pragma endregion
 
