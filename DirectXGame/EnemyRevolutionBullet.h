@@ -4,7 +4,7 @@
 
 using namespace KamataEngine;
 
-class BlackHoleBullet : public EnemyBullet {
+class EnemyRevolutionBullet : public EnemyBullet {
 public:
 	void GetPlayerPos(Vector3 pos) override;
 	void Update() override;

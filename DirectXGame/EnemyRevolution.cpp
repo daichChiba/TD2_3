@@ -1,15 +1,15 @@
-#include "EnemyBlackHole.h"
+#include "EnemyRevolution.h"
 
 #include "../DirectXGame/Player.h"
 #include "../DirectXGame/Scene/GameScene.h"
 
 #include "EnemyBullet.h"
 #include "GrabityBulletSecond.h"
-#include "BlackHoleBullet.h"
+#include "EnemyRevolutionBullet.h"
 
 using namespace MathUtility;
 
-void EnamyBlackHole::Update() {
+void EnemyRevolution::Update() {
 	if (!isStart_) {
 		hp = kMaxHp;
 
@@ -28,9 +28,9 @@ void EnamyBlackHole::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
-void EnamyBlackHole::DrawImgui() {}
+void EnemyRevolution::DrawImgui() {}
 
-void EnamyBlackHole::modeFirst() {
+void EnemyRevolution::modeFirst() {
 	miniBulletTimer_ -= flameTime;
 
 	if (miniBulletTimer_ < 0.0f) {
@@ -52,7 +52,7 @@ void EnamyBlackHole::modeFirst() {
 				pos.y = Bulletpos.y + radius * sinf(angle);
 				pos.z = 0.0f;
 
-				std::shared_ptr<EnemyBullet> grabityBullet_(new BlackHoleBullet);
+				std::shared_ptr<EnemyBullet> grabityBullet_(new EnemyRevolutionBullet);
 				grabityBullet_->Initialize(bulletModel_, pos);
 				grabityBullet_->GetPlayerPos(bulletStartPos);
 				gameScene_->AddEnemyBullet(grabityBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
@@ -62,9 +62,11 @@ void EnamyBlackHole::modeFirst() {
 	}
 }
 
-void EnamyBlackHole::modeSecond() {}
+void EnemyRevolution::modeSecond() {
 
-Vector3 EnamyBlackHole::GetPlayerPos() {
+}
+
+Vector3 EnemyRevolution::GetPlayerPos() {
 	player_->GetWorldPosition();
 	return Vector3(player_->GetWorldPosition());
 }

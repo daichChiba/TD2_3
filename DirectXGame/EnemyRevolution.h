@@ -6,7 +6,7 @@ using namespace KamataEngine;
 
 
 
-class EnamyBlackHole : public EnemyActor {
+class EnemyRevolution : public EnemyActor {
 public:
 	void Update() override;
 

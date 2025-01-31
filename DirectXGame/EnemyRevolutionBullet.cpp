@@ -1,13 +1,13 @@
-#include "BlackHoleBullet.h"
+#include "EnemyRevolutionBullet.h"
 
 using namespace MathUtility;
 
-void BlackHoleBullet::GetPlayerPos(Vector3 pos)
+void EnemyRevolutionBullet::GetPlayerPos(Vector3 pos)
 {
 	targetPos = pos;
 }
 
-void BlackHoleBullet::Update()
+void EnemyRevolutionBullet::Update()
 {
 	if (!isStart_) {
 		direction = targetPos - worldTransform_.translation_;
