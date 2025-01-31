@@ -9,8 +9,6 @@ GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 	delete playerModel_;
-
-	delete player_;
 }
 
 void GameScene::Initialize() {
@@ -32,14 +30,17 @@ void GameScene::Initialize() {
 	// player_ = new Player()
 
 	playerModel_ = Model::CreateFromOBJ("Player", true);
-	character_ = Character::wizard;
+	//character_ = CX::wizard;
 	// playerの初期化
-	player_ = new Player();
+	/*player_ = new Player();
 	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
-	player_->SetGameScene(this);
+	player_->SetGameScene(this);*/
 
-	enemyManger = new EnemyManager();
-	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);
+	player_ = std::make_unique< PlayerWizard>();
+	player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
+
+	/*enemyManger = new EnemyManager();
+	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);*/
 }
 
 void GameScene::Update() {
@@ -103,12 +104,12 @@ void GameScene::Draw() {
 
 void GameScene::enemyUpdate() {
 
-	enemyManger->Update();
+	/*enemyManger->Update();
 	testBullet = 0;
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Update();
 		++testBullet;
-	}
+	}*/
 
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Update();
@@ -119,11 +120,11 @@ void GameScene::enemyUpdate() {
 }
 
 void GameScene::enemyDrow() {
-	enemyManger->Draw(camera_);
+	/*enemyManger->Draw(camera_);
 
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		enemyBullet->Draw(camera_);
-	}
+	}*/
 
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		playerBullet->Draw(camera_);
@@ -135,7 +136,7 @@ void GameScene::CheckAllCollisions() {
 	Vector3 posA, posB;
 
 #pragma region 敵の弾とプレイヤーの当たり判定
-	bool is = false;
+	//bool is = false;
 	posA = player_->GetWorldPosition();
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		posB = enemyBullet->GetWorldPosition();
@@ -153,35 +154,35 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
-	posA = enemyManger->GetEnemyPos();
-	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
-		if (playerBullet->GetBullet() == Bullet::Zoldorak) {
-			if (!is) {
-				if (playerBullet->GetIsHit()) {
-					posB = playerBullet->GetWorldPosition();
-					Vector3 A2B = MathUtility::Sphere(posA, posB);
-					float len = MathUtility::Length(A2B);
-					float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
-					if (len <= radius) {
-						is = true;
-						// playerBullet->OnCollision();
+	//posA = enemyManger->GetEnemyPos();
+	//for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
+	//	if (playerBullet->GetBullet() == Bullet::Zoldorak) {
+	//		if (!is) {
+	//			if (playerBullet->GetIsHit()) {
+	//				posB = playerBullet->GetWorldPosition();
+	//				Vector3 A2B = MathUtility::Sphere(posA, posB);
+	//				float len = MathUtility::Length(A2B);
+	//				float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+	//				if (len <= radius) {
+	//					is = true;
+	//					// playerBullet->OnCollision();
 
-						enemyManger->OnCollision(1);
-					}
-				}
-			}
-		} else {
-			posB = playerBullet->GetWorldPosition();
-			Vector3 A2B = MathUtility::Sphere(posA, posB);
-			float len = MathUtility::Length(A2B);
-			float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
-			if (len <= radius) {
-				playerBullet->OnCollision();
+	//					enemyManger->OnCollision(1);
+	//				}
+	//			}
+	//		}
+	//	} else {
+	//		posB = playerBullet->GetWorldPosition();
+	//		Vector3 A2B = MathUtility::Sphere(posA, posB);
+	//		float len = MathUtility::Length(A2B);
+	//		float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+	//		if (len <= radius) {
+	//			playerBullet->OnCollision();
 
-				enemyManger->OnCollision(1);
-			}
-		}
-	}
+	//			enemyManger->OnCollision(1);
+	//		}
+	//	}
+	//}
 #pragma endregion
 
 #pragma region 自機の弾と敵の弾の当たり判定

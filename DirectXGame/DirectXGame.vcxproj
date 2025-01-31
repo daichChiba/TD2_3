@@ -108,6 +108,8 @@
   <ItemGroup>
     <ClCompile Include="EnemyRevolutionBullet.cpp" />
     <ClCompile Include="EnemyRevolution.cpp" />
+    <ClCompile Include="PlayerActor.cpp" />
+    <ClCompile Include="PlayerWizard.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
@@ -208,6 +210,8 @@
   <ItemGroup>
     <ClInclude Include="EnemyRevolutionBullet.h" />
     <ClInclude Include="EnemyRevolution.h" />
+    <ClInclude Include="PlayerActor.h" />
+    <ClInclude Include="PlayerWizard.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />
