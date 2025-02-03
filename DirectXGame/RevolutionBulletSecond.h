@@ -7,6 +7,9 @@ public:
 	void Update() override;
 
 private:
+	void DrawImgui();
+
+private:
 	Vector3 targetPos;
 	Vector3 direction;
 

@@ -11,7 +11,7 @@ public:
 	void Update() override;
 
 private:
-	void DrawImgui();
+	void DrawImgui()override;
 
 	void modeFirst() override;
 	void modeSecond() override;
@@ -26,6 +26,11 @@ private:
 	static inline const float radius = 5.0f;
 	static inline const int kBulletPoint = 24;
 	static inline const int kBulletcount = 2;
+
+	static inline const int kMaxHP = 100;
+	static inline const int kChangeModeHP = 50;
+
+	bool isStartMode = false;
 	
 	static inline const float repelSpeed = 0.05f; // 反発速度のスケール
 

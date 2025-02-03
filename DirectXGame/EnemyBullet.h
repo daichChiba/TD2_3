@@ -37,6 +37,8 @@ public:
 	void SetParent(WorldTransform* parent) { worldTransform_.parent_ = parent; }
 
 	bool GetIsHit() { return isHit_; }
+	void SetDraw(bool isDraw) { isDraw_ = isDraw; }
+
 
 protected:
 	void SetVec(float* a, Vector3 b) {
@@ -67,4 +69,6 @@ protected:
 	bool isHit_ = true;
 
 	ObjectColor* color = nullptr;
+
+	bool isDraw_ = true;
 };

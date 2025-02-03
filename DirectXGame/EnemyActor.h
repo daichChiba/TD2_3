@@ -44,6 +44,8 @@ protected:
 	virtual void modeFirst();
 	virtual void modeSecond();
 
+	virtual void DrawImgui();
+
 	std::map<EnemyMode, std::function<void()>> modeUpdate{
 	    {EnemyMode::First, [this]() { modeFirst(); }},
 	    {EnemyMode::Second, [this]() { modeSecond(); }},

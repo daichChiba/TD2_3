@@ -6,6 +6,7 @@
 #include "EnemyBullet.h"
 #include "GrabityBulletSecond.h"
 #include "EnemyRevolutionBullet.h"
+#include "RevolutionBulletSecond.h"
 
 using namespace MathUtility;
 
@@ -20,6 +21,13 @@ void EnemyRevolution::Update() {
 		isStart_ = true;
 	}
 
+	if (hp < kChangeModeHP && enemyMode != EnemyMode::Second) {
+		enemyMode = EnemyMode::Second;
+		isStartMode = false;
+	} else if (hp < 1) {
+		isDelete_ = true;
+	}
+
 #ifdef _DEBUG
 	DrawImgui();
 #endif //  _DEBUG
@@ -28,9 +36,20 @@ void EnemyRevolution::Update() {
 	worldTransform_.UpdateMatrix();
 }
 
-void EnemyRevolution::DrawImgui() {}
+void EnemyRevolution::DrawImgui() {
+#ifdef _DEBUG
+	ImGui::Begin("enemy");
+	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.01f);
+	//ImGui::DragFloat("miniTime", &miniBulletTimer_, 0.1f);
+	ImGui::DragInt("HP", &hp);
+	ImGui::End();
+#endif // _DEBUG
+}
 
 void EnemyRevolution::modeFirst() {
+	//if (!isStartMode) {
+	//	isStartMode = true;
+	//}
 	miniBulletTimer_ -= flameTime;
 
 	if (miniBulletTimer_ < 0.0f) {
@@ -52,10 +71,10 @@ void EnemyRevolution::modeFirst() {
 				pos.y = Bulletpos.y + radius * sinf(angle);
 				pos.z = 0.0f;
 
-				std::shared_ptr<EnemyBullet> grabityBullet_(new EnemyRevolutionBullet);
-				grabityBullet_->Initialize(bulletModel_, pos);
-				grabityBullet_->GetPlayerPos(bulletStartPos);
-				gameScene_->AddEnemyBullet(grabityBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
+				std::shared_ptr<EnemyBullet> RevolutionBullet_(new EnemyRevolutionBullet);
+				RevolutionBullet_->Initialize(bulletModel_, pos);
+				RevolutionBullet_->GetPlayerPos(bulletStartPos);
+				gameScene_->AddEnemyBullet(RevolutionBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 			}
 		}
 		miniBulletTimer_ = 5.0f;
@@ -63,7 +82,22 @@ void EnemyRevolution::modeFirst() {
 }
 
 void EnemyRevolution::modeSecond() {
+	Vector3 bulletStartPos = worldTransform_.translation_;
+	float bulletDistance = 30.0f;
+	//if (!isStartMode) {
+	//	isStartMode = true;
+	//}
+	for (auto i = 0; i < 4; i++) {
+		Vector3 pos;
+		pos.x = bulletStartPos.x;
+		pos.y = bulletStartPos.y + bulletDistance + i * bulletDistance;
+		pos.z = 0.0f;
+		std::shared_ptr<EnemyBullet> RevolutionSecondBullet_(new RevolutionBulletSecond);
+		RevolutionSecondBullet_->Initialize(bulletModel_, pos);
+		RevolutionSecondBullet_->GetPlayerPos(bulletStartPos);
+		gameScene_->AddEnemyBullet(RevolutionSecondBullet_);
 
+	}
 }
 
 Vector3 EnemyRevolution::GetPlayerPos() {

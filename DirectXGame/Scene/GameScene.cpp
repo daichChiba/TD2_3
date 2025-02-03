@@ -32,10 +32,14 @@ void GameScene::Initialize() {
 	// player_ = new Player()
 
 	playerModel_ = Model::CreateFromOBJ("Player", true);
+
+	zoldorkModel_ = new Model();
+	zoldorkModel_ = Model::CreateFromOBJ("Zoldorak", true);
+
 	character_ = Character::wizard;
 	// playerの初期化
 	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
+	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, zoldorkModel_);
 	player_->SetGameScene(this);
 
 	enemyManger = new EnemyManager();
@@ -126,7 +130,10 @@ void GameScene::enemyDrow() {
 	}
 
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
-		playerBullet->Draw(camera_);
+		//playerBullet->Draw(camera_);
+		if (playerBullet->GetBullet()==Bullet::Zoldorak) {
+			playerBullet->Draw(camera_);
+		}
 	}
 }
 

@@ -111,6 +111,8 @@ private: // メンバ変数
 	std::list<std::shared_ptr<EnemyBullet>> playerBullets_;
 	
 	//Model* playerBulletModel_ = nullptr;
+
+	Model* zoldorkModel_ = nullptr;
 	
 	Character character_;
 };

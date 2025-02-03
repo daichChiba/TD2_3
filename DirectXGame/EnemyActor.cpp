@@ -32,5 +32,8 @@ void EnemyActor::modeFirst()
 }
 
 void EnemyActor::modeSecond()
-{
+{}
+
+void EnemyActor::DrawImgui() {
+
 }
