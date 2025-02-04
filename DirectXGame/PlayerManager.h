@@ -8,13 +8,13 @@
 using namespace KamataEngine;
 
 class GameScene;
-//class PlayerActor;
+class ActorManager;
 class PlayerFactory;
 
 class PlayerManager
 {
 public:
-	void Initialize(Model* playerModel, Model* bulletModel, Model* beamModel, const Vector3 pos, GameScene* gameScene);
+	void Initialize(Model* playerModel, Model* bulletModel, Model* beamModel, const Vector3 pos, GameScene* gameScene, ActorManager* actor);
 	void Update();
 	void Draw(Camera* camera);
 
@@ -30,6 +30,7 @@ private:
 
 	GameScene* gameScene_;
 	PlayerFactory* factory_;
+	ActorManager* actorManager;
 
 	Vector3 position_;
 };

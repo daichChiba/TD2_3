@@ -1,5 +1,7 @@
 #include "EnemyBullet.h"
 
+#include "ActorManager.h"
+
 void EnemyBullet::Initialize(Model* model, Vector3 pos)
 {
 #ifdef _DEBUG
@@ -34,6 +36,11 @@ Vector3 EnemyBullet::GetWorldPosition() {
 	worldPos.z = worldTransform_.matWorld_.m[3][2];
 
 	return worldPos;
+}
+
+void EnemyBullet::SetActor(ActorManager* actor)
+{
+	actorManager = actor;
 }
 
 void EnemyBullet::OnCollision() {

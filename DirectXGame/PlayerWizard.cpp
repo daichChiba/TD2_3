@@ -2,6 +2,9 @@
 
 #include "../DirectXGame/Scene/GameScene.h"
 
+#include "ActorManager.h"
+#include "EnemyActor.h"
+
 #include "EnemyBullet.h"
 #include "PlayerAccelerationBullet.h"
 #include "Straight.h"
@@ -46,8 +49,8 @@ void PlayerWizard::Attack() {
 void PlayerWizard::PrimaryAttack() {
 	std::shared_ptr<EnemyBullet> acceleration(new PlayerAccelerationBullet);
 	acceleration->Initialize(bulletModel_, GetWorldPosition());
-	acceleration->SetTagetPos(Vector3Zero());
-	// acceleration->SetStartPos(worldTransform_.translation_);
+	acceleration->SetTagetPos(actorManager->GetEnemy()->GetWorldPos());
+	//acceleration->SetStartPos(worldTransform_.translation_);
 	gameScene_->AddPlayerBullet(acceleration);
 
 	globalCoolTime = kGlobalCoolTime;
@@ -56,7 +59,7 @@ void PlayerWizard::PrimaryAttack() {
 void PlayerWizard::SecondaryAttack() {
 	std::shared_ptr<EnemyBullet> straight(new Straight);
 	straight->Initialize(bulletModel_, GetWorldPosition());
-	Vector3 direction = Vector3Zero() - GetWorldPosition();
+	Vector3 direction = actorManager->GetEnemy()->GetWorldPos() - GetWorldPosition();
 	direction = Normalize(direction);
 	straight->SetTagetPos(direction);
 	// straight->SetStartPos(worldTransform_.translation_);
@@ -66,13 +69,14 @@ void PlayerWizard::SecondaryAttack() {
 }
 
 void PlayerWizard::SpechalAttack() {
-	Vector3 direction = Vector3Zero() - GetWorldPosition();
+	Vector3 direction = actorManager->GetEnemy()->GetWorldPos() - GetWorldPosition();
 	direction = Normalize(direction);
 	for (int i = 0; i < 60; i++) {
 		std::shared_ptr<EnemyBullet> zoldrak(new Zoldorak);
 		zoldrak->Initialize(zoldrakModel_, direction * (radius_ * i + radius_ /*/ 2*/));
 		zoldrak->SetTagetPos(direction);
 		zoldrak->SetBullet(Bullet::Zoldorak);
+		zoldrak->SetActor(actorManager);
 		gameScene_->AddPlayerBullet(zoldrak);
 	}
 	tertiaryAttackCoolTime = kTertiaryAttackCoolTime;

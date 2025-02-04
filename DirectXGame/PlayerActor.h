@@ -5,6 +5,7 @@
 using namespace KamataEngine;
 
 class GameScene;
+class ActorManager;
 
 enum class CX {
 	wizard,
@@ -20,7 +21,7 @@ public:
 	/// </summary>
 	/// <param name="model">モデル</param>
 	/// <param name="position">モデルの座標</param>
-	void Initialize(Model* model, Model* bulletModel,Model* beamModel,const Vector3 position, GameScene* gameScene);
+	void Initialize(Model* model, Model* bulletModel,Model* beamModel,const Vector3 position, GameScene* gameScene, ActorManager* actor);
 
 	/// <summary>
 	/// アップデート
@@ -56,6 +57,7 @@ protected:
 	WorldTransform worldTransform_;
 
 	GameScene* gameScene_;
+	ActorManager* actorManager;
 
 	CX character;
 

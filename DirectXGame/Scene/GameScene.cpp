@@ -61,14 +61,17 @@ void GameScene::Update() {
 	actorManager->Update();
 
 	for(std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
-	{ playerBullet->Update(); 
-		
+	{ 
+		playerBullet->Update(); 
 	}
 	
 	for(std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
-	{ enemyBullet->Update(); }
+	{ 
+		enemyBullet->Update(); 
+	}
 
-
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 
 	ImGui::Begin("gamescene");
 	ImGui::DragFloat3("pPos", &playerPos.x);

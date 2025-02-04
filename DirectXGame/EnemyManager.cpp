@@ -1,9 +1,10 @@
 #include "EnemyManager.h"
 //#include "EnemyActor.h"
+#include "ActorManager.h"
 #include "EnemyFactoy.h"
 #include "EnemyGravity.h"
 
-void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene) {
+void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene, ActorManager* actorMana) {
 #ifdef _DEBUG
 	assert(model);
 	assert(bulletModel);
@@ -17,6 +18,7 @@ void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, Gam
 	worldTransform_.translation_ = pos;
 
 	gameScene_ = gameScene;
+	actorManager = actorMana;
 
 	enemyFactory_ = new EnemyFactory();
 	enemyFactory_->Initialize(model_, bulletModel_);
@@ -32,22 +34,7 @@ void EnemyManager::Draw(Camera* camera) { model_->Draw(worldTransform_, *camera)
 void EnemyManager::CreateEnemy() {
 	enemy_ = enemyFactory_->AddEnemy();
 
-	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, gameScene_);
-}
-
-Vector3 EnemyManager::GetEnemyPos() {
-	Vector3 result = enemy_->GetWorldPos();
-	return result;
-}
-
-float EnemyManager::GetRadius()
-{
-	return enemy_->GetRadius();
-}
-
-void EnemyManager::OnCollision(int damage)
-{
-	enemy_->OnCollision(damage);
+	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, gameScene_, actorManager);
 }
 
 // Vector3 EnemyManager::GetWorldPosition() {

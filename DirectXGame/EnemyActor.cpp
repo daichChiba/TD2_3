@@ -1,6 +1,7 @@
 #include "EnemyActor.h"
 
-void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene) {
+
+void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene, ActorManager* actor) {
 #ifdef _DEBUG
 	assert(model);
 	assert(bulletModel);
@@ -14,6 +15,7 @@ void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameS
 	worldTransform_.translation_ = pos;
 
 	gameScene_ = gameScene;
+	actorManager = actor;
 }
 
 void EnemyActor::Update()

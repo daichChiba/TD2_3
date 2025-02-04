@@ -7,12 +7,12 @@
 void ActorManager::Initialize(Model* playerModel, Model* playerBulleModel, Model* playerBeamModel, Model* enemyModel, Model* enemyBulletModel, Vector3 playerPos, Vector3 enemyPos, GameScene* gameScene)
 {
 	playerManager = new PlayerManager;
-	playerManager->Initialize(playerModel, playerBulleModel, playerBeamModel, playerPos, gameScene);
+	playerManager->Initialize(playerModel, playerBulleModel, playerBeamModel, playerPos, gameScene, this);
 
 	playerManager->CreateWizard();
 
 	enemyManager = new EnemyManager;
-	enemyManager->Initialize(enemyModel, enemyBulletModel, enemyPos, gameScene);
+	enemyManager->Initialize(enemyModel, enemyBulletModel, enemyPos, gameScene, this);
 	enemyManager->CreateEnemy();
 }
 

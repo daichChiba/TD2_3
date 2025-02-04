@@ -129,7 +129,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtilityEX.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAccelerationBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
@@ -226,7 +225,6 @@
     <ClInclude Include="GrabityBigBullet.h" />
     <ClInclude Include="MagicPlayer.h" />
     <ClInclude Include="GrabityBulletSecond.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="EnemyGravity.h" />
     <ClInclude Include="EnemyManager.h" />

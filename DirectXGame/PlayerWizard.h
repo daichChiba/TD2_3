@@ -16,9 +16,9 @@ private:
 
 private:
 	float tertiaryAttackCoolTime;
-	static inline const float kTertiaryAttackCoolTime = 15;
+	static inline const float kTertiaryAttackCoolTime = 5;
 
 	//
 	float globalCoolTime;
-	static inline const float kGlobalCoolTime = 10.0f;
+	static inline const float kGlobalCoolTime = 1.0f;
 };

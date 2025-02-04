@@ -1,8 +1,10 @@
 #include "PlayerActor.h"
 
+#include "ActorManager.h"
+
 using namespace MathUtility;
 
-void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel, const Vector3 position, GameScene* gameScene) {
+void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel, const Vector3 position, GameScene* gameScene, ActorManager* actor) {
 	model_ = model;
 	bulletModel_ = bulletModel;
 	zoldrakModel_ = beamModel;
@@ -11,6 +13,7 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 	worldTransform_.translation_ = position;
 
 	gameScene_ = gameScene;
+	actorManager = actor;
 
 	hp = 10;
 }
@@ -58,6 +61,8 @@ void PlayerActor::SpechalAttack() {
 }
 
 void PlayerActor::Move() {
+	worldTransform_.translation_ += velocity_;
+	
 	velocity_ = {0.0f};
 
 #pragma region 移動タイプWASD
@@ -114,6 +119,8 @@ void PlayerActor::Move() {
 #pragma endregion
 
 	worldTransform_.translation_ += velocity_;
+
+	velocity_ = Vector3Zero();
 }
 
 void PlayerActor::Attack() {

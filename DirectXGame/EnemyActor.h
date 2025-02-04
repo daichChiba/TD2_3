@@ -1,17 +1,16 @@
 #pragma once
 #include "kamataEngine.h"
-
+#include "ActorManager.h"
 #include <map>
 #include <functional>
 
 using namespace KamataEngine;
 
 class GameScene;
-class Player;
 
 class EnemyActor {
 public:
-	void Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene);
+	void Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene, ActorManager* actor);
 	virtual void Update();
 	void Draw(Camera* camera);
 
@@ -23,6 +22,7 @@ public:
 
 protected:
 	GameScene* gameScene_;
+	ActorManager* actorManager;
 
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;

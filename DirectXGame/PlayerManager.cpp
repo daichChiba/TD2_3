@@ -1,11 +1,12 @@
 #include "PlayerManager.h"
 
 #include "Scene/GameScene.h"
+#include "ActorManager.h"
 
 #include "PlayerFactory.h"
 #include "PlayerWizard.h"
 
-void PlayerManager::Initialize(Model* playerModel, Model* bulletModel, Model* beamModel, const Vector3 pos, GameScene* gameScene)
+void PlayerManager::Initialize(Model* playerModel, Model* bulletModel, Model* beamModel, const Vector3 pos, GameScene* gameScene, ActorManager* actor)
 {
 	model_ = playerModel;
 	bulletModel_ = bulletModel;
@@ -14,6 +15,7 @@ void PlayerManager::Initialize(Model* playerModel, Model* bulletModel, Model* be
 	position_ = pos;
 
 	gameScene_ = gameScene;
+	actorManager = actor;
 
 	CreateWizard();
 }
@@ -32,5 +34,5 @@ void PlayerManager::CreateWizard()
 {
 	player_ = factory_->CreateWizard();
 
-	player_->Initialize(model_, bulletModel_, beamModel_, position_, gameScene_);
+	player_->Initialize(model_, bulletModel_, beamModel_, position_, gameScene_, actorManager);
 }
