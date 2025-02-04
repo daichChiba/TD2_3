@@ -20,7 +20,7 @@ public:
 
 	void CreateWizard();
 
-	std::unique_ptr<PlayerActor> GetActor() const { return player_; }
+	PlayerActor* GetActor() const { return player_.get(); }
 private:
 	Model* model_;
 	Model* bulletModel_;

@@ -22,7 +22,7 @@ public:
 	float GetRadius();
 	void OnCollision( int damage);
 
-	 std::unique_ptr<EnemyActor> GetActor() const { return enemy_.get(); }
+	 EnemyActor* GetActor() const { return enemy_.get(); }
 private:
 
 	GameScene* gameScene_;

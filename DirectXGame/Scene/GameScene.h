@@ -112,4 +112,6 @@ private: // メンバ変数
 	//Model* playerBulletModel_ = nullptr;
 	
 	//Character character_;
+
+	Vector3 playerPos;
 };
