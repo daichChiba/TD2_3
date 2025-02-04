@@ -3,22 +3,24 @@
 #include <KamataEngine.h>
 using namespace KamataEngine;
 
-#include "../Enemy.h"
-#include "../EnemyFactoy.h"
-#include "../EnemyManager.h"
+//#include "../Enemy.h"
+//#include "../EnemyFactoy.h"
+//#include "../EnemyManager.h"
 #include "../EnemyBullet.h"
-////#include "../Player.h"
+//////#include "../Player.h"
+////#include "../PlayerActor.h"
+////#include "../PlayerWizard.h"
+//#include "../PlayerManager.h"
 //#include "../PlayerActor.h"
 //#include "../PlayerWizard.h"
-#include "../PlayerManager.h"
-#include "../PlayerActor.h"
-#include "../PlayerWizard.h"
 
 //enum class Character {
 //	wizard,
 //	fencer,
 //	dancer,
 //};
+
+class ActorManager;
 
 /// <summary>
 /// ゲームシーン
@@ -62,16 +64,6 @@ public: // メンバ関数
 private: // メンバ変数
 
 	/// <summary>
-	/// 敵のアップデート関数
-	/// </summary>
-	void enemyUpdate();
-
-	/// <summary>
-	/// 敵の描画関数
-	/// </summary>
-	void enemyDrow();
-
-	/// <summary>
 	/// すべての当たり判定
 	/// </summary>
 	void CheckAllCollisions();
@@ -91,14 +83,14 @@ private: // メンバ変数
 	/// </summary>
 	//Player* player_ = nullptr;
 	//std::unique_ptr<PlayerActor> player_;
-	PlayerManager* playerManager;
-
+	//PlayerManager* playerManager;
+	ActorManager* actorManager;
 	/// <summary>
 	/// プレイヤーモデル
 	/// </summary>
 	Model* playerModel_ = nullptr;
 	
-	EnemyManager* enemyManger = nullptr;
+	//EnemyManager* enemyManger = nullptr;
 
 	int testBullet = 0;
 

@@ -48,12 +48,12 @@ void EnemyGravity::DrowImgui() {
 Vector3 EnemyGravity::GetPlayerPos() {
 	Vector3 PlayerPos;
 
-	PlayerPos = player_->GetWorldPosition();
+	//PlayerPos = player_->GetWorldPosition();
 
 	return PlayerPos;
 }
 
-void EnemyGravity::LowerPlayer() { player_->AddVelocity(Vector3{0.0f, playerFollSpeed, 0.0f}); }
+void EnemyGravity::LowerPlayer() { /*player_->AddVelocity(Vector3{0.0f, playerFollSpeed, 0.0f})*/; }
 
 void EnemyGravity::modeFirst() {
 	if (!isStartMode) {
@@ -102,7 +102,7 @@ void EnemyGravity::PlayerFollBigBullet() {
 	std::shared_ptr<EnemyBullet> grabityBullet_(new GrabityBigBullet);
 	grabityBullet_->Initialize(bulletModel_, Vector3{playerPos.x, -initialY, 0.0f});
 	grabityBullet_->SetScale(kBigBulletScale);
-	grabityBullet_->SetPlayer(player_);
+	//grabityBullet_->SetPlayer(player_);
 	gameScene_->AddEnemyBullet(grabityBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 }
 
@@ -169,5 +169,5 @@ void EnemyGravity::RepelPlayer() {
 	Vector3 repelVelocity = direction * repelSpeed;
 
 	// プレイヤーに反発する速度を加える
-	player_->AddVelocity(repelVelocity);
+	//player_->AddVelocity(repelVelocity);
 }

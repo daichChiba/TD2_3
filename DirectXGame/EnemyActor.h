@@ -11,7 +11,7 @@ class Player;
 
 class EnemyActor {
 public:
-	void Initialize(Model* model, Model* bulletModel, Vector3 pos, Player* player, GameScene* gameScene);
+	void Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene);
 	virtual void Update();
 	void Draw(Camera* camera);
 
@@ -19,14 +19,14 @@ public:
 	float GetRadius() { return radius_; }
 	virtual void OnCollision(int damage) { hp -= damage; }
 
+
+
 protected:
 	GameScene* gameScene_;
 
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;
 	WorldTransform worldTransform_;
-
-	Player* player_;
 
 	static inline const float flameTime = 1.0f / 60.0f;
 	bool isStart_ = false;

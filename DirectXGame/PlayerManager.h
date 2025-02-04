@@ -19,6 +19,8 @@ public:
 	void Draw(Camera* camera);
 
 	void CreateWizard();
+
+	PlayerActor* GetActor() const { return player_.get(); }
 private:
 	Model* model_;
 	Model* bulletModel_;

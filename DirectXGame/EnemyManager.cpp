@@ -1,9 +1,9 @@
 #include "EnemyManager.h"
-#include "EnemyActor.h"
+//#include "EnemyActor.h"
 #include "EnemyFactoy.h"
 #include "EnemyGravity.h"
 
-void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, Player* player, GameScene* gameScene) {
+void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene) {
 #ifdef _DEBUG
 	assert(model);
 	assert(bulletModel);
@@ -16,15 +16,13 @@ void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, Pla
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = pos;
 
-	player_ = player;
 	gameScene_ = gameScene;
 
 	enemyFactory_ = new EnemyFactory();
 	enemyFactory_->Initialize(model_, bulletModel_);
-	enemyFactory_->SetPlayer(player_);
 	enemyFactory_->SetGameScene(gameScene_);
 
-	CreateEnemy();
+	//CreateEnemy();
 }
 
 void EnemyManager::Update() { enemy_->Update(); }
@@ -34,7 +32,7 @@ void EnemyManager::Draw(Camera* camera) { model_->Draw(worldTransform_, *camera)
 void EnemyManager::CreateEnemy() {
 	enemy_ = enemyFactory_->AddEnemy();
 
-	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, gameScene_);
+	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, gameScene_);
 }
 
 Vector3 EnemyManager::GetEnemyPos() {

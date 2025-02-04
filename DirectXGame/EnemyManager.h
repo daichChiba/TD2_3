@@ -1,18 +1,17 @@
 #pragma once
 
 #include "kamataEngine.h"
-
+#include "EnemyActor.h"
 using namespace KamataEngine;
 
 class GameScene;
-class Player;
+//class EnemyActor;
 class EnemyFactory;
-class EnemyActor;
 
 class EnemyManager
 {
 public:
-	void Initialize(Model* model, Model* bulletModel,Vector3 pos ,Player* player, GameScene* gameScene);
+	void Initialize(Model* model, Model* bulletModel,Vector3 pos , GameScene* gameScene);
 	virtual void Update();
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
@@ -23,8 +22,7 @@ public:
 	float GetRadius();
 	void OnCollision( int damage);
 
-	virtual void GetPlayer(Player* player){  player_ = player; }
-	
+	 EnemyActor* GetActor() const { return enemy_.get(); }
 private:
 
 	GameScene* gameScene_;
@@ -32,8 +30,6 @@ private:
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;
 	WorldTransform worldTransform_;
-
-	Player* player_;
 
 	EnemyFactory* enemyFactory_;
 

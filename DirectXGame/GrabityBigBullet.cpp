@@ -13,7 +13,7 @@ void GrabityBigBullet::Update() {
 
 	DrowImgui();
 
-	PlayerSuction();
+	//PlayerSuction();
 
 	worldTransform_.UpdateMatrix();
 
