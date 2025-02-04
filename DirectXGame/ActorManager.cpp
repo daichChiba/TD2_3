@@ -28,11 +28,11 @@ void ActorManager::Draw(Camera* camera)
 	enemyManager->Draw(camera);
 }
 
-PlayerActor ActorManager::GetPlayer()
+std::shared_ptr<PlayerActor> ActorManager::GetPlayer()
 {
 	playerManager->GetActor();
 }
-EnemyActor ActorManager::GetEnemy()
+std::shared_ptr<EnemyActor> ActorManager::GetEnemy()
 {
 	enemyManager->GetActor();
 }

@@ -126,15 +126,15 @@ void GameScene::CheckAllCollisions() {
 
 #pragma region 敵の弾とプレイヤーの当たり判定
 	bool is = false;
-	posA = actorManager->GetPlayer()->ge;
+	posA = actorManager->GetPlayer()->GetWorldPosition();
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		posB = enemyBullet->GetWorldPosition();
 		Vector3 A2B = MathUtility::Sphere(posA, posB);
 		float len = MathUtility::Length(A2B);
-		float radius = enemyBullet->GetRadius() + player_->GetRadius();
+		float radius = enemyBullet->GetRadius() + actorManager->GetPlayer()->GetRadius();
 		if (len <= radius) {
 			// 自キャラの衝突時コールバックを呼び出す
-			player_->OnCollision();
+			actorManager->GetPlayer()->OnCollision();
 			// 自弾の衝突時コールバックを呼び出す
 			enemyBullet->OnCollision();
 		}
@@ -143,7 +143,7 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
-	posA = >GetEnemyPos();
+	posA = actorManager->GetEnemy()->;
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		if (playerBullet->GetBullet() == Bullet::Zoldorak) {
 			if (!is) {

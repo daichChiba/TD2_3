@@ -19,8 +19,8 @@ public:
 
 	void Draw(Camera* camera);
 
-	PlayerActor GetPlayer();
-	EnemyActor GetEnemy();
+	std::shared_ptr<PlayerActor> GetPlayer();
+	std::shared_ptr<EnemyActor> GetEnemy();
 
 private:
 	PlayerManager* playerManager;
