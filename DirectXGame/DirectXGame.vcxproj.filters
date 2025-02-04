@@ -93,10 +93,10 @@
     <ClCompile Include="EnemyRevolution.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="BlackHoleBullet.cpp">
+    <ClCompile Include="RevolutionBulletSecond.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerManger.cpp">
+    <ClCompile Include="MeteoriteBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,10 +207,10 @@
     <ClInclude Include="EnemyRevolution.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BlackHoleBullet.h">
+    <ClInclude Include="RevolutionBulletSecond.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerManger.h">
+    <ClInclude Include="MeteoriteBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

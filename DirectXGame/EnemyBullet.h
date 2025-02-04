@@ -17,28 +17,31 @@ public:
 	virtual void Draw(Camera* camera);
 
 	bool IsDelete() const { return isDelete_; }
-	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
 
-	virtual void SetTagetPos(Vector3 pos) { pos = pos; }
-	// virtual void SetStartPos(Vector3 pos) { pos = pos; }
-	Vector3 GetWorldPosition();
 
-	void SetPlayer(Player* player) {player_ = player; }
 
 	virtual void OnCollision();
+
+	/*Getter*/
 	// 半径を取得
 	float GetRadius() { return worldTransform_.scale_.x * radius_; }
-	virtual void GetPlayerPos(Vector3 pos) { pos = pos; }
-
-	void SetBullet(Bullet bullet) { bullet_ = bullet; }
-
-	Bullet GetBullet() const { return bullet_; }
-	
-	void SetParent(WorldTransform* parent) { worldTransform_.parent_ = parent; }
+	Vector3 GetWorldPosition();
 
 	bool GetIsHit() { return isHit_; }
-	void SetDraw(bool isDraw) { isDraw_ = isDraw; }
+	Bullet GetBullet() const { return bullet_; }
 
+
+	/*Setter*/
+	virtual void SetTagetPos(Vector3 pos) { pos = pos; }
+	void SetScale(const float scale) { worldTransform_.scale_ = Vector3{scale, scale, scale}; }
+	void SetBullet(Bullet bullet) { bullet_ = bullet; }
+	
+	virtual void SetPlayerPos(Vector3 pos) { pos = pos; }
+	void SetPlayer(Player* player) {player_ = player; }
+	void SetParent(WorldTransform* parent) { worldTransform_.parent_ = parent; }
+
+	void SetDraw(bool isDraw) { isDraw_ = isDraw; }
+	void SetSpeed(float speed) { speed_ = speed; }
 
 protected:
 	void SetVec(float* a, Vector3 b) {
@@ -71,4 +74,6 @@ protected:
 	ObjectColor* color = nullptr;
 
 	bool isDraw_ = true;
+
+	float speed_ = 0.0f;
 };

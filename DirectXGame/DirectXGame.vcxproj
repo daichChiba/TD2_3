@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="EnemyRevolutionBullet.cpp" />
     <ClCompile Include="EnemyRevolution.cpp" />
+    <ClCompile Include="MeteoriteBullet.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
@@ -208,6 +209,7 @@
   <ItemGroup>
     <ClInclude Include="EnemyRevolutionBullet.h" />
     <ClInclude Include="EnemyRevolution.h" />
+    <ClInclude Include="MeteoriteBullet.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />

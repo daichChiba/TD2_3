@@ -131,7 +131,7 @@ void EnemyGravity::modeSecond() {
 
 			std::shared_ptr<EnemyBullet> grabityBullet_(new GrabityBulletSecond);
 			grabityBullet_->Initialize(bulletModel_, pos);
-			grabityBullet_->GetPlayerPos(playerPos);
+			grabityBullet_->SetPlayerPos(playerPos);
 			gameScene_->AddEnemyBullet(grabityBullet_); // プレイヤーが持っているゲームシーンからゲームシーンにポインタを渡す
 		}
 		miniBulletTimer_ = 5.0f;
