@@ -83,7 +83,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 	// 現在シーン（型）
-	gameScene->Initialize();
+	titleScene->Initialize();
+	scene = Scene::kTitle;
 
 	// メインループ
 	while (true) {
