@@ -24,6 +24,7 @@ void PlayerWizard::Update() {
 	ImGui::Begin("player");
 	ImGui::DragFloat("coolTime", &globalCoolTime, 0.01f);
 	ImGui::DragFloat("SPCoolTime", &tertiaryAttackCoolTime, 0.01f);
+	ImGui::DragInt("hp", &hp);
 	ImGui::End();
 
 #endif // _DEBUG

@@ -33,7 +33,10 @@ public:
 	/// <param name="camera">カメラ</param>
 	void Draw(Camera* camera);
 
+	void HPposUpdate();
+	void DrawHP();
 
+	int GetPlayerHP(){ return hp;}
 
 	Vector3 GetWorldPosition();
 
@@ -69,6 +72,21 @@ protected:
 	GameScene* gameScene_;
 	ActorManager* actorManager;
 
+	int hp;
+
+	static inline const int kMaxHp = 10;
+
+	Vector2 HPPos;
+
+	float HPSpacing = 40.0f;
+	Vector2 HPscele;
+
+	Sprite* HPSprite[5];
+	Sprite* HPHeafSprite[5];
+
+	uint32_t HpHeafResources;
+	uint32_t hpResources;
+
 	CX character;
 
 	XINPUT_STATE xinput_;
@@ -78,7 +96,7 @@ protected:
 
 	float radius_ = 0.5f;
 
-	int hp;
+	
 
 	float flameTime = 1.0f / 60.0f;
 	// テクスチャハンドル

@@ -86,6 +86,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	titleScene->Initialize();
 	scene = Scene::kTitle;
 
+#ifdef _DEBUG
+	gameScene->Initialize();
+	scene = Scene::kGame;
+#endif
+
 	// メインループ
 	while (true) {
 		// メッセージ処理
@@ -163,30 +168,28 @@ void ChangeScene() {
 		}
 		break;
 	case Scene::kGame:
-		if (gameScene->GetEnemyHp() <= 0) {
-			if (gameScene->IsFinished()) {
-				// シーン変更
+		if (gameScene->IsFinished()) {
+			
+			if(gameScene->IsCleard())
+			{
 				scene = Scene::kClear;
-				// 旧シーンの開放
-				delete gameScene;
-				gameScene = nullptr;
-				// 新シーンの生成と初期化
 				clearScene = new ClearScene;
-				clearScene->Initialize();
+			clearScene->Initialize();
+			}
+			else
+			{
+				scene = Scene::kDead;
+				badEndScene = new BadEndScene;
+				badEndScene->Initialize();
 
 			}
-		} /*else {*/
-		//	if (gameScene->IsFinished()) {
-		//		// シーン変更
-		//		scene = Scene::kDead;
-		//		// 旧シーンの開放
-		//		delete gameScene;
-		//		gameScene = nullptr;
-		//		// 新シーンの生成と初期化
-		//		badEndScene = new BadEndScene;
-		//		badEndScene->Initialize();
-		//	}
-		//}
+			
+			// 旧シーンの開放
+			delete gameScene;
+			gameScene = nullptr;
+			// 新シーンの生成と初期化
+			
+		}
 		break;
 	case Scene::kClear:
 		if (clearScene->IsFinished()) {
