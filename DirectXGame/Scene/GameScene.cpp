@@ -47,6 +47,7 @@ void GameScene::Initialize() {
 	skydomeModel_ = Model::CreateFromOBJ("Skydome", true);
 	skydome_->Initialize(skydomeModel_, camera_);
 
+	playerBulletModel_ = Model::CreateFromOBJ("PlayerBullet");
 
 	//character_ = CX::wizard;
 	// playerの初期化
@@ -55,7 +56,7 @@ void GameScene::Initialize() {
 	player_->SetGameScene(this);*/
 
 	actorManager = new ActorManager;
-	actorManager->Initialize(playerBody_, playerModel_, enemyModel_, enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
+	actorManager->Initialize(playerBody_, playerBulletModel_, enemyModel_, enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
 	
 	//player_ = std::make_unique< PlayerWizard>();
 	//player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
