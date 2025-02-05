@@ -4,6 +4,28 @@ using namespace KamataEngine;
 
 #include "../DirectXGame/Scene/GameScene.h"
 
+// シーン（型）
+enum class Scene {
+	kUnknown = 0,
+	kTitle,
+	kRule,
+	kGame,
+	kClear,
+	kDead,
+};
+
+void ChangeScene();
+void UpdateScene();
+void DrawScene();
+
+// 現在シーン（型）
+Scene scene = Scene::kUnknown;
+
+TitleScene* titleScene = nullptr;
+RuleScene* ruleScene = nullptr;
+GameScene* gameScene = nullptr;
+ClearScene* clearScene = nullptr;
+BadEndScene* badEndScene = nullptr;
 
 
 // Windowsアプリでのエントリーポイント(main関数)
