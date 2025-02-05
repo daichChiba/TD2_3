@@ -21,7 +21,6 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 }
 
 void PlayerActor::Update() {
-
 	// 入力の更新
 	preXinput_ = xinput_;
 	// XInputの状態を取得

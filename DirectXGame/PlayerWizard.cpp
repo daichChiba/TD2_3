@@ -31,15 +31,15 @@ void PlayerWizard::Attack() {
 	tertiaryAttackCoolTime -= flameTime;
 
 	if (globalCoolTime < 0.0f) {
-		if (Input::GetInstance()->ReleseKey(DIK_U)) {
+		if (Input::GetInstance()->ReleseKey(DIK_U) || xinput_.Gamepad.wButtons & XINPUT_GAMEPAD_A) {
 			PrimaryAttack();
 		}
-		if (Input::GetInstance()->ReleseKey(DIK_I)) {
+		if (Input::GetInstance()->ReleseKey(DIK_I) || xinput_.Gamepad.wButtons & XINPUT_GAMEPAD_B) {
 			SecondaryAttack();
 		}
 
 		if (tertiaryAttackCoolTime < 0.0f) {
-			if (Input::GetInstance()->ReleseKey(DIK_O)) {
+			if (Input::GetInstance()->ReleseKey(DIK_O) || xinput_.Gamepad.wButtons & XINPUT_GAMEPAD_X) {
 				SpechalAttack();
 			}
 		}
