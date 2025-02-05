@@ -88,9 +88,9 @@ private: // メンバ変数
 	// PlayerManager* playerManager;
 	ActorManager* actorManager;
 	/// <summary>
-	/// プレイヤーモデル
+	/// playerBullet
 	/// </summary>
-	Model* playerModel_ = nullptr;
+	Model* playerBulletModel_ = nullptr;
 
 	// EnemyManager* enemyManger = nullptr;
 
