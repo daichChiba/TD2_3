@@ -5,8 +5,8 @@
 TitleScene::TitleScene() {}
 
 TitleScene::~TitleScene() {
-	delete modelFont_;
-	delete modelEnemy_;
+	//delete modelFont_;
+	//delete modelEnemy_;
 	delete fade_;
 	finished_ = false;
 }
@@ -20,16 +20,9 @@ void TitleScene::Initialize() {
 	// ビュープロジェクション
 	camera_.Initialize();
 
-	modelFont_ = Model::CreateFromOBJ("titleFont");
-	
-	worldTransformFont_.Initialize();
-	worldTransformPlayer_.Initialize();
+	textureHandle_ = TextureManager::Load("titleSkydome/titleSkydome.png");
+	sprite = Sprite::Create(textureHandle_, {0, 0});
 
-	worldTransformFont_.translation_.y = 10;
-	worldTransformPlayer_.translation_.y = -11;
-	worldTransformFont_.scale_ = {2, 2, 2};
-	worldTransformPlayer_.scale_ = {2, 2, 2};
-	worldTransformPlayer_.rotation_.y = std::numbers::pi_v<float>;
 
 	// フェード
 	phase_ = Phase::kFadeIn;
@@ -69,10 +62,10 @@ void TitleScene::Update() {
 	// タイマーを加算
 	timer_ += 1.0f / 60.0f;
 
-	
-	// 行列を更新
-	worldTransformFont_.UpdateMatrix();
-	worldTransformPlayer_.UpdateMatrix();
+	//
+	//// 行列を更新
+	//worldTransformFont_.UpdateMatrix();
+	//worldTransformPlayer_.UpdateMatrix();
 
 	// フェード
 	fade_->Update();
@@ -82,11 +75,16 @@ void TitleScene::Draw() {
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
+	Sprite::PreDraw(commandList);
+	sprite->Draw();
+	Sprite::PostDraw();
+
+
 	// 3Dオブジェクト描画前処理
 	Model::PreDraw(commandList);
 
 	// ここに3Dオブジェクトの描画処理を追加できる
-	modelFont_->Draw(worldTransformFont_, camera_);
+	//modelFont_->Draw(worldTransformFont_, camera_);
 	//modelEnemy_->Draw(worldTransformPlayer_, camera_);
 
 	// 3Dオブジェクト描画処理後

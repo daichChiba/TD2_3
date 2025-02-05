@@ -39,14 +39,8 @@ private:
 	// 終了フラグ
 	bool finished_ = false;
 
-	Model* modelFont_ = nullptr;
-	Model* modelEnemy_ = nullptr;
-
 	// ビュープロジェクション
 	Camera camera_;
-
-	WorldTransform worldTransformFont_;
-	WorldTransform worldTransformPlayer_;
 
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -67,4 +61,8 @@ private:
 	uint32_t soundDataHandle_ = 0;
 	// 音声再生ハンドル
 	uint32_t voiceHandle_ = 0;
+
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0;
+	Sprite* sprite;
 };
