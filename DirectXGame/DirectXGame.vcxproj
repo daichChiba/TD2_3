@@ -115,6 +115,10 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerWizard.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
+    <ClCompile Include="Scene\BadEndScene.cpp" />
+    <ClCompile Include="Scene\ClearScene.cpp" />
+    <ClCompile Include="Scene\RuleScene.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="Easings.cpp" />
     <ClCompile Include="EnemyActor.cpp" />
@@ -220,6 +224,10 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerWizard.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
+    <ClInclude Include="Scene\BadEndScene.h" />
+    <ClInclude Include="Scene\ClearScene.h" />
+    <ClInclude Include="Scene\RuleScene.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="Easings.h" />
     <ClInclude Include="EnemyActor.h" />

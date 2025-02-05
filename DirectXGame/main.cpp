@@ -2,7 +2,11 @@
 
 using namespace KamataEngine;
 
-#include "../DirectXGame/Scene/GameScene.h"
+#include "Scene/TitleScene.h"
+#include "Scene/RuleScene.h"
+#include "Scene/GameScene.h"
+#include "Scene/ClearScene.h"
+#include "Scene/BadEndScene.h"
 
 // シーン（型）
 enum class Scene {
@@ -17,15 +21,6 @@ enum class Scene {
 void ChangeScene();
 void UpdateScene();
 void DrawScene();
-
-// 現在シーン（型）
-Scene scene = Scene::kUnknown;
-
-TitleScene* titleScene = nullptr;
-RuleScene* ruleScene = nullptr;
-GameScene* gameScene = nullptr;
-ClearScene* clearScene = nullptr;
-BadEndScene* badEndScene = nullptr;
 
 
 // Windowsアプリでのエントリーポイント(main関数)
@@ -79,8 +74,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	primitiveDrawer->Initialize();
 #pragma endregion
 
-	gameScene = new GameScene();
+	// 現在シーン（型）
+	static Scene scene = Scene::kUnknown;
+
+	static TitleScene* titleScene = new TitleScene;
+	titleScene->Initialize();
+	static RuleScene* ruleScene = new RuleScene;
+	ruleScene->Initialize();
+	static GameScene* gameScene = new GameScene;
 	gameScene->Initialize();
+	static ClearScene* clearScene = new ClearScene;
+	clearScene->Initialize();
+	static BadEndScene* badEndScene = new BadEndScene;
+	badEndScene->Initialize();
 
 	// メインループ
 	while (true) {
@@ -131,3 +137,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	return 0;
 }
 
+void ChangeScene()
+{
+}
