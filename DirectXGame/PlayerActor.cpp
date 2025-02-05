@@ -32,11 +32,11 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 	HPscele = {100.0f, 100.0f};
 	// HPBarSprite = Sprite::Create(hpBarResources, {0.0f, 0.0f});
 	for (int i = 0; i < 3; i++) {
-		textureHandle_[0] = TextureManager::Load("Skill/PrimarySkill.png");
-		textureHandle_[1] = TextureManager::Load("Skill/SecondarySkill.png");
-		textureHandle_[2] = TextureManager::Load("Skill/SpechalSkill.png");
-		Vector2 pos = {worldTransform_.translation_.x , worldTransform_.translation_.y + 64.0f * i};
-		sprite[i] = Sprite::Create(textureHandle_[i], pos);
+		SkillTextureHandle_[0] = TextureManager::Load("Skill/PrimarySkill.png");
+		SkillTextureHandle_[1] = TextureManager::Load("Skill/SecondarySkill.png");
+		SkillTextureHandle_[2] = TextureManager::Load("Skill/SpechalSkill.png");
+		Vector2 pos = {250.0f + 64.0f * i, 615.0f};
+		skillSprite[i] = Sprite::Create(SkillTextureHandle_[i], pos);
 	}
 	hp = 10;
 }
@@ -100,8 +100,9 @@ void PlayerActor::DrawHP() {
 
 void PlayerActor::SpriteDraw() {
 	for (int i = 0; i < 3; i++) {
-		sprite[i]->SetColor(color[i]);
-		sprite[i]->Draw();
+
+		skillSprite[i]->SetColor(color[i]);
+		skillSprite[i]->Draw();
 	}
 }
 
@@ -191,7 +192,7 @@ void PlayerActor::Move() {
 
 	worldTransform_.translation_ += velocity_;
 	for (size_t i = 0; i < 3; i++) {
-		sprite[i]->SetPosition(Vector2(worldTransform_.translation_.x, worldTransform_.translation_.y + 64.0f * i));
+		skillSprite[i]->SetPosition(Vector2(worldTransform_.translation_.x, worldTransform_.translation_.y + 64.0f * i));
 	}
 
 	velocity_ = Vector3Zero();

@@ -100,7 +100,7 @@ protected:
 
 	float flameTime = 1.0f / 60.0f;
 	// テクスチャハンドル
-	uint32_t textureHandle_[3] = {0};
-	Sprite* sprite[3];
+	uint32_t SkillTextureHandle_[3] = {0};
+	Sprite* skillSprite[3];
 
 };

@@ -137,5 +137,4 @@ private: // メンバ変数
 	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpHeafResorces, EnemyHpBarResorces;
 
 	Vector3 playerPos;
-	int hp;
 };
