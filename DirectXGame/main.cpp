@@ -2,14 +2,14 @@
 
 using namespace KamataEngine;
 
-#include "Scene/TitleScene.h"
-#include "Scene/RuleScene.h"
-#include "Scene/GameScene.h"
-#include "Scene/ClearScene.h"
 #include "Scene/BadEndScene.h"
+#include "Scene/ClearScene.h"
+#include "Scene/GameScene.h"
+#include "Scene/RuleScene.h"
+#include "Scene/TitleScene.h"
 
-#include <map>
 #include <functional>
+#include <map>
 
 // シーン（型）
 enum class Scene {
@@ -25,13 +25,13 @@ void ChangeScene();
 void UpdateScene();
 void DrawScene();
 
-static Scene scene = Scene::kUnknown;
+Scene scene = Scene::kUnknown;
 
-	static TitleScene* titleScene = new TitleScene;
-	static RuleScene* ruleScene = new RuleScene;
-	static GameScene* gameScene = new GameScene;
-	static ClearScene* clearScene = new ClearScene;
-	static BadEndScene* badEndScene = new BadEndScene;
+TitleScene* titleScene = new TitleScene;
+RuleScene* ruleScene = new RuleScene;
+GameScene* gameScene = new GameScene;
+ClearScene* clearScene = new ClearScene;
+BadEndScene* badEndScene = new BadEndScene;
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -42,8 +42,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Audio* audio = nullptr;
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
-
-	GameScene* gameScene = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -85,7 +83,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 	// 現在シーン（型）
-	
 
 	// メインループ
 	while (true) {
@@ -111,7 +108,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 軸表示の描画
 		axisIndicator->Draw();
 
-				gameScene->Draw();
+		gameScene->Draw();
 		// プリミティブ描画のリセット
 		primitiveDrawer->Reset();
 		// ImGui描画
@@ -122,7 +119,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// 各種解放
 	delete gameScene;
-
 
 	// 3Dモデル解放
 	Model::StaticFinalize();

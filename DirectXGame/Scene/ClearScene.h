@@ -1,7 +1,7 @@
 #pragma once
 #include <KamataEngine.h>
 using namespace KamataEngine;
-#include "Fade.h"
+#include "../Fade.h"
 #include <vector>
 
 class ClearScene {
