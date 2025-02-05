@@ -67,6 +67,9 @@ public: // メンバ関数
 	uint32_t SetPlayerHPBarResources() { return PlayerHpBarResorces; }
 	uint32_t SetEnemyHPResources() { return EnemyHpResorces; }
 	uint32_t SetEnemyHPBarResources() { return EnemyHpBarResorces; }
+
+	int GetEnemyHp();
+
 private: // メンバ変数
 	/// <summary>
 	/// すべての当たり判定
@@ -83,7 +86,7 @@ private: // メンバ変数
 	Camera* camera_ = nullptr;
 	static inline const Vector3 normalCameraPos_ = {0.0f, 0.0f, -20.0f};
 
-	bool isFinished;
+	bool isFinished = false;
 
 	/// <summary>
 	/// player

@@ -21,6 +21,8 @@ public:
 	float GetRadius() { return radius_; }
 	virtual void OnCollision(int damage) { hp -= damage; }
 
+	int GetHp() const { return hp; }
+
 protected:
 	GameScene* gameScene_;
 	ActorManager* actorManager;

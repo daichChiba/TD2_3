@@ -77,6 +77,10 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	
+	if (actorManager->GetEnemy()->GetHp()<=0) {
+		isFinished = true;
+	}
+
 	//player_->Update();
 	actorManager->Update();
 
@@ -94,10 +98,12 @@ void GameScene::Update() {
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+#ifdef _DEBUG
 
 	ImGui::Begin("gamescene");
 	ImGui::DragFloat3("pPos", &playerPos.x);
 	ImGui::End();
+#endif // _DEBUG
 
 }
 
@@ -158,6 +164,8 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
+
+int GameScene::GetEnemyHp() {return actorManager->GetEnemy()->GetHp(); }
 
 void GameScene::CheckAllCollisions() {
 	 //判定対象AとBの座標
