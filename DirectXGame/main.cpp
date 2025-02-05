@@ -173,9 +173,20 @@ void ChangeScene() {
 				// 新シーンの生成と初期化
 				clearScene = new ClearScene;
 				clearScene->Initialize();
+
 			}
-		} else {
-		}
+		} /*else {*/
+		//	if (gameScene->IsFinished()) {
+		//		// シーン変更
+		//		scene = Scene::kDead;
+		//		// 旧シーンの開放
+		//		delete gameScene;
+		//		gameScene = nullptr;
+		//		// 新シーンの生成と初期化
+		//		badEndScene = new BadEndScene;
+		//		badEndScene->Initialize();
+		//	}
+		//}
 		break;
 	case Scene::kClear:
 		if (clearScene->IsFinished()) {

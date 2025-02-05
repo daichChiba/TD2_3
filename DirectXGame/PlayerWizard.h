@@ -21,4 +21,9 @@ private:
 	//
 	float globalCoolTime;
 	static inline const float kGlobalCoolTime = 1.0f;
+
+	bool isStart_ = false;
+
+	ObjectColor* color_ = nullptr;
+
 };

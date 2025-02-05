@@ -69,6 +69,7 @@ public: // メンバ関数
 	uint32_t SetEnemyHPBarResources() { return EnemyHpBarResorces; }
 
 	int GetEnemyHp();
+	int GetPlayerHp();
 
 private: // メンバ変数
 	/// <summary>
@@ -136,4 +137,5 @@ private: // メンバ変数
 	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpBarResorces, EnemyHpBarResorces;
 
 	Vector3 playerPos;
+	int hp;
 };

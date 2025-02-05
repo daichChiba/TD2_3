@@ -1,8 +1,7 @@
 #include "PlayerActor.h"
 
 #include "ActorManager.h"
-#include"EnemyManager.h"
-
+#include "EnemyManager.h"
 
 using namespace MathUtility;
 
@@ -16,7 +15,13 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 
 	gameScene_ = gameScene;
 	actorManager = actor;
-
+	for (int i = 0; i < 3; i++) {
+		textureHandle_[0] = TextureManager::Load("Skill/PrimarySkill.png");
+		textureHandle_[1] = TextureManager::Load("Skill/SecondarySkill.png");
+		textureHandle_[2] = TextureManager::Load("Skill/SpechalSkill.png");
+		Vector2 pos = {worldTransform_.translation_.x , worldTransform_.translation_.y + 64.0f * i};
+		sprite[i] = Sprite::Create(textureHandle_[i], pos);
+	}
 	hp = 10;
 }
 
@@ -28,6 +33,8 @@ void PlayerActor::Update() {
 
 	// 移動処理
 	Move();
+
+
 
 	// 攻撃処理
 	Attack();
@@ -42,13 +49,18 @@ void PlayerActor::Draw(Camera* camera) {
 	}
 }
 
+void PlayerActor::SpriteDraw() {
+	for (int i = 0; i < 3; i++) {
+		sprite[i]->SetColor(color[i]);
+		sprite[i]->Draw();
+	}
+}
+
 Vector3 PlayerActor::GetWorldPosition() { return worldTransform_.translation_; }
 
 void PlayerActor::AddVelocity(Vector3 velocity) { velocity_ += velocity; }
 
-void PlayerActor::OnCollision() {
-	hp --;
-}
+void PlayerActor::OnCollision() { hp--; }
 
 void PlayerActor::PrimaryAttack() {
 	// プライマリ攻撃の処理
@@ -70,7 +82,7 @@ void PlayerActor::Move() {
 	}
 
 	worldTransform_.translation_ += velocity_;
-	
+
 	velocity_ = {0.0f};
 
 #pragma region 移動タイプWASD
@@ -127,6 +139,9 @@ void PlayerActor::Move() {
 #pragma endregion
 
 	worldTransform_.translation_ += velocity_;
+	for (size_t i = 0; i < 3; i++) {
+		sprite[i]->SetPosition(Vector2(worldTransform_.translation_.x, worldTransform_.translation_.y + 64.0f * i));
+	}
 
 	velocity_ = Vector3Zero();
 }
