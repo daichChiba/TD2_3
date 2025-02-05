@@ -31,7 +31,7 @@ void GameScene::Initialize() {
 	playerModel_ = new Model();
 	// playerModel_->CreateFromOBJ("player", true);
 
-	enemyModel_ = Model::CreateFromOBJ("cube", true);
+	enemyModel_ = Model::CreateFromOBJ("enemy", true);
 
 	// player_ = new Player()
 
