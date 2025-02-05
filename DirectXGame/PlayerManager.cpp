@@ -30,6 +30,7 @@ void PlayerManager::Initialize(Model* playerModel, Model* bulletModel, Model* be
 void PlayerManager::Update()
 {
 	player_->Update();
+	player_->HPposUpdate();
 }
 
 void PlayerManager::Draw(Camera* camera)

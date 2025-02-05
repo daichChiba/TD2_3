@@ -59,25 +59,24 @@ void GameScene::Initialize() {
 	player_->SetGameScene(this);*/
 	PlayerHPResorces = TextureManager::Load("PlayerHP.png");
 	EnemyHpResorces = TextureManager::Load("EnemyHP.png");
-	PlayerHpBarResorces = TextureManager::Load("PlayerHPBar.png");
+	PlayerHpHeafResorces = TextureManager::Load("PlayerHPHeaf.png");
 	EnemyHpBarResorces = TextureManager::Load("EnemyHPBar.png");
 
 	actorManager = new ActorManager;
 	actorManager->Initialize(playerBody_, playerBulletModel_, zoldorkModel_, enemyModel_, enemyBulletModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
 	
-	//player_ = std::make_unique< PlayerWizard>();
-	//player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
 
-	/*playerManager = new PlayerManager;
-	playerManager->Initialize(playerModel_, playerModel_, enemyModel_, Vector3(0.0f, 0.0f, 0.0f), this);*/
-
-	/*enemyManger = new EnemyManager();
-	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);*/
 }
 
 void GameScene::Update() {
 	
-	if (actorManager->GetEnemy()->GetHp()<=0) {
+	int enemyHp = actorManager->GetEnemy()->GetHp();
+	if (enemyHp <= 0) {
+		isFinished = true;
+		isCleard = true;
+	}
+	
+	if (actorManager->GetPlayer()->GetPlayerHP()<=0) {
 		isFinished = true;
 	}
 
@@ -157,6 +156,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+	actorManager->GetPlayer()->DrawHP();
 	actorManager->GetEnemy()->DrawHp();
 
 	// スプライト描画後処理
@@ -164,8 +164,6 @@ void GameScene::Draw() {
 
 #pragma endregion
 }
-
-int GameScene::GetEnemyHp() {return actorManager->GetEnemy()->GetHp(); }
 
 void GameScene::CheckAllCollisions() {
 	 //判定対象AとBの座標

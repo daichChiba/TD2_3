@@ -27,6 +27,8 @@ void EnemyActor::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameS
 			HpSprite[i] = Sprite::Create(HPResources, {0.0f, 0.0f});
 	}
 	HpBarSprite = Sprite::Create(HPBarResources, {0.0f, 0.0f});
+
+	hp = kMaxHP;
 }
 
 void EnemyActor::Update()
@@ -59,12 +61,12 @@ void EnemyActor::Pos()
 {
 
 	HpBarpos	= HpBarSprite->GetPosition();
-	
+#ifdef _DEBUG
 	ImGui::Begin("Hp");
 	ImGui::DragFloat2("HPpos", &Hppos.x, 1.0f);
 	ImGui::DragFloat2("Barpos", &HpBarpos.x, 1.0f);
 	ImGui::End();
-
+#endif _DEBUG
 	HpBarSprite->SetPosition(HpBarpos);
 	
 }

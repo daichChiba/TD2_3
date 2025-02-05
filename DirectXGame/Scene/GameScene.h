@@ -64,11 +64,11 @@ public: // メンバ関数
 	bool IsFinished() { return isFinished;}
 
 	uint32_t SetPlayerHPResources() { return PlayerHPResorces; }
-	uint32_t SetPlayerHPBarResources() { return PlayerHpBarResorces; }
+	uint32_t SetPlayerHPBarResources() { return PlayerHpHeafResorces; }
 	uint32_t SetEnemyHPResources() { return EnemyHpResorces; }
 	uint32_t SetEnemyHPBarResources() { return EnemyHpBarResorces; }
 
-	int GetEnemyHp();
+	bool IsCleard(){ return isCleard;};
 
 private: // メンバ変数
 	/// <summary>
@@ -87,6 +87,7 @@ private: // メンバ変数
 	static inline const Vector3 normalCameraPos_ = {0.0f, 0.0f, -20.0f};
 
 	bool isFinished = false;
+	bool isCleard = false;
 
 	/// <summary>
 	/// player
@@ -133,7 +134,7 @@ private: // メンバ変数
 	// SkyDomeのモデル
 	Model* skydomeModel_ = nullptr;
 
-	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpBarResorces, EnemyHpBarResorces;
+	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpHeafResorces, EnemyHpBarResorces;
 
 	Vector3 playerPos;
 };

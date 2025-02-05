@@ -1,8 +1,9 @@
 #include "PlayerActor.h"
 
-#include "ActorManager.h"
-#include"EnemyManager.h"
+#include "Scene/GameScene.h"
 
+#include "ActorManager.h"
+#include "EnemyManager.h"
 
 using namespace MathUtility;
 
@@ -17,7 +18,19 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 	gameScene_ = gameScene;
 	actorManager = actor;
 
-	hp = 10;
+	hp = kMaxHp;
+
+	hpResources = gameScene_->SetPlayerHPResources();
+	HpHeafResources = gameScene_->SetPlayerHPBarResources();
+
+	for (int i = 0; i < 5; ++i) {
+		HPSprite[i] = Sprite::Create(hpResources, {0.0f, 0.0f});
+		HPHeafSprite[i] = Sprite::Create(HpHeafResources, {0.0f, 0.0f});
+	}
+
+	HPPos = {450.0f, 615.0f};
+	HPscele = {100.0f, 100.0f};
+	// HPBarSprite = Sprite::Create(hpBarResources, {0.0f, 0.0f});
 }
 
 void PlayerActor::Update() {
@@ -42,12 +55,45 @@ void PlayerActor::Draw(Camera* camera) {
 	}
 }
 
+void PlayerActor::HPposUpdate() {
+#ifdef _DEBUG
+	ImGui::Begin("playerHPPos");
+	ImGui::DragFloat2("PlayerPos", &HPPos.x);
+	ImGui::DragFloat("PlayerSce", &HPscele.x);
+	ImGui::End();
+
+	HPSprite[0]->SetPosition(HPPos);
+#endif // _DEBUG
+}
+
+void PlayerActor::DrawHP() {
+	HPSpacing = (HPscele.x / 100.0f) * 80.0f;
+	HPscele.y = HPscele.x;
+	for (int i = 0; i < hp / 2; ++i) {
+		HPSprite[i]->SetSize(HPscele);
+		HPSprite[i]->SetPosition(HPPos);
+		HPSprite[i]->Draw();
+
+		if (i != kMaxHp / 2 - 1) {
+			HPPos.x += HPSpacing;
+		}
+	}
+
+	if (hp % 2 == 1) {
+		HPHeafSprite[0]->SetSize(HPscele);
+		HPHeafSprite[0]->SetPosition(HPPos);
+		HPHeafSprite[0]->Draw();
+	}
+
+	HPPos = HPSprite[0]->GetPosition();
+}
+
 Vector3 PlayerActor::GetWorldPosition() { return worldTransform_.translation_; }
 
 void PlayerActor::AddVelocity(Vector3 velocity) { velocity_ += velocity; }
 
 void PlayerActor::OnCollision() {
-	hp --;
+	//hp --;
 }
 
 void PlayerActor::PrimaryAttack() {
@@ -70,7 +116,7 @@ void PlayerActor::Move() {
 	}
 
 	worldTransform_.translation_ += velocity_;
-	
+
 	velocity_ = {0.0f};
 
 #pragma region 移動タイプWASD
