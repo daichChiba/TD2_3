@@ -112,6 +112,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
+	
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
@@ -150,6 +151,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+	actorManager->GetEnemy()->DrawHp();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

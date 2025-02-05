@@ -1,8 +1,9 @@
 #pragma once
-#include "kamataEngine.h"
 #include "ActorManager.h"
-#include <map>
+#include "kamataEngine.h"
 #include <functional>
+#include <map>
+#include <Vector>
 
 using namespace KamataEngine;
 
@@ -13,12 +14,12 @@ public:
 	void Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene, ActorManager* actor);
 	virtual void Update();
 	void Draw(Camera* camera);
+	void DrawHp();
+	void Pos();
 
 	Vector3 GetWorldPos() { return Vector3{worldTransform_.matWorld_.m[3][0], worldTransform_.matWorld_.m[3][1], worldTransform_.matWorld_.m[3][2]}; }
 	float GetRadius() { return radius_; }
 	virtual void OnCollision(int damage) { hp -= damage; }
-
-
 
 protected:
 	GameScene* gameScene_;
@@ -33,12 +34,18 @@ protected:
 	bool isDelete_ = false;
 
 	int hp;
+	static inline const int kMaxHP = 100;
+	static inline const int kChangeModeHP = 50;
 
 	uint32_t HPResources;
 	uint32_t HPBarResources;
 
-	Sprite* HpSprite;
+	Sprite* HpSprite[5];
 	Sprite* HpBarSprite;
+
+	Vector2 HpBarpos;
+	Vector2 Hppos;
+
 	enum class EnemyMode {
 		First,
 		Second,
@@ -52,7 +59,7 @@ protected:
 	virtual void DrawImgui();
 
 	std::map<EnemyMode, std::function<void()>> modeUpdate{
-	    {EnemyMode::First, [this]() { modeFirst(); }},
+	    {EnemyMode::First,  [this]() { modeFirst(); } },
 	    {EnemyMode::Second, [this]() { modeSecond(); }},
 	};
 

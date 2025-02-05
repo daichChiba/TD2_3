@@ -27,7 +27,9 @@ void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, Gam
 	//CreateEnemy();
 }
 
-void EnemyManager::Update() { enemy_->Update(); }
+void EnemyManager::Update() { enemy_->Update(); 
+	enemy_->Pos();
+ }
 
 void EnemyManager::Draw(Camera* camera) { model_->Draw(worldTransform_, *camera); }
 
