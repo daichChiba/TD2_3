@@ -90,7 +90,6 @@ private: // メンバ変数
 	/// <summary>
 	/// playerBullet
 	/// </summary>
-	Model* playerBulletModel_ = nullptr;
 
 	// EnemyManager* enemyManger = nullptr;
 
