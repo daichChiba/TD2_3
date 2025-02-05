@@ -21,7 +21,17 @@ enum class Scene {
 	kDead,
 };
 
-void SceneChange();
+void ChangeScene();
+void UpdateScene();
+void DrawScene();
+
+static Scene scene = Scene::kUnknown;
+
+	static TitleScene* titleScene = new TitleScene;
+	static RuleScene* ruleScene = new RuleScene;
+	static GameScene* gameScene = new GameScene;
+	static ClearScene* clearScene = new ClearScene;
+	static BadEndScene* badEndScene = new BadEndScene;
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -75,13 +85,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 	// 現在シーン（型）
-	static Scene scene_ = Scene::kUnknown;
-
-	static TitleScene* titleScene = new TitleScene;
-	static RuleScene* ruleScene = new RuleScene;
-	static GameScene* gameScene = new GameScene;
-	static ClearScene* clearScene = new ClearScene;
-	static BadEndScene* badEndScene = new BadEndScene;
+	
 
 	// メインループ
 	while (true) {
@@ -132,6 +136,110 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	return 0;
 }
 
-void ChangeScene()
-{
+void ChangeScene() {
+
+	switch (scene) {
+	case Scene::kTitle:
+		if (titleScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kRule;
+			// 旧シーンの開放
+			delete titleScene;
+			titleScene = nullptr;
+			// 新シーンの生成と初期化
+			ruleScene = new RuleScene;
+			ruleScene->Initialize();
+		}
+		break;
+	case Scene::kRule:
+		if (ruleScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kGame;
+			// 旧シーンの開放
+			delete ruleScene;
+			ruleScene = nullptr;
+			// 新シーンの生成と初期化
+			gameScene = new GameScene;
+			gameScene->Initialize();
+		}
+		break;
+	case Scene::kGame:
+		if (gameScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kClear;
+			// 旧シーンの開放
+			delete gameScene;
+			gameScene = nullptr;
+			// 新シーンの生成と初期化
+			clearScene = new ClearScene;
+			clearScene->Initialize();
+		}
+		break;
+	case Scene::kClear:
+		if (clearScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kDead;
+			// 旧シーンの開放
+			delete clearScene;
+			clearScene = nullptr;
+			// 新シーンの生成と初期化
+			badEndScene = new BadEndScene;
+			badEndScene->Initialize();
+		}
+		break;
+	case Scene::kDead:
+		if (badEndScene->IsFinished()) {
+			// シーン変更
+			scene = Scene::kTitle;
+			// 旧シーンの開放
+			delete badEndScene;
+			badEndScene = nullptr;
+			// 新シーンの生成と初期化
+			titleScene = new TitleScene;
+			titleScene->Initialize();
+		}
+		break;
+	}
+}
+
+// 現在シーン更新
+void UpdateScene() {
+	switch (scene) {
+	case Scene::kTitle:
+		titleScene->Update();
+		break;
+	case Scene::kRule:
+		ruleScene->Update();
+		break;
+	case Scene::kGame:
+		gameScene->Update();
+		break;
+	case Scene::kClear:
+		clearScene->Update();
+		break;
+	case Scene::kDead:
+		badEndScene->Update();
+		break;
+	}
+}
+
+// 現在シーンの描画
+void DrawScene() {
+	switch (scene) {
+	case Scene::kTitle:
+		titleScene->Draw();
+		break;
+	case Scene::kRule:
+		ruleScene->Draw();
+		break;
+	case Scene::kGame:
+		gameScene->Draw();
+		break;
+	case Scene::kClear:
+		clearScene->Draw();
+		break;
+	case Scene::kDead:
+		badEndScene->Draw();
+		break;
+	}
 }

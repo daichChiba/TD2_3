@@ -27,6 +27,8 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
 
+	isFinished = false;
+
 	// playerのモデル
 	playerModel_ = new Model();
 	// playerModel_->CreateFromOBJ("player", true);
