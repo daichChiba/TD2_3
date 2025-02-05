@@ -140,4 +140,5 @@ private: // メンバ変数
 	uint32_t voiceHundle = 0;
 
 	Vector3 playerPos;
+	int hp;
 };

@@ -13,15 +13,14 @@ enum class CX {
 	dancer,
 };
 
-class PlayerActor
-{
+class PlayerActor {
 public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
 	/// <param name="model">モデル</param>
 	/// <param name="position">モデルの座標</param>
-	void Initialize(Model* model, Model* bulletModel,Model* beamModel,const Vector3 position, GameScene* gameScene, ActorManager* actor);
+	void Initialize(Model* model, Model* bulletModel, Model* beamModel, const Vector3 position, GameScene* gameScene, ActorManager* actor);
 
 	/// <summary>
 	/// アップデート
@@ -48,6 +47,9 @@ public:
 	float GetRadius() { return radius_; }
 	const WorldTransform& GetWorldTransform() const { return worldTransform_; }
 
+	int GetHp() const { return hp; }
+	void SpriteDraw();
+
 protected:
 	virtual void PrimaryAttack();
 	virtual void SecondaryAttack();
@@ -56,6 +58,10 @@ protected:
 	void Move();
 
 	virtual void Attack();
+
+	Vector4 color[3]{};
+
+
 protected:
 	Model* model_ = nullptr;
 	Model* bulletModel_ = nullptr;
@@ -93,5 +99,8 @@ protected:
 	
 
 	float flameTime = 1.0f / 60.0f;
-};
+	// テクスチャハンドル
+	uint32_t textureHandle_[3] = {0};
+	Sprite* sprite[3];
 
+};
