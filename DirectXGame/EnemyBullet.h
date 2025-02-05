@@ -3,7 +3,8 @@
 
 using namespace KamataEngine;
 
-class Player;
+class ActorManager;
+
 enum class Bullet {
 	Grabity,
 	Enemy,
@@ -19,6 +20,7 @@ public:
 	bool IsDelete() const { return isDelete_; }
 
 
+	void SetActor(ActorManager* actor);
 
 	virtual void OnCollision();
 
@@ -37,7 +39,6 @@ public:
 	void SetBullet(Bullet bullet) { bullet_ = bullet; }
 	
 	virtual void SetPlayerPos(Vector3 pos) { pos = pos; }
-	void SetPlayer(Player* player) {player_ = player; }
 	void SetParent(WorldTransform* parent) { worldTransform_.parent_ = parent; }
 
 	void SetDraw(bool isDraw) { isDraw_ = isDraw; }
@@ -62,7 +63,7 @@ protected:
 	static inline const float flameTime = 1.0f / 60.0f;
 	bool isStart_ = false;
 
-	Player* player_;
+	ActorManager* actorManager;
 
 	// 半径
 	float radius_ = 6.0f;

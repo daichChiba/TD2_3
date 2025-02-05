@@ -1,5 +1,6 @@
 #include "GrabityBigBullet.h"
-#include "Player.h"
+#include "ActorManager.h"
+#include "PlayerActor.h"
 using namespace MathUtility;
 
 void GrabityBigBullet::Update() {
@@ -13,7 +14,7 @@ void GrabityBigBullet::Update() {
 
 	DrowImgui();
 
-	PlayerSuction();
+	//PlayerSuction();
 
 	worldTransform_.UpdateMatrix();
 
@@ -24,7 +25,7 @@ void GrabityBigBullet::Update() {
 
 void GrabityBigBullet::PlayerSuction()
 {
-	playerPos = player_->GetWorldPosition();
+	playerPos = actorManager->GetPlayer()->GetWorldPosition();
 
 	Vector3 direction = playerPos - worldTransform_.translation_;
 
@@ -32,7 +33,7 @@ void GrabityBigBullet::PlayerSuction()
 
 	if (distance < Suction)
 	{
-		player_->AddVelocity( -direction * PlayerSuctionSpeed);
+		actorManager->GetPlayer()->AddVelocity( -direction * PlayerSuctionSpeed);
 	}
 }
 

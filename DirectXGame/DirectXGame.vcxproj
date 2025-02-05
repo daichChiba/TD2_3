@@ -106,8 +106,13 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActorManager.cpp" />
     <ClCompile Include="EnemyRevolutionBullet.cpp" />
     <ClCompile Include="EnemyRevolution.cpp" />
+    <ClCompile Include="PlayerActor.cpp" />
+    <ClCompile Include="PlayerFactory.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="PlayerWizard.cpp" />
     <ClCompile Include="MeteoriteBullet.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
     <ClCompile Include="Straight.cpp" />
@@ -125,7 +130,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtilityEX.cpp" />
     <ClCompile Include="MathUtliltyForText.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAccelerationBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
@@ -207,8 +211,13 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActorManager.h" />
     <ClInclude Include="EnemyRevolutionBullet.h" />
     <ClInclude Include="EnemyRevolution.h" />
+    <ClInclude Include="PlayerActor.h" />
+    <ClInclude Include="PlayerFactory.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="PlayerWizard.h" />
     <ClInclude Include="MeteoriteBullet.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
     <ClInclude Include="Straight.h" />
@@ -218,7 +227,6 @@
     <ClInclude Include="GrabityBigBullet.h" />
     <ClInclude Include="MagicPlayer.h" />
     <ClInclude Include="GrabityBulletSecond.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="EnemyGravity.h" />
     <ClInclude Include="EnemyManager.h" />

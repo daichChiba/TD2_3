@@ -99,6 +99,7 @@ void EnemyRevolution::modeSecond() {
 }
 
 Vector3 EnemyRevolution::GetPlayerPos() {
-	player_->GetWorldPosition();
-	return Vector3(player_->GetWorldPosition());
+	//player_->GetWorldPosition();
+	//return Vector3(player_->GetWorldPosition());
+	return Vector3Zero();
 }

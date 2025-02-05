@@ -1,6 +1,12 @@
 #include "GameScene.h"
+#include "../ActorManager.h"
 #include <cassert>
 #include <corecrt_math.h>
+
+#include "../PlayerManager.h"
+#include "../PlayerActor.h"
+#include "../EnemyManager.h"
+#include "../EnemyActor.h"
 
 using namespace KamataEngine;
 
@@ -9,8 +15,6 @@ GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 	delete playerModel_;
-
-	delete player_;
 }
 
 void GameScene::Initialize() {
@@ -32,27 +36,47 @@ void GameScene::Initialize() {
 	// player_ = new Player()
 
 	playerModel_ = Model::CreateFromOBJ("Player", true);
-
-	zoldorkModel_ = new Model();
-	zoldorkModel_ = Model::CreateFromOBJ("Zoldorak", true);
-
-	character_ = Character::wizard;
+	//character_ = CX::wizard;
 	// playerの初期化
-	player_ = new Player();
-	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, zoldorkModel_);
-	player_->SetGameScene(this);
+	/*player_ = new Player();
+	player_->Initialize(playerModel_, Vector3{0.0f}, character_, playerModel_, enemyModel_);
+	player_->SetGameScene(this);*/
 
-	enemyManger = new EnemyManager();
-	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);
+	actorManager = new ActorManager;
+	actorManager->Initialize(playerModel_, playerModel_, enemyModel_, enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
+
+	//player_ = std::make_unique< PlayerWizard>();
+	//player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
+
+	/*playerManager = new PlayerManager;
+	playerManager->Initialize(playerModel_, playerModel_, enemyModel_, Vector3(0.0f, 0.0f, 0.0f), this);*/
+
+	/*enemyManger = new EnemyManager();
+	enemyManger->Initialize(enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, player_, this);*/
 }
 
 void GameScene::Update() {
 	CheckAllCollisions();
-	player_->Update();
+	//player_->Update();
+	actorManager->Update();
 
-#pragma region 敵のアップデート
-	enemyUpdate();
-#pragma endregion
+	for(std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
+	{ 
+		playerBullet->Update(); 
+	}
+	
+	for(std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
+	{ 
+		enemyBullet->Update(); 
+	}
+
+	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
+
+	ImGui::Begin("gamescene");
+	ImGui::DragFloat3("pPos", &playerPos.x);
+	ImGui::End();
+
 }
 
 void GameScene::Draw() {
@@ -81,11 +105,15 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
-	// 敵
-	enemyDrow();
+	actorManager->Draw(camera_);
 
-	// player
-	player_->Draw(camera_);
+	
+
+	for(std::shared_ptr<EnemyBullet> playerBullet : playerBullets_)
+	{ playerBullet->Draw(camera_); }
+	
+	for(std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_)
+	{ enemyBullet->Draw(camera_); }
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -105,53 +133,22 @@ void GameScene::Draw() {
 #pragma endregion
 }
 
-void GameScene::enemyUpdate() {
-
-	enemyManger->Update();
-	testBullet = 0;
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
-		enemyBullet->Update();
-		++testBullet;
-	}
-
-	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
-		playerBullet->Update();
-	}
-
-	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
-	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
-}
-
-void GameScene::enemyDrow() {
-	enemyManger->Draw(camera_);
-
-	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
-		enemyBullet->Draw(camera_);
-	}
-
-	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
-		//playerBullet->Draw(camera_);
-		if (playerBullet->GetBullet()==Bullet::Zoldorak) {
-			playerBullet->Draw(camera_);
-		}
-	}
-}
-
 void GameScene::CheckAllCollisions() {
-	// 判定対象AとBの座標
-	Vector3 posA, posB;
+	 //判定対象AとBの座標
+	 Vector3 posA, posB;
 
 #pragma region 敵の弾とプレイヤーの当たり判定
 	bool is = false;
-	posA = player_->GetWorldPosition();
+	posA = actorManager->GetPlayer()->GetWorldPosition();
+	playerPos = actorManager->GetPlayer()->GetWorldPosition();
 	for (std::shared_ptr<EnemyBullet> enemyBullet : enemiesBullet_) {
 		posB = enemyBullet->GetWorldPosition();
 		Vector3 A2B = MathUtility::Sphere(posA, posB);
 		float len = MathUtility::Length(A2B);
-		float radius = enemyBullet->GetRadius() + player_->GetRadius();
+		float radius = enemyBullet->GetRadius() + actorManager->GetPlayer()->GetRadius();
 		if (len <= radius) {
 			// 自キャラの衝突時コールバックを呼び出す
-			player_->OnCollision();
+			actorManager->GetPlayer()->OnCollision();
 			// 自弾の衝突時コールバックを呼び出す
 			enemyBullet->OnCollision();
 		}
@@ -160,7 +157,7 @@ void GameScene::CheckAllCollisions() {
 #pragma endregion
 
 #pragma region 自機の弾と敵の当たり判定
-	posA = enemyManger->GetEnemyPos();
+	posA = actorManager->GetEnemy()->GetWorldPos();
 	for (std::shared_ptr<EnemyBullet> playerBullet : playerBullets_) {
 		if (playerBullet->GetBullet() == Bullet::Zoldorak) {
 			if (!is) {
@@ -168,12 +165,12 @@ void GameScene::CheckAllCollisions() {
 					posB = playerBullet->GetWorldPosition();
 					Vector3 A2B = MathUtility::Sphere(posA, posB);
 					float len = MathUtility::Length(A2B);
-					float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+					float radius = playerBullet->GetRadius() + actorManager->GetEnemy()->GetRadius();
 					if (len <= radius) {
 						is = true;
 						// playerBullet->OnCollision();
 
-						enemyManger->OnCollision(1);
+						actorManager->GetEnemy()->OnCollision(1);
 					}
 				}
 			}
@@ -181,11 +178,11 @@ void GameScene::CheckAllCollisions() {
 			posB = playerBullet->GetWorldPosition();
 			Vector3 A2B = MathUtility::Sphere(posA, posB);
 			float len = MathUtility::Length(A2B);
-			float radius = playerBullet->GetRadius() + enemyManger->GetRadius();
+			float radius = playerBullet->GetRadius() + actorManager->GetEnemy()->GetRadius();
 			if (len <= radius) {
 				playerBullet->OnCollision();
 
-				enemyManger->OnCollision(1);
+				actorManager->GetEnemy()->OnCollision(1);
 			}
 		}
 	}
