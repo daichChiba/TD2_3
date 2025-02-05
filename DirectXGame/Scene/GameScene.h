@@ -95,7 +95,6 @@ private: // メンバ変数
 	/// <summary>
 	/// playerBullet
 	/// </summary>
-	Model* playerBulletModel_ = nullptr;
 
 	// EnemyManager* enemyManger = nullptr;
 
@@ -117,6 +116,14 @@ private: // メンバ変数
 	std::list<std::shared_ptr<EnemyBullet>> playerBullets_;
 	
 	Model* zoldorkModel_ = nullptr;
+
+	Model* enemyBulletModel_ = nullptr;
+	
+	//Character character_;
+
+	Model* playerBulletModel_ = nullptr;
+
+	// Character character_;
 
 	Model* playerBody_ = nullptr;
 	Skydome* skydome_ = nullptr;
