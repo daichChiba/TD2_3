@@ -6,6 +6,7 @@
 #include "EnemyBullet.h"
 #include "EnemyRevolutionBullet.h"
 #include "GrabityBulletSecond.h"
+#include "MeteoriteBullet.h"
 #include "RevolutionBulletSecond.h"
 
 using namespace MathUtility;
@@ -82,10 +83,11 @@ void EnemyRevolution::modeFirst() {
 }
 
 void EnemyRevolution::modeSecond() {
-	auto bulletStartPos = Vector3(0.0f,0.0f,0.0f);
+	auto bulletStartPos = Vector3(0.0f, 0.0f, 0.0f);
 	auto bulletDistance = 5.0f;
 
-	 if (!isSecondStart_) {
+	if (!isSecondStart_) {
+
 		for (auto i = 0; i < 4; i++) {
 			bulletStartPos.y += bulletDistance;
 			std::shared_ptr<EnemyBullet> RevolutionSecondBullet_(new RevolutionBulletSecond);
@@ -94,6 +96,10 @@ void EnemyRevolution::modeSecond() {
 			RevolutionSecondBullet_->SetSpeed(rotateSpeed_[i]);
 			gameScene_->AddEnemyBullet(RevolutionSecondBullet_);
 		}
+		std::shared_ptr<EnemyBullet> MeteoriteBullet_(new MeteoriteBullet);
+		MeteoriteBullet_->Initialize(bulletModel_, worldTransform_.translation_);
+		MeteoriteBullet_->SetTagetPos(Vector3(-10.0f, -5.0f, 0.0f));
+		gameScene_->AddEnemyBullet(MeteoriteBullet_);
 		isSecondStart_ = true;
 	}
 }
