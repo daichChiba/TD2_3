@@ -106,10 +106,8 @@ void GameScene::Update() {
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 #ifdef _DEBUG
-	hp = GetPlayerHp();
 	ImGui::Begin("gamescene");
 	ImGui::DragFloat3("pPos", &playerPos.x);
-	ImGui::DragInt("hp", &hp);
 	ImGui::End();
 #endif // _DEBUG
 
@@ -162,13 +160,14 @@ void GameScene::Draw() {
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
 
-	actorManager->GetPlayer()->SpriteDraw();
+
 
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
 	actorManager->GetPlayer()->DrawHP();
 	actorManager->GetEnemy()->DrawHp();
+	actorManager->GetPlayer()->SpriteDraw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
