@@ -72,11 +72,15 @@ void PlayerWizard::SpechalAttack() {
 	Vector3 direction = actorManager->GetEnemy()->GetWorldPos() - GetWorldPosition();
 	direction = Normalize(direction);
 	for (int i = 0; i < 60; i++) {
+
 		std::shared_ptr<EnemyBullet> zoldrak(new Zoldorak);
 		zoldrak->Initialize(zoldrakModel_, direction * (radius_ * i + radius_ /*/ 2*/));
 		zoldrak->SetTagetPos(direction);
 		zoldrak->SetBullet(Bullet::Zoldorak);
 		zoldrak->SetActor(actorManager);
+		if (i != 0) {
+			zoldrak->SetDraw(false);
+		}
 		gameScene_->AddPlayerBullet(zoldrak);
 	}
 	tertiaryAttackCoolTime = kTertiaryAttackCoolTime;

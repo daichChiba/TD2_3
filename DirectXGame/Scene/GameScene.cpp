@@ -49,6 +49,8 @@ void GameScene::Initialize() {
 
 	playerBulletModel_ = Model::CreateFromOBJ("PlayerBullet");
 
+	zoldorkModel_ = Model::CreateFromOBJ("Zoldorak", true);
+
 	//character_ = CX::wizard;
 	// playerの初期化
 	/*player_ = new Player();
@@ -56,7 +58,7 @@ void GameScene::Initialize() {
 	player_->SetGameScene(this);*/
 
 	actorManager = new ActorManager;
-	actorManager->Initialize(playerBody_, playerBulletModel_, enemyModel_, enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
+	actorManager->Initialize(playerBody_, playerBulletModel_, zoldorkModel_, enemyModel_, enemyModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);
 	
 	//player_ = std::make_unique< PlayerWizard>();
 	//player_->Initialize(playerModel_, playerModel_, enemyModel_, Vector3( 0.0f, 0.0f, 0.0f), this);
