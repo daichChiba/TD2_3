@@ -34,6 +34,11 @@ protected:
 
 	int hp;
 
+	uint32_t HPResources;
+	uint32_t HPBarResources;
+
+	Sprite* HpSprite;
+	Sprite* HpBarSprite;
 	enum class EnemyMode {
 		First,
 		Second,

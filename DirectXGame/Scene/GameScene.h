@@ -62,6 +62,11 @@ public: // メンバ関数
 	void AddPlayerBullet(std::shared_ptr<EnemyBullet> playerBullet) { playerBullets_.push_back(playerBullet); }
 
 	bool IsFinished() { return isFinished;}
+
+	uint32_t SetPlayerHPResources() { return PlayerHPResorces; }
+	uint32_t SetPlayerHPBarResources() { return PlayerHpBarResorces; }
+	uint32_t SetEnemyHPResources() { return EnemyHpResorces; }
+	uint32_t SetEnemyHPBarResources() { return EnemyHpBarResorces; }
 private: // メンバ変数
 	/// <summary>
 	/// すべての当たり判定
@@ -111,20 +116,14 @@ private: // メンバ変数
 	/// </summary>
 	std::list<std::shared_ptr<EnemyBullet>> playerBullets_;
 	
-	Model* playerBulletModel_ = nullptr;
-
 	Model* zoldorkModel_ = nullptr;
-	
-	//Character character_;
-
-	// Model* playerBulletModel_ = nullptr;
-
-	// Character character_;
 
 	Model* playerBody_ = nullptr;
 	Skydome* skydome_ = nullptr;
 	// SkyDomeのモデル
 	Model* skydomeModel_ = nullptr;
+
+	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpBarResorces, EnemyHpBarResorces;
 
 	Vector3 playerPos;
 };
