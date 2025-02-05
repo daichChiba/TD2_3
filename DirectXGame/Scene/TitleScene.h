@@ -1,7 +1,7 @@
 #pragma once
 #include <KamataEngine.h>
 using namespace KamataEngine;
-#include"../Fade.h"
+#include "../Fade.h"
 #include <vector>
 
 class TitleScene {
@@ -53,6 +53,9 @@ private:
 
 	float timer_ = 0.0f;
 	static inline const float kMotionTime = 1.0f;
+
+	XINPUT_STATE xinput_;
+	XINPUT_STATE preXinput_;
 
 	// 画面フェード
 	Fade* fade_ = nullptr;

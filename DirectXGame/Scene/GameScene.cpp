@@ -14,7 +14,7 @@ using namespace KamataEngine;
 GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
-	delete playerModel_;
+	delete playerBulletModel_;
 	delete playerBody_;
 	delete skydomeModel_;
 }
@@ -32,14 +32,14 @@ void GameScene::Initialize() {
 	isFinished = false;
 
 	// playerのモデル
-	playerModel_ = new Model();
+	playerBulletModel_ = new Model();
 	// playerModel_->CreateFromOBJ("player", true);
 
 	enemyModel_ = Model::CreateFromOBJ("enemy", true);
 
 	// player_ = new Player()
 
-	playerModel_ = Model::CreateFromOBJ("Player", true);
+	playerBulletModel_ = Model::CreateFromOBJ("playerBullet", true);
 
 	playerBody_ = Model::CreateFromOBJ("playerBody", true);
 

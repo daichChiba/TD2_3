@@ -1,6 +1,6 @@
 #pragma once
-#include <KamataEngine.h>
 #include "../Fade.h"
+#include <KamataEngine.h>
 
 using namespace KamataEngine;
 #include <vector>
@@ -59,6 +59,9 @@ private:
 	Fade* fade_ = nullptr;
 	// 現在のフェーズ
 	Phase phase_ = Phase::kFadeIn;
+
+	XINPUT_STATE xinput_;
+	XINPUT_STATE preXinput_;
 
 	// サウドデータハンドル
 	uint32_t soundDataHandle_ = 0;
