@@ -113,6 +113,8 @@ private: // メンバ変数
 	Model* playerBulletModel_ = nullptr;
 
 	Model* zoldorkModel_ = nullptr;
+
+	Model* enemyBulletModel_ = nullptr;
 	
 	//Character character_;
 
