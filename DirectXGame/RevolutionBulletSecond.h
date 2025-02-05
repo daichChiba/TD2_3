@@ -15,7 +15,7 @@ private:
 
 	float delay;
 
-	float speed;
+	//float speed;
 
 
 	static inline const float kSpeed = 0.01f;

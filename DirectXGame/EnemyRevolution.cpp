@@ -83,22 +83,30 @@ void EnemyRevolution::modeFirst() {
 }
 
 void EnemyRevolution::modeSecond() {
-	auto bulletStartPos = Vector3(0.0f, 0.0f, 0.0f);
+	auto bulletUpStartPos = Vector3(0.0f, 0.0f, 0.0f);
+	auto bulletDownStartPos = Vector3(0.0f, 0.0f, 0.0f);
 	auto bulletDistance = 5.0f;
 
 	if (!isSecondStart_) {
 
 		for (auto i = 0; i < 4; i++) {
-			bulletStartPos.y += bulletDistance;
-			std::shared_ptr<EnemyBullet> RevolutionSecondBullet_(new RevolutionBulletSecond);
-			RevolutionSecondBullet_->Initialize(bulletModel_, bulletStartPos);
-			RevolutionSecondBullet_->SetPlayerPos(bulletStartPos);
-			RevolutionSecondBullet_->SetSpeed(rotateSpeed_[i]);
-			gameScene_->AddEnemyBullet(RevolutionSecondBullet_);
+			bulletUpStartPos.y += bulletDistance;
+			std::shared_ptr<EnemyBullet> RevolutionSecondUpBullet_(new RevolutionBulletSecond);
+			RevolutionSecondUpBullet_->Initialize(bulletModel_, bulletUpStartPos);
+			RevolutionSecondUpBullet_->SetPlayerPos(bulletUpStartPos);
+			RevolutionSecondUpBullet_->SetSpeed(rotateSpeed_[i]);
+			gameScene_->AddEnemyBullet(RevolutionSecondUpBullet_);
+			bulletDownStartPos.y -= bulletDistance;
+			std::shared_ptr<EnemyBullet> RevolutionSecondDownBullet_(new RevolutionBulletSecond);
+			RevolutionSecondDownBullet_->Initialize(bulletModel_, bulletDownStartPos);
+			RevolutionSecondDownBullet_->SetPlayerPos(bulletDownStartPos);
+			RevolutionSecondDownBullet_->SetSpeed(rotateSpeed_[i]);
+			gameScene_->AddEnemyBullet(RevolutionSecondDownBullet_);
+
 		}
 		std::shared_ptr<EnemyBullet> MeteoriteBullet_(new MeteoriteBullet);
 		MeteoriteBullet_->Initialize(bulletModel_, worldTransform_.translation_);
-		MeteoriteBullet_->SetTagetPos(Vector3(-10.0f, -5.0f, 0.0f));
+		MeteoriteBullet_->SetPlayerPos(Vector3(-5.0, -5.0f, 0.0f));
 		gameScene_->AddEnemyBullet(MeteoriteBullet_);
 		isSecondStart_ = true;
 	}
