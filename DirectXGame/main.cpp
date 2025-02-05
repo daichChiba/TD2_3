@@ -83,6 +83,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 	// 現在シーン（型）
+	gameScene->Initialize();
 
 	// メインループ
 	while (true) {
