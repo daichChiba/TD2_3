@@ -13,7 +13,7 @@ void ActorManager::Initialize(Model* playerModel, Model* playerBulleModel, Model
 
 	enemyManager = new EnemyManager;
 	enemyManager->Initialize(enemyModel, enemyBulletModel, enemyPos, gameScene, this);
-	enemyManager->CreateEnemy();
+	enemyManager->CreateEnemyRevolution();
 }
 
 void ActorManager::Update()

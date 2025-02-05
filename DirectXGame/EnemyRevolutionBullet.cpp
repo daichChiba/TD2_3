@@ -2,7 +2,7 @@
 
 using namespace MathUtility;
 
-void EnemyRevolutionBullet::GetPlayerPos(Vector3 pos)
+void EnemyRevolutionBullet::SetPlayerPos(Vector3 pos)
 {
 	targetPos = pos;
 }

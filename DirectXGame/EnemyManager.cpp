@@ -31,8 +31,15 @@ void EnemyManager::Update() { enemy_->Update(); }
 
 void EnemyManager::Draw(Camera* camera) { model_->Draw(worldTransform_, *camera); }
 
-void EnemyManager::CreateEnemy() {
-	enemy_ = enemyFactory_->AddEnemy();
+void EnemyManager::CreateEnemyGrabity() {
+	enemy_ = enemyFactory_->AddEnemyGrabity();
+
+	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, gameScene_, actorManager);
+}
+
+void EnemyManager::CreateEnemyRevolution()
+{
+	enemy_ = enemyFactory_->AddEnemyRevolution();
 
 	enemy_->Initialize(model_, bulletModel_, Vector3{0.0f, 0.0f, 0.0f}, gameScene_, actorManager);
 }

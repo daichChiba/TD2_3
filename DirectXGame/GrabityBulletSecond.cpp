@@ -1,7 +1,7 @@
 #include "GrabityBulletSecond.h"
 using namespace MathUtility;
 
-void GrabityBulletSecond::GetPlayerPos(Vector3 pos) { targetPos = pos; }
+void GrabityBulletSecond::SetPlayerPos(Vector3 pos) { targetPos = pos; }
 
 void GrabityBulletSecond::Update() {
 

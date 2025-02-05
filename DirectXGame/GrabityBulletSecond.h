@@ -7,7 +7,7 @@ using namespace KamataEngine;
 class GrabityBulletSecond : public EnemyBullet
 {
 public:
-	void GetPlayerPos(Vector3 pos) override;
+	void SetPlayerPos(Vector3 pos) override;
 	void Update() override;
 
 private:

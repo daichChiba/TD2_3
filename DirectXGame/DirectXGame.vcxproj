@@ -114,6 +114,7 @@
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerWizard.cpp" />
+    <ClCompile Include="MeteoriteBullet.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
     <ClCompile Include="Scene\BadEndScene.cpp" />
     <ClCompile Include="Scene\ClearScene.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="PlayerFactory.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerWizard.h" />
+    <ClInclude Include="MeteoriteBullet.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
     <ClInclude Include="Scene\BadEndScene.h" />
     <ClInclude Include="Scene\ClearScene.h" />
