@@ -54,4 +54,8 @@ private:
 	Fade* fade_ = nullptr;
 	// 現在のフェーズ
 	Phase phase_ = Phase::kFadeIn;
+
+		// テクスチャハンドル
+	uint32_t textureHandle_ = 0;
+	Sprite* sprite;
 };

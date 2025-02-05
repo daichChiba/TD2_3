@@ -17,6 +17,8 @@ void ClearScene::Initialize() {
 	// ビュープロジェクション
 	camera_.Initialize();
 
+	textureHandle_ = TextureManager::Load("clearSkydome/clearSkydome.png");
+	sprite = Sprite::Create(textureHandle_, {0, 0});
 	// フェード
 	phase_ = Phase::kFadeIn;
 	fade_ = new Fade();
@@ -61,14 +63,12 @@ void ClearScene::Draw() {
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
 	// 3Dオブジェクト描画前処理
-	Model::PreDraw(commandList);
+	Sprite::PreDraw(commandList);
 
-	// ここに3Dオブジェクトの描画処理を追加できる
-	modelFont_->Draw(worldTransformFont_, camera_);
-	// modelPlayer_->Draw(worldTransform_, camera_);
+	sprite->Draw();
 
 	// 3Dオブジェクト描画処理後
-	Model::PostDraw();
+	Sprite::PostDraw();
 
 	// フェード
 	fade_->Draw(commandList);

@@ -18,10 +18,14 @@ void PlayerWizard::Update() {
 
 	Attack();
 
+ #ifdef _DEBUG
 	ImGui::Begin("player");
 	ImGui::DragFloat("coolTime", &globalCoolTime, 0.01f);
 	ImGui::DragFloat("SPCoolTime", &tertiaryAttackCoolTime, 0.01f);
 	ImGui::End();
+
+#endif // _DEBUG
+
 
 	worldTransform_.UpdateMatrix();
 }

@@ -163,27 +163,30 @@ void ChangeScene() {
 		}
 		break;
 	case Scene::kGame:
-		if (gameScene->IsFinished()) {
-			// シーン変更
-			scene = Scene::kClear;
-			// 旧シーンの開放
-			delete gameScene;
-			gameScene = nullptr;
-			// 新シーンの生成と初期化
-			clearScene = new ClearScene;
-			clearScene->Initialize();
+		if (gameScene->GetEnemyHp() <= 0) {
+			if (gameScene->IsFinished()) {
+				// シーン変更
+				scene = Scene::kClear;
+				// 旧シーンの開放
+				delete gameScene;
+				gameScene = nullptr;
+				// 新シーンの生成と初期化
+				clearScene = new ClearScene;
+				clearScene->Initialize();
+			}
+		} else {
 		}
 		break;
 	case Scene::kClear:
 		if (clearScene->IsFinished()) {
 			// シーン変更
-			scene = Scene::kDead;
+			scene = Scene::kTitle;
 			// 旧シーンの開放
 			delete clearScene;
 			clearScene = nullptr;
 			// 新シーンの生成と初期化
-			badEndScene = new BadEndScene;
-			badEndScene->Initialize();
+			titleScene = new TitleScene;
+			titleScene->Initialize();
 		}
 		break;
 	case Scene::kDead:
