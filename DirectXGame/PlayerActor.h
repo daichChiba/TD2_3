@@ -41,6 +41,8 @@ public:
 	void OnCollision();
 
 	float GetRadius() { return radius_; }
+	const WorldTransform& GetWorldTransform() const { return worldTransform_; }
+
 protected:
 	virtual void PrimaryAttack();
 	virtual void SecondaryAttack();

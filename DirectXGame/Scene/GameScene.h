@@ -3,22 +3,22 @@
 #include <KamataEngine.h>
 using namespace KamataEngine;
 
-//#include "../Enemy.h"
-//#include "../EnemyFactoy.h"
-//#include "../EnemyManager.h"
+// #include "../Enemy.h"
+// #include "../EnemyFactoy.h"
+// #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
 //////#include "../Player.h"
 ////#include "../PlayerActor.h"
 ////#include "../PlayerWizard.h"
-//#include "../PlayerManager.h"
-//#include "../PlayerActor.h"
-//#include "../PlayerWizard.h"
+// #include "../PlayerManager.h"
+// #include "../PlayerActor.h"
+// #include "../PlayerWizard.h"
 
-//enum class Character {
+// enum class Character {
 //	wizard,
 //	fencer,
 //	dancer,
-//};
+// };
 
 class ActorManager;
 
@@ -52,17 +52,15 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
-	
+
 	/// <summary>
 	/// 敵の弾の読み取り(enemy内で使う)
 	/// </summary>
 	void AddEnemyBullet(std::shared_ptr<EnemyBullet> enemyBullet) { enemiesBullet_.push_back(enemyBullet); }
-	
+
 	void AddPlayerBullet(std::shared_ptr<EnemyBullet> playerBullet) { playerBullets_.push_back(playerBullet); }
 
-
 private: // メンバ変数
-
 	/// <summary>
 	/// すべての当たり判定
 	/// </summary>
@@ -76,26 +74,26 @@ private: // メンバ変数
 	/// カメラ
 	/// </summary>
 	Camera* camera_ = nullptr;
-	static inline const Vector3 normalCameraPos_ = { 0.0f, 0.0f, -20.0f};
+	static inline const Vector3 normalCameraPos_ = {0.0f, 0.0f, -20.0f};
 
 	/// <summary>
 	/// player
 	/// </summary>
-	//Player* player_ = nullptr;
-	//std::unique_ptr<PlayerActor> player_;
-	//PlayerManager* playerManager;
+	// Player* player_ = nullptr;
+	// std::unique_ptr<PlayerActor> player_;
+	// PlayerManager* playerManager;
 	ActorManager* actorManager;
 	/// <summary>
 	/// プレイヤーモデル
 	/// </summary>
 	Model* playerModel_ = nullptr;
-	
-	//EnemyManager* enemyManger = nullptr;
+
+	// EnemyManager* enemyManger = nullptr;
 
 	int testBullet = 0;
 
 	/// <summary>
-	///敵の弾(GameSceneではUpdateとDrowのみ行う)
+	/// 敵の弾(GameSceneではUpdateとDrowのみ行う)
 	/// </summary>
 	std::list<std::shared_ptr<EnemyBullet>> enemiesBullet_;
 
@@ -108,10 +106,14 @@ private: // メンバ変数
 	/// 自機の弾(GameSceneではUpdateとDrowのみ行う)
 	/// </summary>
 	std::list<std::shared_ptr<EnemyBullet>> playerBullets_;
-	
-	//Model* playerBulletModel_ = nullptr;
-	
-	//Character character_;
+
+	// Model* playerBulletModel_ = nullptr;
+
+	// Character character_;
+
+	Model* playerBody_ = nullptr;
+
+
 
 	Vector3 playerPos;
 };

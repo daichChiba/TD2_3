@@ -1,6 +1,8 @@
 #include "PlayerActor.h"
 
 #include "ActorManager.h"
+#include"EnemyManager.h"
+
 
 using namespace MathUtility;
 
@@ -61,6 +63,12 @@ void PlayerActor::SpechalAttack() {
 }
 
 void PlayerActor::Move() {
+	if (worldTransform_.translation_.x >= actorManager->GetEnemy()->GetWorldPos().x) {
+		worldTransform_.rotation_.y = 5.0f;
+	} else {
+		worldTransform_.rotation_.y = -5.0f;
+	}
+
 	worldTransform_.translation_ += velocity_;
 	
 	velocity_ = {0.0f};

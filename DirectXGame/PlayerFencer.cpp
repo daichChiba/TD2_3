@@ -3,6 +3,9 @@
 #include "Scene/GameScene.h"
 
 #include "EnemyBullet.h"
+#include "PlayerAccelerationBullet.h"
+#include "ActorManager.h"
+#include "EnemyActor.h"
 
 void PlayerFencer::Update()
 {

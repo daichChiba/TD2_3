@@ -17,6 +17,13 @@ void PlayerManager::Initialize(Model* playerModel, Model* bulletModel, Model* be
 	gameScene_ = gameScene;
 	actorManager = actor;
 
+	playerHat_ = Model::CreateFromOBJ("playerHat", true);
+	playerHead_ = Model::CreateFromOBJ("playerHead", true);
+	playerLeftArm_ = Model::CreateFromOBJ("playerLeftArm", true);
+	playerLeftLeg_ = Model::CreateFromOBJ("playerLeftLeg", true);
+	playerRightArm_ = Model::CreateFromOBJ("playerRightArm", true);
+	playerRightLeg_ = Model::CreateFromOBJ("playerRightLeg", true);
+
 	CreateWizard();
 }
 
@@ -28,6 +35,16 @@ void PlayerManager::Update()
 void PlayerManager::Draw(Camera* camera)
 {
 	player_->Draw(camera);
+	DrawBody(camera);
+}
+
+void PlayerManager::DrawBody(Camera* camera) {
+	playerHat_->Draw(player_->GetWorldTransform(), *camera);
+	playerHead_->Draw(player_->GetWorldTransform(), *camera);
+	playerLeftArm_->Draw(player_->GetWorldTransform(), *camera);
+	playerLeftLeg_->Draw(player_->GetWorldTransform(), *camera);
+	playerRightArm_->Draw(player_->GetWorldTransform(), *camera);
+	playerRightLeg_->Draw(player_->GetWorldTransform(), *camera);
 }
 
 void PlayerManager::CreateWizard()
