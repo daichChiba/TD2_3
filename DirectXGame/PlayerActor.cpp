@@ -35,8 +35,8 @@ void PlayerActor::Initialize(Model* model, Model* bulletModel, Model* beamModel,
 		SkillTextureHandle_[0] = TextureManager::Load("Skill/PrimarySkill.png");
 		SkillTextureHandle_[1] = TextureManager::Load("Skill/SecondarySkill.png");
 		SkillTextureHandle_[2] = TextureManager::Load("Skill/SpechalSkill.png");
-		Vector2 pos = {250.0f + 64.0f * i, 615.0f};
-		skillSprite[i] = Sprite::Create(SkillTextureHandle_[i], pos);
+		Vector2 skillPos = {250.0f + 64.0f * i, 615.0f};
+		skillSprite[i] = Sprite::Create(SkillTextureHandle_[i], skillPos);
 	}
 	hp = 10;
 }
@@ -99,8 +99,10 @@ void PlayerActor::DrawHP() {
 }
 
 void PlayerActor::SpriteDraw() {
+	Vector2 skillPos;
 	for (int i = 0; i < 3; i++) {
-
+		skillPos = {250.0f + 64.0f * i, 615.0f};
+		skillSprite[i]->SetPosition(skillPos);
 		skillSprite[i]->SetColor(color[i]);
 		skillSprite[i]->Draw();
 	}
