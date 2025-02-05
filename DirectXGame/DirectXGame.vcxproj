@@ -111,7 +111,6 @@
     <ClCompile Include="EnemyRevolution.cpp" />
     <ClCompile Include="PlayerActor.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
-    <ClCompile Include="PlayerFencer.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerWizard.cpp" />
     <ClCompile Include="RevolutionBulletSecond.cpp" />
@@ -217,7 +216,6 @@
     <ClInclude Include="EnemyRevolution.h" />
     <ClInclude Include="PlayerActor.h" />
     <ClInclude Include="PlayerFactory.h" />
-    <ClInclude Include="PlayerFencer.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerWizard.h" />
     <ClInclude Include="RevolutionBulletSecond.h" />
