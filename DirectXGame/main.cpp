@@ -8,6 +8,9 @@ using namespace KamataEngine;
 #include "Scene/ClearScene.h"
 #include "Scene/BadEndScene.h"
 
+#include <map>
+#include <functional>
+
 // シーン（型）
 enum class Scene {
 	kUnknown = 0,
@@ -18,10 +21,7 @@ enum class Scene {
 	kDead,
 };
 
-void ChangeScene();
-void UpdateScene();
-void DrawScene();
-
+void SceneChange();
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -75,18 +75,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 	// 現在シーン（型）
-	static Scene scene = Scene::kUnknown;
+	static Scene scene_ = Scene::kUnknown;
 
 	static TitleScene* titleScene = new TitleScene;
-	titleScene->Initialize();
 	static RuleScene* ruleScene = new RuleScene;
-	ruleScene->Initialize();
 	static GameScene* gameScene = new GameScene;
-	gameScene->Initialize();
 	static ClearScene* clearScene = new ClearScene;
-	clearScene->Initialize();
 	static BadEndScene* badEndScene = new BadEndScene;
-	badEndScene->Initialize();
 
 	// メインループ
 	while (true) {
