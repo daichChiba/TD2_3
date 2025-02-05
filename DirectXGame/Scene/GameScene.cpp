@@ -15,6 +15,8 @@ GameScene::GameScene() {}
 // デストラクタ
 GameScene::~GameScene() {
 	delete playerModel_;
+	delete playerBody_;
+	delete skydomeModel_;
 }
 
 void GameScene::Initialize() {
@@ -39,6 +41,9 @@ void GameScene::Initialize() {
 
 	playerBody_ = Model::CreateFromOBJ("playerBody", true);
 
+	skydome_ = new Skydome();
+	skydomeModel_ = Model::CreateFromOBJ("Skydome", true);
+	skydome_->Initialize(skydomeModel_, camera_);
 
 
 	//character_ = CX::wizard;
@@ -109,6 +114,8 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+
+	skydome_->Draw();
 
 	actorManager->Draw(camera_);
 

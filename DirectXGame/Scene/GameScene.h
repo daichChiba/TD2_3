@@ -7,6 +7,7 @@ using namespace KamataEngine;
 // #include "../EnemyFactoy.h"
 // #include "../EnemyManager.h"
 #include "../EnemyBullet.h"
+#include "../Skydome.h"
 //////#include "../Player.h"
 ////#include "../PlayerActor.h"
 ////#include "../PlayerWizard.h"
@@ -112,8 +113,9 @@ private: // メンバ変数
 	// Character character_;
 
 	Model* playerBody_ = nullptr;
-
-
+	Skydome* skydome_ = nullptr;
+	// SkyDomeのモデル
+	Model* skydomeModel_ = nullptr;
 
 	Vector3 playerPos;
 };
