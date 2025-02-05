@@ -17,6 +17,7 @@ GameScene::~GameScene() {
 	delete playerBulletModel_;
 	delete playerBody_;
 	delete skydomeModel_;
+	audio_->StopWave(voiceHundle);
 }
 
 void GameScene::Initialize() {
@@ -61,6 +62,10 @@ void GameScene::Initialize() {
 	EnemyHpResorces = TextureManager::Load("EnemyHP.png");
 	PlayerHpHeafResorces = TextureManager::Load("PlayerHPHeaf.png");
 	EnemyHpBarResorces = TextureManager::Load("EnemyHPBar.png");
+
+	soundHundle = audio_->LoadWave("uchuusensou.mp3");
+	//soundHundle = bgm_->LoadWave("fanfare.wav");
+	voiceHundle = audio_->PlayWave(soundHundle, true);
 
 	actorManager = new ActorManager;
 	actorManager->Initialize(playerBody_, playerBulletModel_, zoldorkModel_, enemyModel_, enemyBulletModel_, Vector3{0.0f, 0.0f, 0.0f}, Vector3{0.0f, 0.0f, 0.0f}, this);

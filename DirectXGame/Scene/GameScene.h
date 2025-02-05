@@ -136,5 +136,8 @@ private: // メンバ変数
 
 	uint32_t PlayerHPResorces, EnemyHpResorces, PlayerHpHeafResorces, EnemyHpBarResorces;
 
+	uint32_t soundHundle = 0;
+	uint32_t voiceHundle = 0;
+
 	Vector3 playerPos;
 };
