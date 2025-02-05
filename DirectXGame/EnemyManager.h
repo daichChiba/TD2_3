@@ -17,7 +17,8 @@ public:
 	void Draw(Camera* camera);
 	void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
-	void CreateEnemy();
+	void CreateEnemyGrabity();
+	void CreateEnemyRevolution();
 
 	 EnemyActor* GetActor() const { return enemy_.get(); }
 private:

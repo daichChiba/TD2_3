@@ -106,8 +106,10 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFactory.cpp">
+    <ClCompile Include="RevolutionBulletSecond.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="MeteoriteBullet.cpp">
     <ClCompile Include="ActorManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -232,9 +234,11 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFactory.h">
+    <ClInclude Include="RevolutionBulletSecond.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="ActorManager.h">
+    <ClInclude Include="MeteoriteBullet.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

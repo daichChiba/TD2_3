@@ -29,6 +29,8 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 	camera_->translation_ = normalCameraPos_;
 
+	isFinished = false;
+
 	// playerのモデル
 	playerModel_ = new Model();
 	// playerModel_->CreateFromOBJ("player", true);
@@ -66,7 +68,7 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	CheckAllCollisions();
+	
 	//player_->Update();
 	actorManager->Update();
 
@@ -79,6 +81,8 @@ void GameScene::Update() {
 	{ 
 		enemyBullet->Update(); 
 	}
+
+	CheckAllCollisions();
 
 	enemiesBullet_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });
 	playerBullets_.remove_if([](std::shared_ptr<EnemyBullet> a) { return a->IsDelete(); });

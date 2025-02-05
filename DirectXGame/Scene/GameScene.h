@@ -61,6 +61,7 @@ public: // メンバ関数
 
 	void AddPlayerBullet(std::shared_ptr<EnemyBullet> playerBullet) { playerBullets_.push_back(playerBullet); }
 
+	bool IsFinished() { return isFinished;}
 private: // メンバ変数
 	/// <summary>
 	/// すべての当たり判定
@@ -76,6 +77,8 @@ private: // メンバ変数
 	/// </summary>
 	Camera* camera_ = nullptr;
 	static inline const Vector3 normalCameraPos_ = {0.0f, 0.0f, -20.0f};
+
+	bool isFinished;
 
 	/// <summary>
 	/// player
@@ -107,6 +110,12 @@ private: // メンバ変数
 	/// 自機の弾(GameSceneではUpdateとDrowのみ行う)
 	/// </summary>
 	std::list<std::shared_ptr<EnemyBullet>> playerBullets_;
+	
+	//Model* playerBulletModel_ = nullptr;
+
+	Model* zoldorkModel_ = nullptr;
+	
+	//Character character_;
 
 	// Model* playerBulletModel_ = nullptr;
 

@@ -3,8 +3,11 @@
 #include "KamataEngine.h"
 class RevolutionBulletSecond : public EnemyBullet {
 public:
-	void GetPlayerPos(Vector3 pos) override;
+	void SetPlayerPos(Vector3 pos) override;
 	void Update() override;
+
+private:
+	void DrawImgui();
 
 private:
 	Vector3 targetPos;
@@ -13,6 +16,7 @@ private:
 	float delay;
 
 	float speed;
+
 
 	static inline const float kSpeed = 0.01f;
 	static inline const float kdelay = 1.0f;

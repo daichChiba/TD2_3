@@ -179,6 +179,10 @@ void Player::Attack() {
 					zoldrak->SetTagetPos(direction);
 					zoldrak->SetActor(actor);
 					zoldrak->SetBullet(Bullet::Zoldorak);
+					if (i!=0) {
+						zoldrak->SetDraw(false);
+					}
+
 					gameScene_->AddPlayerBullet(zoldrak);
 				}
 				tertiaryAttackCoolTime = kTertiaryAttackCoolTime;

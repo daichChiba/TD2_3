@@ -14,7 +14,8 @@ class EnemyFactory {
 public:
     void Initialize(Model* model, Model* bulletModel);
     void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
-    std::unique_ptr<EnemyActor> AddEnemy();
+    std::unique_ptr<EnemyActor> AddEnemyGrabity();
+    std::unique_ptr<EnemyActor> AddEnemyRevolution();
     void SetPlayer(Player* player);
 
 private:
