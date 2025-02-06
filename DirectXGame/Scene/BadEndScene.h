@@ -37,7 +37,8 @@ private:
 	// 終了フラグ
 	bool finished_ = false;
 	Model* modelFont_ = nullptr;
-	
+	XINPUT_STATE xinput_;
+	XINPUT_STATE preXinput_;
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 

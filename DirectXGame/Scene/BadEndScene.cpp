@@ -35,13 +35,15 @@ void BadEndScene::Initialize() {
 }
 
 void BadEndScene::Update() {
-
+	Input::GetInstance()->GetJoystickState(0, xinput_);
+	Input::GetInstance()->GetJoystickStatePrevious(0, preXinput_);
 	// SPACEキーを押すとフェードアウトを開始
-	if (Input::GetInstance()->TriggerKey(DIK_RETURN)) {
+	if (Input::GetInstance()->TriggerKey(DIK_RETURN) || (xinput_.Gamepad.wButtons == XINPUT_GAMEPAD_A && preXinput_.Gamepad.wButtons != XINPUT_GAMEPAD_A)) {
 		if (phase_ != Phase::kFadeOut) {
 			phase_ = Phase::kFadeOut;
 			fade_->Start(Fade::Status::FadeOut, 1);
 		}
+		// finished_ = true;
 	}
 
 	if (fade_ != nullptr && fade_->IsFadeOutFinished() == true) {

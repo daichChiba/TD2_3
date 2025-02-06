@@ -39,7 +39,8 @@ private:
 
 	// ワールド変換データ
 	WorldTransform worldTransform_;
-
+	XINPUT_STATE xinput_;
+	XINPUT_STATE preXinput_;
 	// ビュープロジェクション
 	Camera camera_;
 
