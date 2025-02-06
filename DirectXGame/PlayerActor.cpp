@@ -113,7 +113,7 @@ Vector3 PlayerActor::GetWorldPosition() { return worldTransform_.translation_; }
 void PlayerActor::AddVelocity(Vector3 velocity) { velocity_ += velocity; }
 
 void PlayerActor::OnCollision() {
-	//hp --;
+	hp --;
 }
 
 void PlayerActor::PrimaryAttack() {
