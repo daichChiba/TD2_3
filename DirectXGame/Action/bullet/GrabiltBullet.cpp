@@ -1,4 +1,4 @@
-#include "../DirectXGame/GrabiltBullet.h"
+#include "GrabiltBullet.h"
 
 using namespace MathUtility;
 

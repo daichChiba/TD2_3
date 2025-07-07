@@ -1,132 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="シェーダー ファイル">
-      <UniqueIdentifier>{718c7f4c-fc51-40ad-a221-b9456a7a1a3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scene">
-      <UniqueIdentifier>{c471b4c5-3705-400b-8651-66ca960fa960}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\scene">
-      <UniqueIdentifier>{4cd0abbd-5caf-49b2-b29e-20633233c726}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\GameScene.cpp">
-      <Filter>ソース ファイル\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtliltyForText.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldTransformEx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyGravity.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GrabiltBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtilityEX.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Easings.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="InputEx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MagicPlayer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GrabityBigBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GrabityBulletSecond.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyFactoy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyActor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GrabityBulletSecond.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerAccelerationBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Straight.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Zoldorak.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRevolutionBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyRevolution.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerActor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerWizard.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="RevolutionBulletSecond.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerFactory.cpp">
-    <ClCompile Include="RevolutionBulletSecond.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MeteoriteBullet.cpp">
-    <ClCompile Include="ActorManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resources\shaders\SpritePS.hlsl">
-      <Filter>シェーダー ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\SpriteVS.hlsl">
-      <Filter>シェーダー ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\ShapeVS.hlsl">
-      <Filter>シェーダー ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\shaders\ShapePS.hlsl">
-      <Filter>シェーダー ファイル</Filter>
-    </FxCompile>
     <FxCompile Include="Resources\shaders\ObjPS.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
@@ -139,6 +13,18 @@
     <FxCompile Include="Resources\shaders\PrimitiveVS.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\shaders\ShapePS.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\shaders\ShapeVS.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\shaders\SpritePS.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\shaders\SpriteVS.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
@@ -147,16 +33,207 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shaders\Sprite.hlsli">
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\RuleScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ClearScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\BadEndScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\ActorManager.cpp">
+      <Filter>ソースファイル\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\Zoldorak.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\RevolutionBulletSecond.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\PlayerAccelerationBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\MeteoriteBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\GrabityBigBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\GrabiltBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\EnemyRevolutionBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\EnemyBullet.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\enemy\EnemyActor.cpp">
+      <Filter>ソースファイル\Action\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\enemy\EnemyFactoy.cpp">
+      <Filter>ソースファイル\Action\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\EnemyGravity.cpp">
+      <Filter>ソースファイル\Action\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\enemy\EnemyManager.cpp">
+      <Filter>ソースファイル\Action\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\EnemyRevolution.cpp">
+      <Filter>ソースファイル\Action\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\GrabityBulletSecond.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\player\MagicPlayer.cpp">
+      <Filter>ソースファイル\Action\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\player\PlayerActor.cpp">
+      <Filter>ソースファイル\Action\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\player\PlayerFactory.cpp">
+      <Filter>ソースファイル\Action\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\player\PlayerManager.cpp">
+      <Filter>ソースファイル\Action\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\player\PlayerWizard.cpp">
+      <Filter>ソースファイル\Action\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Action\bullet\Straight.cpp">
+      <Filter>ソースファイル\Action\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\Easings.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\Fade.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\InputEx.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\MathUtilityEX.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\MathUtliltyForText.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\Skydome.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="etc\WorldTransformEx.cpp">
+      <Filter>ソースファイル\etc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene\BadEndScene.h">
+      <Filter>ヘッダーファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ClearScene.h">
+      <Filter>ヘッダーファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameScene.h">
+      <Filter>ヘッダーファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\RuleScene.h">
+      <Filter>ヘッダーファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TitleScene.h">
+      <Filter>ヘッダーファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\ActorManager.h">
+      <Filter>ヘッダーファイル\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\EnemyBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\GrabiltBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\EnemyRevolutionBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\GrabityBigBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\MeteoriteBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\PlayerAccelerationBullet.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\RevolutionBulletSecond.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\Zoldorak.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\enemy\EnemyActor.h">
+      <Filter>ヘッダーファイル\Action\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\enemy\EnemyFactoy.h">
+      <Filter>ヘッダーファイル\Action\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\EnemyGravity.h">
+      <Filter>ヘッダーファイル\Action\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\enemy\EnemyManager.h">
+      <Filter>ヘッダーファイル\Action\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\EnemyRevolution.h">
+      <Filter>ヘッダーファイル\Action\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\GrabityBulletSecond.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\player\MagicPlayer.h">
+      <Filter>ヘッダーファイル\Action\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\player\PlayerActor.h">
+      <Filter>ヘッダーファイル\Action\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\player\PlayerFactory.h">
+      <Filter>ヘッダーファイル\Action\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\player\PlayerManager.h">
+      <Filter>ヘッダーファイル\Action\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\player\PlayerWizard.h">
+      <Filter>ヘッダーファイル\Action\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Action\bullet\Straight.h">
+      <Filter>ヘッダーファイル\Action\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\Easings.h">
+      <Filter>ヘッダーファイル\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\Fade.h">
+      <Filter>ヘッダーファイル\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="etc\MathUtliltyForText.h">
+      <Filter>ヘッダーファイル\etc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shaders\Obj.hlsli">
+      <Filter>シェーダー ファイル</Filter>
+    </None>
+    <None Include="Resources\shaders\Primitive.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
     <None Include="Resources\shaders\Shape.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
-    <None Include="Resources\shaders\Obj.hlsli">
-      <Filter>シェーダー ファイル</Filter>
-    </None>
-    <None Include="Resources\shaders\Primitive.hlsli">
+    <None Include="Resources\shaders\Sprite.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
     <None Include="Resources\shaders\Terrain.hlsli">
@@ -164,82 +241,50 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene\GameScene.h">
-      <Filter>ヘッダー ファイル\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtliltyForText.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyGravity.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GrabiltBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Easings.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicPlayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GrabityBulletSecond.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerAccelerationBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Straight.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Zoldorak.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GrabityBigBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GrabityBulletSecond.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyFactoy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyActor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRevolutionBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyRevolution.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerActor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerWizard.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="RevolutionBulletSecond.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerFactory.h">
-    <ClInclude Include="RevolutionBulletSecond.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorManager.h">
-    <ClInclude Include="MeteoriteBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{b48e3fe9-dede-4c1d-a330-77077039f6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル">
+      <UniqueIdentifier>{0df5cf39-bc03-4e4f-9472-dc42f52e173e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Scene">
+      <UniqueIdentifier>{8e0ff8ea-e87e-4060-b3cc-2213ebd31293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Scene">
+      <UniqueIdentifier>{bd6102bf-1f2c-461a-8caa-0223106a4a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="シェーダー ファイル">
+      <UniqueIdentifier>{fedb987a-20a5-4a99-9771-fdae0afa00c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Action">
+      <UniqueIdentifier>{5f8329e9-b45b-4c9d-96e3-6166dc27fbf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Action">
+      <UniqueIdentifier>{2869bee3-0059-4a58-a345-8957c8c6d536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Action\bullet">
+      <UniqueIdentifier>{04e45efa-0d4a-443a-9ddd-4c6dd58e6d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Action\bullet">
+      <UniqueIdentifier>{1ef8ec52-59a4-4958-9ba1-eb61154e2568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Action\Enemy">
+      <UniqueIdentifier>{c37dee6d-5e6f-4719-a2f0-75e90e7e8e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Action\Enemy">
+      <UniqueIdentifier>{f6e0d39f-bdbb-4fb2-aa72-fd232407d838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Action\Player">
+      <UniqueIdentifier>{0bfe0472-c72e-44d2-8027-9d1abf6fe5d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Action\Player">
+      <UniqueIdentifier>{aef4f09e-14d8-4c70-a51a-ed2ca0a6802f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\etc">
+      <UniqueIdentifier>{56ce8e69-29e2-4e64-8bdf-b6f79f4c185b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\etc">
+      <UniqueIdentifier>{f25af1a8-8c27-4e8f-a692-650b06aa5266}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -45,14 +45,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\DirectXTex\include;$(ProjectDir)..\External\imgui;$(ProjectDir)..\External\KamataEngine\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\DirectXTex\include;$(ProjectDir)..\External\imgui;$(ProjectDir)..\External\KamataEngine\include;$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\External\KamataEngine\lib\$(Configuration);$(ProjectDir)..\External\DirectXTex\lib\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)..\Generated\Outputs\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\DirectXTex\include;$(ProjectDir)..\External\imgui;$(ProjectDir)..\External\KamataEngine\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\DirectXTex\include;$(ProjectDir)..\External\imgui;$(ProjectDir)..\External\KamataEngine\include;$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\External\KamataEngine\lib\$(Configuration);$(ProjectDir)..\External\DirectXTex\lib\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)..\Generated\Outputs\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\Generated\Obj\$(ProjectName)\$(Configuration)\</IntDir>
@@ -106,40 +106,40 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActorManager.cpp" />
-    <ClCompile Include="EnemyRevolutionBullet.cpp" />
-    <ClCompile Include="EnemyRevolution.cpp" />
-    <ClCompile Include="Fade.cpp" />
-    <ClCompile Include="PlayerActor.cpp" />
-    <ClCompile Include="PlayerFactory.cpp" />
-    <ClCompile Include="PlayerManager.cpp" />
-    <ClCompile Include="PlayerWizard.cpp" />
-    <ClCompile Include="MeteoriteBullet.cpp" />
-    <ClCompile Include="RevolutionBulletSecond.cpp" />
+    <ClCompile Include="Action\ActorManager.cpp" />
+    <ClCompile Include="Action\bullet\EnemyRevolutionBullet.cpp" />
+    <ClCompile Include="Action\bullet\EnemyRevolution.cpp" />
+    <ClCompile Include="etc\Fade.cpp" />
+    <ClCompile Include="Action\player\PlayerActor.cpp" />
+    <ClCompile Include="Action\player\PlayerFactory.cpp" />
+    <ClCompile Include="Action\player\PlayerManager.cpp" />
+    <ClCompile Include="Action\player\PlayerWizard.cpp" />
+    <ClCompile Include="Action\bullet\MeteoriteBullet.cpp" />
+    <ClCompile Include="Action\bullet\RevolutionBulletSecond.cpp" />
     <ClCompile Include="Scene\BadEndScene.cpp" />
     <ClCompile Include="Scene\ClearScene.cpp" />
     <ClCompile Include="Scene\RuleScene.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
-    <ClCompile Include="Skydome.cpp" />
-    <ClCompile Include="Straight.cpp" />
-    <ClCompile Include="Easings.cpp" />
-    <ClCompile Include="EnemyActor.cpp" />
-    <ClCompile Include="EnemyBullet.cpp" />
-    <ClCompile Include="EnemyFactoy.cpp" />
-    <ClCompile Include="EnemyGravity.cpp" />
-    <ClCompile Include="EnemyManager.cpp" />
-    <ClCompile Include="GrabiltBullet.cpp" />
-    <ClCompile Include="GrabityBigBullet.cpp" />
-    <ClCompile Include="InputEx.cpp" />
-    <ClCompile Include="MagicPlayer.cpp" />
-    <ClCompile Include="GrabityBulletSecond.cpp" />
+    <ClCompile Include="etc\Skydome.cpp" />
+    <ClCompile Include="Action\bullet\Straight.cpp" />
+    <ClCompile Include="etc\Easings.cpp" />
+    <ClCompile Include="Action\enemy\EnemyActor.cpp" />
+    <ClCompile Include="Action\bullet\EnemyBullet.cpp" />
+    <ClCompile Include="Action\enemy\EnemyFactoy.cpp" />
+    <ClCompile Include="Action\bullet\EnemyGravity.cpp" />
+    <ClCompile Include="Action\enemy\EnemyManager.cpp" />
+    <ClCompile Include="Action\bullet\GrabiltBullet.cpp" />
+    <ClCompile Include="Action\bullet\GrabityBigBullet.cpp" />
+    <ClCompile Include="etc\InputEx.cpp" />
+    <ClCompile Include="Action\player\MagicPlayer.cpp" />
+    <ClCompile Include="Action\bullet\GrabityBulletSecond.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathUtilityEX.cpp" />
-    <ClCompile Include="MathUtliltyForText.cpp" />
-    <ClCompile Include="PlayerAccelerationBullet.cpp" />
+    <ClCompile Include="etc\MathUtilityEX.cpp" />
+    <ClCompile Include="etc\MathUtliltyForText.cpp" />
+    <ClCompile Include="Action\bullet\PlayerAccelerationBullet.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
-    <ClCompile Include="WorldTransformEx.cpp" />
-    <ClCompile Include="Zoldorak.cpp" />
+    <ClCompile Include="etc\WorldTransformEx.cpp" />
+    <ClCompile Include="Action\bullet\Zoldorak.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -217,35 +217,35 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActorManager.h" />
-    <ClInclude Include="EnemyRevolutionBullet.h" />
-    <ClInclude Include="EnemyRevolution.h" />
-    <ClInclude Include="Fade.h" />
-    <ClInclude Include="PlayerActor.h" />
-    <ClInclude Include="PlayerFactory.h" />
-    <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="PlayerWizard.h" />
-    <ClInclude Include="MeteoriteBullet.h" />
-    <ClInclude Include="RevolutionBulletSecond.h" />
+    <ClInclude Include="Action\ActorManager.h" />
+    <ClInclude Include="Action\bullet\EnemyRevolutionBullet.h" />
+    <ClInclude Include="Action\bullet\EnemyRevolution.h" />
+    <ClInclude Include="etc\Fade.h" />
+    <ClInclude Include="Action\player\PlayerActor.h" />
+    <ClInclude Include="Action\player\PlayerFactory.h" />
+    <ClInclude Include="Action\player\PlayerManager.h" />
+    <ClInclude Include="Action\player\PlayerWizard.h" />
+    <ClInclude Include="Action\bullet\MeteoriteBullet.h" />
+    <ClInclude Include="Action\bullet\RevolutionBulletSecond.h" />
     <ClInclude Include="Scene\BadEndScene.h" />
     <ClInclude Include="Scene\ClearScene.h" />
     <ClInclude Include="Scene\RuleScene.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="Straight.h" />
-    <ClInclude Include="Easings.h" />
-    <ClInclude Include="EnemyActor.h" />
-    <ClInclude Include="EnemyFactoy.h" />
-    <ClInclude Include="GrabityBigBullet.h" />
-    <ClInclude Include="MagicPlayer.h" />
-    <ClInclude Include="GrabityBulletSecond.h" />
-    <ClInclude Include="EnemyBullet.h" />
-    <ClInclude Include="EnemyGravity.h" />
-    <ClInclude Include="EnemyManager.h" />
-    <ClInclude Include="GrabiltBullet.h" />
-    <ClInclude Include="MathUtliltyForText.h" />
-    <ClInclude Include="PlayerAccelerationBullet.h" />
+    <ClInclude Include="Action\bullet\Straight.h" />
+    <ClInclude Include="etc\Easings.h" />
+    <ClInclude Include="Action\enemy\EnemyActor.h" />
+    <ClInclude Include="Action\enemy\EnemyFactoy.h" />
+    <ClInclude Include="Action\bullet\GrabityBigBullet.h" />
+    <ClInclude Include="Action\player\MagicPlayer.h" />
+    <ClInclude Include="Action\bullet\GrabityBulletSecond.h" />
+    <ClInclude Include="Action\bullet\EnemyBullet.h" />
+    <ClInclude Include="Action\bullet\EnemyGravity.h" />
+    <ClInclude Include="Action\enemy\EnemyManager.h" />
+    <ClInclude Include="Action\bullet\GrabiltBullet.h" />
+    <ClInclude Include="etc\MathUtliltyForText.h" />
+    <ClInclude Include="Action\bullet\PlayerAccelerationBullet.h" />
     <ClInclude Include="Scene\GameScene.h" />
-    <ClInclude Include="Zoldorak.h" />
+    <ClInclude Include="Action\bullet\Zoldorak.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

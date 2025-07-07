@@ -1,13 +1,13 @@
 #include "EnemyGravity.h"
 
-#include "../DirectXGame/GrabityBigBullet.h"
-#include "../DirectXGame/GrabityBulletSecond.h"
-#include "../DirectXGame/Scene/GameScene.h"
+#include "GrabityBigBullet.h"
+#include "GrabityBulletSecond.h"
+#include "../../Scene/GameScene.h"
 #include "EnemyBullet.h"
 #include "GrabiltBullet.h"
 
-#include "ActorManager.h"
-#include "PlayerActor.h"
+#include "../ActorManager.h"
+#include "../player/PlayerActor.h"
 
 #include <algorithm>
 using namespace MathUtility;

@@ -1,5 +1,5 @@
 #pragma once
-#include "ActorManager.h"
+#include "../ActorManager.h"
 #include "kamataEngine.h"
 #include <functional>
 #include <map>

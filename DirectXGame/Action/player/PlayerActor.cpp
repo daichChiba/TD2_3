@@ -2,8 +2,8 @@
 
 #include "Scene/GameScene.h"
 
-#include "ActorManager.h"
-#include "EnemyManager.h"
+#include "../ActorManager.h"
+#include "../enemy/EnemyManager.h"
 
 using namespace MathUtility;
 

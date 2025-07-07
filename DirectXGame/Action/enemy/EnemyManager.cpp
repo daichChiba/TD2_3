@@ -1,8 +1,8 @@
 #include "EnemyManager.h"
 //#include "EnemyActor.h"
-#include "ActorManager.h"
+#include "../ActorManager.h"
 #include "EnemyFactoy.h"
-#include "EnemyGravity.h"
+#include "../bullet/EnemyGravity.h"
 
 void EnemyManager::Initialize(Model* model, Model* bulletModel, Vector3 pos, GameScene* gameScene, ActorManager* actorMana) {
 #ifdef _DEBUG

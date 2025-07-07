@@ -1,5 +1,5 @@
 #pragma once
-#include "../Fade.h"
+#include "../etc/Fade.h"
 #include <KamataEngine.h>
 
 using namespace KamataEngine;

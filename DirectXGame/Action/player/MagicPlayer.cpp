@@ -1,5 +1,5 @@
 #include "MagicPlayer.h"
-#include"EnemyBullet.h"
+#include"../bullet/EnemyBullet.h"
 //#include"PlayerNormalBullet.h"
 #include"../DirectXGame/Scene/GameScene.h"
 

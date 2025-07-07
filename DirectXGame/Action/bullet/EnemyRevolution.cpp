@@ -1,7 +1,7 @@
 #include "EnemyRevolution.h"
 
-#include "../DirectXGame/Player.h"
-#include "../DirectXGame/Scene/GameScene.h"
+#include "../player/Player.h"
+#include "../../Scene/GameScene.h"
 
 #include "EnemyBullet.h"
 #include "EnemyRevolutionBullet.h"

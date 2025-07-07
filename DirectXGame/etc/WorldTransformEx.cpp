@@ -1,4 +1,4 @@
-#include "../DirectXGame/MathUtliltyForText.h"
+#include "MathUtliltyForText.h"
 using namespace KamataEngine;
 using namespace MathUtility;
 void WorldTransform::UpdateMatrix() {

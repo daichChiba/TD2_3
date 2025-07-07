@@ -1,6 +1,6 @@
 #include "Zoldorak.h"
-#include "ActorManager.h"
-#include "PlayerManager.h"
+#include "../ActorManager.h"
+#include "../player/PlayerManager.h"
 using namespace MathUtility;
 void Zoldorak::Update() {
 	if (!start) {

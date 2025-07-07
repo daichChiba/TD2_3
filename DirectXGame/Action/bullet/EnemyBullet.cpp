@@ -1,6 +1,6 @@
 #include "EnemyBullet.h"
 
-#include "ActorManager.h"
+#include "../ActorManager.h"
 
 void EnemyBullet::Initialize(Model* model, Vector3 pos) {
 #ifdef _DEBUG

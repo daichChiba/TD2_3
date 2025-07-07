@@ -1,8 +1,7 @@
 #include "ActorManager.h"
-
-#include "../DirectXGame/Scene/GameScene.h"
-#include "PlayerManager.h"
-#include "EnemyManager.h"
+#include "../Scene/GameScene.h"
+#include "player/PlayerManager.h"
+#include "enemy/EnemyManager.h"
 
 void ActorManager::Initialize(Model* playerModel, Model* playerBulleModel, Model* playerBeamModel, Model* enemyModel, Model* enemyBulletModel, Vector3 playerPos, Vector3 enemyPos, GameScene* gameScene)
 {

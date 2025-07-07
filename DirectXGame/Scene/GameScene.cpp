@@ -1,12 +1,12 @@
 #include "GameScene.h"
-#include "../ActorManager.h"
+#include "../Action/ActorManager.h"
 #include <cassert>
 #include <corecrt_math.h>
 
-#include "../PlayerManager.h"
-#include "../PlayerActor.h"
-#include "../EnemyManager.h"
-#include "../EnemyActor.h"
+#include "../Action/player/PlayerManager.h"
+#include "../Action/player/PlayerActor.h"
+#include "../Action/enemy/EnemyManager.h"
+#include "../Action/enemy/EnemyActor.h"
 
 using namespace KamataEngine;
 

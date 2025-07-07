@@ -1,7 +1,7 @@
 #include "PlayerManager.h"
 
 #include "Scene/GameScene.h"
-#include "ActorManager.h"
+#include "../ActorManager.h"
 
 #include "PlayerFactory.h"
 #include "PlayerWizard.h"

@@ -1,8 +1,9 @@
 // EnemyFactory.cpp
-#include "../DirectXGame/EnemyFactoy.h"
-#include "../DirectXGame/EnemyActor.h"
-#include "../DirectXGame/EnemyGravity.h"
-#include "../DirectXGame/EnemyRevolution.h"
+
+#include "EnemyFactoy.h"
+#include "EnemyActor.h"
+#include "../bullet/EnemyGravity.h"
+#include "../bullet/EnemyRevolution.h"
 
 void EnemyFactory::Initialize(Model* model, Model* bulletModel) {
 	model_ = model;

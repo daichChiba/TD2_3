@@ -1,6 +1,6 @@
 #include "GrabityBigBullet.h"
-#include "ActorManager.h"
-#include "PlayerActor.h"
+#include "../ActorManager.h"
+#include "../player/PlayerActor.h"
 using namespace MathUtility;
 
 void GrabityBigBullet::Update() {

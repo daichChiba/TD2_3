@@ -1,5 +1,5 @@
 #include "PlayerAccelerationBullet.h"
-#include "Easings.h"
+#include "../../etc/Easings.h"
 #include "EnemyBullet.h"
 
 

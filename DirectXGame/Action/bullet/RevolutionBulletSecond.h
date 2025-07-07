@@ -1,14 +1,13 @@
 #pragma once
-#include "../DirectXGame/EnemyBullet.h"
+#include "EnemyBullet.h"
 #include "KamataEngine.h"
-
-using namespace KamataEngine;
-
-class EnemyRevolutionBullet : public EnemyBullet {
+class RevolutionBulletSecond : public EnemyBullet {
 public:
 	void SetPlayerPos(Vector3 pos) override;
 	void Update() override;
 
+private:
+	void DrawImgui();
 
 private:
 	Vector3 targetPos;
@@ -17,6 +16,7 @@ private:
 	float delay;
 
 	float speed;
+
 
 	static inline const float kSpeed = 0.01f;
 	static inline const float kdelay = 1.0f;

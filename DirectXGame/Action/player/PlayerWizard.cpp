@@ -2,13 +2,13 @@
 
 #include "../DirectXGame/Scene/GameScene.h"
 
-#include "ActorManager.h"
-#include "EnemyActor.h"
+#include "../ActorManager.h"
+#include "../enemy/EnemyActor.h"
 
-#include "EnemyBullet.h"
-#include "PlayerAccelerationBullet.h"
-#include "Straight.h"
-#include "Zoldorak.h"
+#include "../bullet/EnemyBullet.h"
+#include "../bullet/PlayerAccelerationBullet.h"
+#include "../bullet/Straight.h"
+#include "../bullet/Zoldorak.h"
 
 void PlayerWizard::Update() {
 	Input::GetInstance()->GetJoystickState(0, xinput_);
